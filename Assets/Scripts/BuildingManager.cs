@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 //using CodeMonkey.Utils;
 
 public class BuildingManager : MonoBehaviour
@@ -11,7 +12,7 @@ public class BuildingManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Vector3 mouseWorldPosition =  Mouse3D.GetMouseWorldPosition();
             Debug.Log(mouseWorldPosition);
@@ -26,5 +27,10 @@ public class BuildingManager : MonoBehaviour
     public void SetActiveBuildingType (BuildingTypeSO buildingTypeSO)
     {
         activeBuildingType = buildingTypeSO;
+    }
+
+    public BuildingTypeSO GetActiveBuildingType()
+    {
+        return activeBuildingType;
     }
 }

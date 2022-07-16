@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Carteira
   m_EditorClassIdentifier: 
   prefab: {fileID: 4558593196022300, guid: 991e8973513e2ad408232c1afeb3a9df, type: 3}
-  sprite: {fileID: 0}
+  sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
