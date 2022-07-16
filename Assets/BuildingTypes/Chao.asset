@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d14ba84ecc2e70418a91ad6bc03297f, type: 3}
   m_Name: Chao
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  sprite: {fileID: 0}
+  prefab: {fileID: 4798061275001716, guid: be4105263a3576a4a9d8bb22a5f5ca29, type: 3}
+  sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}

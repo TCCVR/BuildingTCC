@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Borracha
   m_EditorClassIdentifier: 
   prefab: {fileID: 4330883126242722, guid: 87332db484d7e492aa5fa22bea62c7ae, type: 3}
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: af0ae2dbf3d1efb4f82af377950704a2, type: 3}
