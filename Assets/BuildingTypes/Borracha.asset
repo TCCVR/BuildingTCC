@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d14ba84ecc2e70418a91ad6bc03297f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ec072ecf0b959844903e65348423fb3, type: 3}
   m_Name: Borracha
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4330883126242722, guid: 87332db484d7e492aa5fa22bea62c7ae, type: 3}
-  sprite: {fileID: 21300000, guid: af0ae2dbf3d1efb4f82af377950704a2, type: 3}
+  typeName: Borracha
+  transform: {fileID: 4330883126242722, guid: 87332db484d7e492aa5fa22bea62c7ae, type: 3}
+  sprite: {fileID: 21300000, guid: 055e7ec99d68b0b4ea86fa2a995a4ad8, type: 3}

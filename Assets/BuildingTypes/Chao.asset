@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d14ba84ecc2e70418a91ad6bc03297f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ec072ecf0b959844903e65348423fb3, type: 3}
   m_Name: Chao
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4798061275001716, guid: be4105263a3576a4a9d8bb22a5f5ca29, type: 3}
-  sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  typeName: Chao
+  transform: {fileID: 4240109998300524, guid: 405988af1bd38ee4fb92e86058b6c926, type: 3}
+  sprite: {fileID: 21300000, guid: 32f5a73ad88748a4791c318fdf0c2ea2, type: 3}
