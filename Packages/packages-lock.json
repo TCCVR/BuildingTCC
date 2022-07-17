@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.politccvr.core": {
-      "version": "file:com.politccvr.core",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
     "com.unity.cinemachine": {
       "version": "2.6.15",
       "depth": 0,
