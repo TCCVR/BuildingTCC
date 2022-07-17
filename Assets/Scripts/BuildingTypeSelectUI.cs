@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BuildingTypeSelectUI : MonoBehaviour
-{
+public class BuildingTypeSelectUI : MonoBehaviour {
     [SerializeField] private List<BuildingTypeSO> buildingTypeSOList;
     [SerializeField] private BuildingManager buildingManager;
 
     private Dictionary<BuildingTypeSO, Transform> buildingBtnDictionary;
-    private void Awake()
-    {
+    private void Awake() {
         Transform buildingBtnTemplate = transform.Find("buildingButtonTemplate");
         buildingBtnTemplate.gameObject.SetActive(false);
 
@@ -18,8 +16,7 @@ public class BuildingTypeSelectUI : MonoBehaviour
         buildingBtnDictionary = new Dictionary<BuildingTypeSO, Transform>();
         int index = 0;
         
-        foreach(BuildingTypeSO buildingTypeSO in buildingTypeSOList)
-        {
+        foreach(BuildingTypeSO buildingTypeSO in buildingTypeSOList) {
             
             Transform buildingBtnTransform  = Instantiate(buildingBtnTemplate, transform);
             buildingBtnTransform.gameObject.SetActive(true);
@@ -38,19 +35,31 @@ public class BuildingTypeSelectUI : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
+    private void Start() {
         UpdateSelectedVisual();
     }
 
-    private void UpdateSelectedVisual()
-    {
-        foreach (BuildingTypeSO buildingTypeSO in buildingBtnDictionary.Keys)
-        {
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Tab)) {
+            BuildingTypeSO NextBuidingType = NextBuildingTypeOnList();
+            buildingManager.SetActiveBuildingType(NextBuidingType);
+            UpdateSelectedVisual();
+        }
+    }
+    private void UpdateSelectedVisual() {
+        foreach (BuildingTypeSO buildingTypeSO in buildingBtnDictionary.Keys) {
             buildingBtnDictionary[buildingTypeSO].Find("selected").gameObject.SetActive(false);
         }
 
         BuildingTypeSO activeBuildingType = buildingManager.GetActiveBuildingType();
         buildingBtnDictionary[activeBuildingType].Find("selected").gameObject.SetActive(true);
+    }
+
+    private BuildingTypeSO NextBuildingTypeOnList() {
+        int indexCurrentBT = buildingTypeSOList.IndexOf(buildingManager.GetActiveBuildingType());
+        if (indexCurrentBT == buildingTypeSOList.Count - 1)
+            return buildingTypeSOList[0];
+        else
+            return buildingTypeSOList[indexCurrentBT + 1];
     }
 }
