@@ -4,11 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class BuildingTypeSelectUI : MonoBehaviour {
-    [SerializeField] private List<BuildingTypeSO> buildingTypeSOList;
-    [SerializeField] private BuildingManager buildingManager;
+    [SerializeField] private GameObject managerObject;
+    private BuildingManager buildingManager;
+    private List<BuildingTypeSO> buildingTypeSOList;
 
     private Dictionary<BuildingTypeSO, Transform> buildingBtnDictionary;
-    private void Awake() {
+    private void Start() {
+
+
+        //try catch?
+        buildingManager = managerObject.GetComponent<BuildingManager>();
+        buildingTypeSOList = buildingManager.buildingTypeSOList;
+        //
+
         Transform buildingBtnTemplate = transform.Find("buildingButtonTemplate");
         buildingBtnTemplate.gameObject.SetActive(false);
 
@@ -33,11 +41,11 @@ public class BuildingTypeSelectUI : MonoBehaviour {
             buildingBtnDictionary[buildingTypeSO] = buildingBtnTransform;
             index++;
         }
-    }
 
-    private void Start() {
+
         UpdateSelectedVisual();
     }
+
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Tab)) {
