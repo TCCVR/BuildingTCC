@@ -56,9 +56,9 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BuildingManager.cs" />
+    <Compile Include="Assets\Scripts\BuildingScripts\BuildingManager.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\Button_UI.cs" />
-    <Compile Include="Assets\Scripts\PlacedBuildingInfo.cs" />
+    <Compile Include="Assets\Scripts\BuildingScripts\PlacedBuildingInfo.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualJoystick.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualTouchZone.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\World_Mesh.cs" />
@@ -68,7 +68,7 @@
     <Compile Include="Assets\CodeMonkey\Utils\Button_Sprite.cs" />
     <Compile Include="Assets\Scripts\FileUtils.cs" />
     <Compile Include="Assets\CodeMonkey\MonoBehaviours\CameraFollowSetup.cs" />
-    <Compile Include="Assets\Scripts\BuildingTypeSelectUI.cs" />
+    <Compile Include="Assets\Scripts\BuildingScripts\BuildingTypeSelectUI.cs" />
     <Compile Include="Assets\CodeMonkey\MonoBehaviours\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\SaveSystem.cs" />
     <Compile Include="Assets\CodeMonkey\Assets.cs" />
@@ -85,7 +85,7 @@
     <Compile Include="Assets\CodeMonkey\Utils\FunctionTimer.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\UI_Bar.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
-    <Compile Include="Assets\Scripts\BuildingTypeSO.cs" />
+    <Compile Include="Assets\Scripts\BuildingScripts\BuildingTypeSO.cs" />
     <Compile Include="Assets\Scripts\Mouse3D.cs" />
     <Compile Include="Assets\CodeMonkey\MonoBehaviours\ComponentActions.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\UI_Sprite.cs" />
@@ -98,6 +98,10 @@
     <None Include="Assets\CodeMonkey\README.txt" />
     <None Include="Assets\StarterAssets\Environment\Shaders\Built-in_RP\Triplanar.shader" />
     <None Include="Assets\StarterAssets\license.txt" />
+    <None Include="Assets\Saves\save_2.txt" />
+    <None Include="Assets\Saves\save_1.txt" />
+    <None Include="Assets\Saves\save_4.txt" />
+    <None Include="Assets\Saves\save_3.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
