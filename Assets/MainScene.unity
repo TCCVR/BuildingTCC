@@ -636,7 +636,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCreatedScenario: {fileID: 842754518}
-  InstancedPrefabsList: {fileID: 1931784404}
+  BuildingInstancesList: {fileID: 1931784404}
+  ManagerObject: {fileID: 1262355946}
 --- !u!4 &46129311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1381132681371883810, guid: f544a2a9fed71534f85ea81385e80b16, type: 3}
@@ -2186,7 +2187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57429cfe20a48e7408d8606844d0145b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  managerObject: {fileID: 1262355946}
+  ManagerObject: {fileID: 1262355946}
 --- !u!1001 &282819017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5940,7 +5941,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCreatedScenario: {fileID: 842754518}
-  InstancedPrefabsList: {fileID: 1931784404}
+  BuildingInstancesList: {fileID: 1931784404}
+  ManagerObject: {fileID: 1262355946}
 --- !u!4 &848156074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1381132681371883810, guid: f544a2a9fed71534f85ea81385e80b16, type: 3}
@@ -9161,11 +9163,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1934851131}
-  gameHandlerBaseObj: {fileID: 41398269}
+  GameHandlerBaseObj: {fileID: 41398269}
   buildingTypeSOList: []
   activeBuildingType: {fileID: 11400000, guid: 237698e3196f39c46b3a3f4f29e61691, type: 2}
   PlayerCreatedScenario: {fileID: 842754518}
-  InstancedPrefabsList: {fileID: 1931784404}
+  BuildingInstancesList: {fileID: 1931784404}
 --- !u!4 &1269687334 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1381132681371883810, guid: f544a2a9fed71534f85ea81385e80b16, type: 3}
@@ -13291,7 +13293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1931784405}
   m_Layer: 0
-  m_Name: InstancedPrefabs
+  m_Name: BuildingInstances
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

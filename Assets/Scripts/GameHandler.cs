@@ -1,17 +1,22 @@
 ﻿
 using System.Collections;
 using System;
+using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
 public class GameHandler :MonoBehaviour {
 
     [SerializeField] private GameObject PlayerCreatedScenario;
-    [SerializeField] private GameObject InstancedPrefabsList;
-    private const string PLAYER_CREATED_SCENARIO = "playerCreatedScenario";
-    private const string INSTANCED_PREFABS = "instancedPrefabs";
+    [SerializeField] private GameObject BuildingInstancesList;
+    [SerializeField] private GameObject ManagerObject;
+    private BuildingManager BuildingManager;
 
     private void Awake() {
         SaveSystem.Init();
+    }
+
+    private void Start() {
+        BuildingManager = ManagerObject.GetComponent<BuildingManager>();
     }
 
     private void Update() {
@@ -25,7 +30,7 @@ public class GameHandler :MonoBehaviour {
     }
 
     private void Save() {
-        PlacedBuildingInfo[] gameBInfoToSave = InstancedPrefabsList.GetComponentsInChildren<PlacedBuildingInfo>();
+        PlacedBuildingInfo[] gameBInfoToSave = BuildingInstancesList.GetComponentsInChildren<PlacedBuildingInfo>();
         SaveObject saveObject = new SaveObject();
         saveObject.playerCreatedScenario = new playerCreatedScenario();
         saveObject.playerCreatedScenario.instancedPrefabs = new instancedPrefabs();
@@ -35,23 +40,53 @@ public class GameHandler :MonoBehaviour {
             listBInfo[iC1] = gameBInfoToSave[iC1].instanceInfo;
         }
 
+        SaveSystem.Save(JsonConvert.SerializeObject(saveObject));
         Debug.Log("listBInfo: " + JsonConvert.SerializeObject(saveObject));
-        
+
     }
 
+    private void LoadInstancedPrefabs(SaveObject loaded) {
+        InstanceInfo[] listBInfo = loaded.playerCreatedScenario.instancedPrefabs.placedBuildingInfo;
+        foreach (InstanceInfo iInfo in listBInfo) {
+            BuildingManager.AddBuildingFromInfo(iInfo);
+        }
+        return;
+    }
+
+
     private void Load() {
+        string saveString = SaveSystem.Load();
+        if (saveString != null) {
+            SaveObject savedObject = JsonConvert.DeserializeObject<SaveObject>(saveString);
+            Debug.Log("Loaded: " + JsonConvert.SerializeObject(savedObject));
+            LoadInstancedPrefabs(savedObject);
+        }
+        else {
+            Debug.Log("No save");
+        }
     }
 
     [Serializable]
     public class SaveObject {
-        public playerCreatedScenario playerCreatedScenario;
+        public playerCreatedScenario playerCreatedScenario {
+            set;
+            get;
+        }
     }
     [Serializable]
     public class playerCreatedScenario {
-        public instancedPrefabs instancedPrefabs;
+        public instancedPrefabs instancedPrefabs {
+            set;
+            get;
+        }
+
     }
     [Serializable]
     public class instancedPrefabs {
-        public InstanceInfo[] placedBuildingInfo;
+        public InstanceInfo[] placedBuildingInfo {
+            set;
+            get;
+        }
+
     }
 }
