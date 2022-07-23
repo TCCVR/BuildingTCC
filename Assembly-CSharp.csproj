@@ -47,7 +47,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.15</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>2.0.16</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2020.3.36f1</UnityVersion>
@@ -56,8 +56,9 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BuildingManager.cs" />
+    <Compile Include="Assets\Scripts\BuildingScripts\BuildingManager.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\Button_UI.cs" />
+    <Compile Include="Assets\Scripts\BuildingScripts\PlacedBuildingInfo.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualJoystick.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualTouchZone.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\World_Mesh.cs" />
@@ -65,9 +66,11 @@
     <Compile Include="Assets\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\UI_TextComplex.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\Button_Sprite.cs" />
+    <Compile Include="Assets\Scripts\FileUtils.cs" />
     <Compile Include="Assets\CodeMonkey\MonoBehaviours\CameraFollowSetup.cs" />
-    <Compile Include="Assets\Scripts\BuildingTypeSelectUI.cs" />
+    <Compile Include="Assets\Scripts\BuildingScripts\BuildingTypeSelectUI.cs" />
     <Compile Include="Assets\CodeMonkey\MonoBehaviours\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem.cs" />
     <Compile Include="Assets\CodeMonkey\Assets.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\World_Sprite.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\World_Bar.cs" />
@@ -75,28 +78,30 @@
     <Compile Include="Assets\StarterAssets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\UtilsClass.cs" />
     <Compile Include="Assets\CodeMonkey\MonoBehaviours\PositionRendererSorter.cs" />
+    <Compile Include="Assets\Scripts\GameHandler.cs" />
     <Compile Include="Assets\StarterAssets\FirstPersonController\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\FunctionUpdater.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\FunctionTimer.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\UI_Bar.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
-    <Compile Include="Assets\Scripts\BuildingTypeSO.cs" />
+    <Compile Include="Assets\Scripts\BuildingScripts\BuildingTypeSO.cs" />
     <Compile Include="Assets\Scripts\Mouse3D.cs" />
     <Compile Include="Assets\CodeMonkey\MonoBehaviours\ComponentActions.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\UI_Sprite.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\UI_BarMultiple.cs" />
     <Compile Include="Assets\CodeMonkey\CMDebug.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\FunctionPeriodic.cs" />
-    <Compile Include="Assets\Scripts\PlacedBuildingInfo.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem.cs" />
-    <Compile Include="Assets\Scripts\GameHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LowPolyOfficeProps_LITE\About.txt" />
     <None Include="Assets\CodeMonkey\README.txt" />
     <None Include="Assets\StarterAssets\Environment\Shaders\Built-in_RP\Triplanar.shader" />
     <None Include="Assets\StarterAssets\license.txt" />
+    <None Include="Assets\Saves\save_2.txt" />
+    <None Include="Assets\Saves\save_1.txt" />
+    <None Include="Assets\Saves\save_4.txt" />
+    <None Include="Assets\Saves\save_3.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -320,6 +325,9 @@
     </Reference>
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.36f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
