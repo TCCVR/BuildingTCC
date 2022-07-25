@@ -14,11 +14,11 @@ public class BuildingManager : MonoBehaviour {
     private int counter;
 
     private void Awake() {
-        BuildingTypeSO[] loadedBTSO;
-        loadedBTSO = FileUtils.GetAtPath<BuildingTypeSO>("BuildingTypes/");
-        foreach (BuildingTypeSO BTSO in loadedBTSO) {
-            buildingTypeSOList.Add(BTSO);
-        }
+        //BuildingTypeSO[] loadedBTSO = FileUtils.GetAllResoursesOfTypeAtPath<BuildingTypeSO>("BuildingTypes/");
+        //foreach (BuildingTypeSO BTSO in loadedBTSO) {
+        //    buildingTypeSOList.Add(BTSO);
+        //}
+
         BuildingTypeSelectUI initUI = GameHandlerBaseObj.GetComponent<BuildingTypeSelectUI>();
     }
 

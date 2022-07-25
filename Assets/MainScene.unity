@@ -638,6 +638,7 @@ MonoBehaviour:
   PlayerCreatedScenario: {fileID: 842754518}
   BuildingInstancesList: {fileID: 1931784404}
   ManagerObject: {fileID: 1262355946}
+  UIText: {fileID: 0}
 --- !u!4 &46129311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1381132681371883810, guid: f544a2a9fed71534f85ea81385e80b16, type: 3}
@@ -5943,6 +5944,7 @@ MonoBehaviour:
   PlayerCreatedScenario: {fileID: 842754518}
   BuildingInstancesList: {fileID: 1931784404}
   ManagerObject: {fileID: 1262355946}
+  UIText: {fileID: 0}
 --- !u!4 &848156074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1381132681371883810, guid: f544a2a9fed71534f85ea81385e80b16, type: 3}
@@ -9164,7 +9166,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1934851131}
   GameHandlerBaseObj: {fileID: 41398269}
-  buildingTypeSOList: []
+  buildingTypeSOList:
+  - {fileID: 11400000, guid: 5e17eab32a02c964d8422e9e8749117e, type: 2}
+  - {fileID: 11400000, guid: 237698e3196f39c46b3a3f4f29e61691, type: 2}
+  - {fileID: 11400000, guid: 58597181b1517094287a91c4b2ecedfb, type: 2}
+  - {fileID: 11400000, guid: 1374bdbd5c2668b43a09859eb58df56d, type: 2}
+  - {fileID: 11400000, guid: 488d4c727c0e95e44bc4402f83eb8cb8, type: 2}
+  - {fileID: 11400000, guid: 60df781e54b4630459b27c5b0a889ee5, type: 2}
+  - {fileID: 11400000, guid: 5f5bc8919187bd74b8d202849460801c, type: 2}
+  - {fileID: 11400000, guid: 71e886cfc148a5a4085cb07624edbe25, type: 2}
+  - {fileID: 11400000, guid: ca2c521ce3150bc4db9d52da3f9f6893, type: 2}
+  - {fileID: 11400000, guid: 6d96323776a9dc0499d6855dd6d4ef94, type: 2}
+  - {fileID: 11400000, guid: adadb9de4bf9f334ba17353c10597ac7, type: 2}
+  - {fileID: 11400000, guid: 8f97a143fdfd61f4ab82be6cd78d79fd, type: 2}
+  - {fileID: 11400000, guid: 3bf684fc03c7c9a4a97f404abee2fcfe, type: 2}
   activeBuildingType: {fileID: 11400000, guid: 237698e3196f39c46b3a3f4f29e61691, type: 2}
   PlayerCreatedScenario: {fileID: 842754518}
   BuildingInstancesList: {fileID: 1931784404}
