@@ -94,26 +94,10 @@
     <Compile Include="Assets\CodeMonkey\Utils\FunctionPeriodic.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Saves\save_10.txt" />
     <None Include="Assets\LowPolyOfficeProps_LITE\About.txt" />
-    <None Include="Assets\Saves\save_6.txt" />
-    <None Include="Assets\Saves\save_7.txt" />
-    <None Include="Assets\Saves\save_15.txt" />
-    <None Include="Assets\Saves\save_16.txt" />
-    <None Include="Assets\Saves\save_14.txt" />
-    <None Include="Assets\Saves\save_9.txt" />
     <None Include="Assets\CodeMonkey\README.txt" />
     <None Include="Assets\StarterAssets\Environment\Shaders\Built-in_RP\Triplanar.shader" />
-    <None Include="Assets\Saves\save_8.txt" />
-    <None Include="Assets\Saves\save_13.txt" />
     <None Include="Assets\StarterAssets\license.txt" />
-    <None Include="Assets\Saves\save_2.txt" />
-    <None Include="Assets\Saves\save_5.txt" />
-    <None Include="Assets\Saves\save_11.txt" />
-    <None Include="Assets\Saves\save_1.txt" />
-    <None Include="Assets\Saves\save_4.txt" />
-    <None Include="Assets\Saves\save_12.txt" />
-    <None Include="Assets\Saves\save_3.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

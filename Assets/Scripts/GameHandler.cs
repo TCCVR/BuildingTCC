@@ -3,16 +3,25 @@ using System.Collections;
 using System;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 using Newtonsoft.Json;
 public class GameHandler :MonoBehaviour {
 
     [SerializeField] private GameObject PlayerCreatedScenario;
     [SerializeField] private GameObject BuildingInstancesList;
     [SerializeField] private GameObject ManagerObject;
+
+
+
     private BuildingManager BuildingManager;
+
+    [SerializeField] private Text UIText;
+
+
 
     private void Awake() {
         SaveSystem.Init();
+
     }
 
     private void Start() {
@@ -27,6 +36,7 @@ public class GameHandler :MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.F2)) {
             Load();
         }
+
     }
 
     private void Save() {

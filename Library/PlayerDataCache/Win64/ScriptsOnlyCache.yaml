@@ -36,6 +36,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Text
   sceneClasses:
     Assets/MainScene.unity:
     - Class: 1
@@ -75,46 +76,50 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1452}
     - Class: 114
-      Script: {instanceID: 1508}
+      Script: {instanceID: 1506}
     - Class: 114
-      Script: {instanceID: 1532}
+      Script: {instanceID: 1530}
     - Class: 114
-      Script: {instanceID: 2090}
+      Script: {instanceID: 2088}
     - Class: 114
-      Script: {instanceID: 2536}
+      Script: {instanceID: 2202}
     - Class: 114
-      Script: {instanceID: 2554}
+      Script: {instanceID: 2534}
     - Class: 114
-      Script: {instanceID: 2598}
+      Script: {instanceID: 2552}
     - Class: 114
-      Script: {instanceID: 2602}
+      Script: {instanceID: 2596}
     - Class: 114
-      Script: {instanceID: 2694}
+      Script: {instanceID: 2600}
     - Class: 114
-      Script: {instanceID: 2770}
+      Script: {instanceID: 2692}
     - Class: 114
-      Script: {instanceID: 2778}
+      Script: {instanceID: 2768}
     - Class: 114
-      Script: {instanceID: 2858}
+      Script: {instanceID: 2776}
     - Class: 114
-      Script: {instanceID: 3094}
+      Script: {instanceID: 2856}
     - Class: 114
-      Script: {instanceID: 3144}
+      Script: {instanceID: 3092}
     - Class: 114
-      Script: {instanceID: 3218}
+      Script: {instanceID: 3142}
     - Class: 114
-      Script: {instanceID: 3244}
+      Script: {instanceID: 3216}
     - Class: 114
-      Script: {instanceID: 3842}
+      Script: {instanceID: 3242}
     - Class: 114
-      Script: {instanceID: 4100}
+      Script: {instanceID: 3840}
     - Class: 114
-      Script: {instanceID: 4114}
+      Script: {instanceID: 4098}
     - Class: 114
-      Script: {instanceID: 4538}
+      Script: {instanceID: 4112}
     - Class: 114
-      Script: {instanceID: 5202}
+      Script: {instanceID: 4536}
+    - Class: 114
+      Script: {instanceID: 5200}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
@@ -571,7 +576,7 @@ ScriptsOnlyBuild:
     className: CinemachineInputProvider
   - hash:
       serializedVersion: 2
-      Hash: 40133ee1feed8f5c0e1bb20e497e8454
+      Hash: f08166703fa4ef79c6e091e8531f309e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameHandler
