@@ -98,10 +98,6 @@
     <None Include="Assets\CodeMonkey\README.txt" />
     <None Include="Assets\StarterAssets\Environment\Shaders\Built-in_RP\Triplanar.shader" />
     <None Include="Assets\StarterAssets\license.txt" />
-    <None Include="Assets\Saves\save_2.txt" />
-    <None Include="Assets\Saves\save_1.txt" />
-    <None Include="Assets\Saves\save_4.txt" />
-    <None Include="Assets\Saves\save_3.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

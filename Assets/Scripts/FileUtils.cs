@@ -1,24 +1,30 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 
 public class FileUtils {
-    public static T[] GetAtPath<T>(string path) {
+
+    public static T[] GetAllResoursesOfTypeAtPath<T>(string path) {
         ArrayList al = new ArrayList();
-        string[] fileEntries = Directory.GetFiles(Application.dataPath + "/" + path);
+        string[] fileEntries = Directory.GetFiles(Application.dataPath + "/Resources/" + path);
         foreach (string fileName in fileEntries) {
-            int index = fileName.LastIndexOf("/");
-            string localPath = "Assets/" + path;
+            string tempName = fileName.Replace("\\", "/");
 
-            if (index > 0)
-                localPath += fileName.Substring(index);
+            int index = tempName.LastIndexOf(".");
+            if (index == -1)
+                continue;
+            else if (index != -1)
+                tempName = tempName.Substring(0, index);
+            index = tempName.LastIndexOf("/Resources/");
+            if (index != -1)
+                tempName = tempName.Substring(index + "/Resources/".Length);
+            
+            Object t = Resources.Load(tempName);
 
-            Object t = AssetDatabase.LoadAssetAtPath(localPath, typeof(T));
-
-            if (t != null) {
+            if ((t != null) &&
+                    (t.GetType() == typeof(T))){
                 al.Add(t);
             }
         }
@@ -27,4 +33,6 @@ public class FileUtils {
             result[i] = (T)al[i];
         return result;
     }
+
+
 }
