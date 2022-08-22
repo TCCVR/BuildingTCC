@@ -13,10 +13,9 @@ public class GameHandler :MonoBehaviour {
 
 
 
-    private BuildingManager BuildingManager;
+    private MoveableObjectsManager BuildingManager;
 
-    [SerializeField] private Text UIText;
-
+    //test
 
 
     private void Awake() {
@@ -25,7 +24,7 @@ public class GameHandler :MonoBehaviour {
     }
 
     private void Start() {
-        BuildingManager = ManagerObject.GetComponent<BuildingManager>();
+        BuildingManager = ManagerObject.GetComponent<MoveableObjectsManager>();
     }
 
     private void Update() {
@@ -40,7 +39,7 @@ public class GameHandler :MonoBehaviour {
     }
 
     private void Save() {
-        PlacedBuildingInfo[] gameBInfoToSave = BuildingInstancesList.GetComponentsInChildren<PlacedBuildingInfo>();
+        MoveableObjectsInfo[] gameBInfoToSave = BuildingInstancesList.GetComponentsInChildren<MoveableObjectsInfo>();
         SaveObject saveObject = new SaveObject();
         saveObject.playerCreatedScenario = new playerCreatedScenario();
         saveObject.playerCreatedScenario.instancedPrefabs = new instancedPrefabs();
@@ -58,7 +57,7 @@ public class GameHandler :MonoBehaviour {
     private void LoadInstancedPrefabs(SaveObject loaded) {
         InstanceInfo[] listBInfo = loaded.playerCreatedScenario.instancedPrefabs.placedBuildingInfo;
         foreach (InstanceInfo iInfo in listBInfo) {
-            BuildingManager.AddBuildingFromInfo(iInfo);
+            BuildingManager.AddMoveableObjectsFromInfo(iInfo);
         }
         return;
     }

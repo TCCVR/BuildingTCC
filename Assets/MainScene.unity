@@ -5906,7 +5906,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 842754519}
-  - component: {fileID: 842754520}
   m_Layer: 0
   m_Name: PlayerCreatedScenario
   m_TagString: Untagged
@@ -5929,22 +5928,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &842754520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 842754518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 552aa105d32bcc845a05e4d1fb1f6045, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerCreatedScenario: {fileID: 842754518}
-  BuildingInstancesList: {fileID: 1931784404}
-  ManagerObject: {fileID: 1262355946}
-  UIText: {fileID: 0}
 --- !u!4 &848156074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1381132681371883810, guid: f544a2a9fed71534f85ea81385e80b16, type: 3}
