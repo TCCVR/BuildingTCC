@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Borracha
   m_EditorClassIdentifier: 
   nameString: Borracha
-  transform: {fileID: 4330883126242722, guid: 87332db484d7e492aa5fa22bea62c7ae, type: 3}
-  visual: {fileID: 8903243281970387450, guid: 449e81a50bffdc44488602279cfa369b, type: 3}
+  transform: {fileID: 5113942462327598226, guid: 1325719d4a3882d469333ccfd172d91f, type: 3}
+  visual: {fileID: 4330883126242722, guid: 87332db484d7e492aa5fa22bea62c7ae, type: 3}
   sprite: {fileID: 21300000, guid: 055e7ec99d68b0b4ea86fa2a995a4ad8, type: 3}
   width: 0
   height: 0

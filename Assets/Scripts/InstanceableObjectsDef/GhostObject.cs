@@ -17,7 +17,7 @@ public class GhostObject :MonoBehaviour {
         RefreshVisual();
     }
 
-    private void LateUpdate() {
+    private void LateUpdate() { //LateUpdate
         Vector3 targetPosition = GridBuildingSystem3D.Instance.GetMouseWorldSnappedPosition();
         targetPosition.y = 1f;
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 15f);

@@ -20,12 +20,13 @@ public class GridBuildingSystem3D : MonoBehaviour {
     private void Awake() {
         Instance = this;
 
-        int gridWidth = 10;
-        int gridHeight = 10;
-        float cellSize = 10f;
+        int gridWidth = 500;
+        int gridHeight = 500;
+        float cellSize = 2f;
         grid = new GridXZ<GridObject>(gridWidth, gridHeight, cellSize, new Vector3(0, 0, 0), (GridXZ<GridObject> g, int x, int y) => new GridObject(g, x, y));
 
-        instanceableObjectSO = null;// placedObjectTypeSOList[0];
+        instanceableObjectSO = instanceableObjectSOList[0]; //null
+
     }
 
     public class GridObject {
@@ -68,6 +69,7 @@ public class GridBuildingSystem3D : MonoBehaviour {
 
     private void Update() {
         if (Input.GetMouseButtonDown(0) && instanceableObjectSO != null) {
+
             Vector3 mousePosition = Mouse3D.GetMouseWorldPosition();
             grid.GetXZ(mousePosition, out int x, out int z);
 
@@ -111,8 +113,6 @@ public class GridBuildingSystem3D : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha2)) { instanceableObjectSO = instanceableObjectSOList[1]; RefreshSelectedObjectType(); }
         if (Input.GetKeyDown(KeyCode.Alpha3)) { instanceableObjectSO = instanceableObjectSOList[2]; RefreshSelectedObjectType(); }
         if (Input.GetKeyDown(KeyCode.Alpha4)) { instanceableObjectSO = instanceableObjectSOList[3]; RefreshSelectedObjectType(); }
-        if (Input.GetKeyDown(KeyCode.Alpha5)) { instanceableObjectSO = instanceableObjectSOList[4]; RefreshSelectedObjectType(); }
-        if (Input.GetKeyDown(KeyCode.Alpha6)) { instanceableObjectSO = instanceableObjectSOList[5]; RefreshSelectedObjectType(); }
 
         if (Input.GetKeyDown(KeyCode.Alpha0)) { DeselectObjectType(); }
 

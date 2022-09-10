@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: Janela
   transform: {fileID: 4249889236172922, guid: d8553808ed1fd2a41982e26a8f099b9a, type: 3}
-  visual: {fileID: 0}
+  visual: {fileID: 2738421185131440287, guid: f17dc83ad5b0ee340ba9be6f31578369, type: 3}
   sprite: {fileID: 21300000, guid: a3cd080596609f94399da1b3d274f20f, type: 3}
   width: 0
   height: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: Porta
   transform: {fileID: 4173873760860446, guid: c46afe706fb2cde4883f7afaeaa67a78, type: 3}
-  visual: {fileID: 0}
+  visual: {fileID: 4173873760860446, guid: c46afe706fb2cde4883f7afaeaa67a78, type: 3}
   sprite: {fileID: 21300000, guid: b918f4c94fd31fe4a948fe739e5e835c, type: 3}
   width: 0
   height: 0

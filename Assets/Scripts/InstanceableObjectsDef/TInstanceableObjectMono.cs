@@ -16,18 +16,18 @@ public class TInstanceableObjectMono :MonoBehaviour {
 
 
 
-    private TInstanceableObjectSO placedObjectTypeSO;
+    private TInstanceableObjectSO instanceableObjectSO;
     private Vector2Int origin;
     private TInstanceableObjectSO.Dir dir;
 
-    private void Setup(TInstanceableObjectSO placedObjectTypeSO, Vector2Int origin, TInstanceableObjectSO.Dir dir) {
-        this.placedObjectTypeSO = placedObjectTypeSO;
+    private void Setup(TInstanceableObjectSO iInstanceableObjectSO, Vector2Int origin, TInstanceableObjectSO.Dir dir) {
+        this.instanceableObjectSO = iInstanceableObjectSO;
         this.origin = origin;
         this.dir = dir;
     }
 
     public List<Vector2Int> GetGridPositionList() {
-        return placedObjectTypeSO.GetGridPositionList(origin, dir);
+        return instanceableObjectSO.GetGridPositionList(origin, dir);
     }
 
     public void DestroySelf() {
@@ -35,7 +35,7 @@ public class TInstanceableObjectMono :MonoBehaviour {
     }
 
     public override string ToString() {
-        return placedObjectTypeSO.nameString;
+        return instanceableObjectSO.nameString;
     }
 
 }

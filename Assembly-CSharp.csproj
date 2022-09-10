@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\MoveableObjectsScripts\MoveableObjectsManager.cs" />
+    <Compile Include="Assets\Scripts\GridObjectsScripts\GridObjectsInfo.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\Button_UI.cs" />
     <Compile Include="Assets\Scripts\InstanceableObjectsDef\TInstanceableObjectInfo.cs" />
     <Compile Include="Assets\Scripts\MoveableObjectsScripts\MoveableObjectsInfo.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
     <Compile Include="Assets\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\UI_TextComplex.cs" />
+    <Compile Include="Assets\Scripts\InstanceableObjectsDef\GhostObject.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\Button_Sprite.cs" />
     <Compile Include="Assets\Scripts\FileUtils.cs" />
     <Compile Include="Assets\CodeMonkey\MonoBehaviours\CameraFollowSetup.cs" />
@@ -85,22 +87,20 @@
     <Compile Include="Assets\CodeMonkey\Utils\FunctionUpdater.cs" />
     <Compile Include="Assets\Scripts\InstanceableObjectsDef\TInstanceableObjectSO.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
+    <Compile Include="Assets\Scripts\GridSystem\GridXZ.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\FunctionTimer.cs" />
+    <Compile Include="Assets\Scripts\InstanceableObjectsDef\TInstanceableObjectMono.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\UI_Bar.cs" />
+    <Compile Include="Assets\Scripts\GridSystem\GridBuildingSystem3D.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
     <Compile Include="Assets\Scripts\MoveableObjectsScripts\MoveableObjectsSO.cs" />
     <Compile Include="Assets\Scripts\Mouse3D.cs" />
     <Compile Include="Assets\CodeMonkey\MonoBehaviours\ComponentActions.cs" />
+    <Compile Include="Assets\Scripts\GridObjectsScripts\GridObjectsSO.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\UI_Sprite.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\UI_BarMultiple.cs" />
     <Compile Include="Assets\CodeMonkey\CMDebug.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\FunctionPeriodic.cs" />
-    <Compile Include="Assets\Scripts\GridObjectsScripts\GridObjectsInfo.cs" />
-    <Compile Include="Assets\Scripts\GridObjectsScripts\GridObjectsSO.cs" />
-    <Compile Include="Assets\Scripts\GridSystem\GridBuildingSystem3D.cs" />
-    <Compile Include="Assets\Scripts\GridSystem\GridXZ.cs" />
-    <Compile Include="Assets\Scripts\InstanceableObjectsDef\TInstanceableObjectMono.cs" />
-    <Compile Include="Assets\Scripts\InstanceableObjectsDef\GhostObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LowPolyOfficeProps_LITE\About.txt" />
