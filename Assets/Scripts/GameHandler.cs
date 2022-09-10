@@ -8,8 +8,9 @@ using Newtonsoft.Json;
 public class GameHandler :MonoBehaviour {
 
     [SerializeField] private GameObject PlayerCreatedScenario;
-    [SerializeField] private GameObject BuildingInstancesList;
+    [SerializeField] private GameObject MoveableObjectsInstancesList;
     [SerializeField] private GameObject ManagerObject;
+    
 
 
 
@@ -17,10 +18,8 @@ public class GameHandler :MonoBehaviour {
 
     //test
 
-
     private void Awake() {
         SaveSystem.Init();
-
     }
 
     private void Start() {
@@ -39,12 +38,12 @@ public class GameHandler :MonoBehaviour {
     }
 
     private void Save() {
-        MoveableObjectsInfo[] gameBInfoToSave = BuildingInstancesList.GetComponentsInChildren<MoveableObjectsInfo>();
+        MoveableObjectsInfo[] gameBInfoToSave = MoveableObjectsInstancesList.GetComponentsInChildren<MoveableObjectsInfo>();
         SaveObject saveObject = new SaveObject();
         saveObject.playerCreatedScenario = new playerCreatedScenario();
-        saveObject.playerCreatedScenario.instancedPrefabs = new instancedPrefabs();
-        saveObject.playerCreatedScenario.instancedPrefabs.placedBuildingInfo = new InstanceInfo[gameBInfoToSave.Length];
-        InstanceInfo[] listBInfo = saveObject.playerCreatedScenario.instancedPrefabs.placedBuildingInfo;
+        saveObject.playerCreatedScenario.moveableObjects = new MoveableObjects();
+        saveObject.playerCreatedScenario.moveableObjects.placedMoveableInfo = new InstanceInfo[gameBInfoToSave.Length];
+        InstanceInfo[] listBInfo = saveObject.playerCreatedScenario.moveableObjects.placedMoveableInfo;
         for (int iC1 = 0; iC1 < gameBInfoToSave.Length; iC1++) {
             listBInfo[iC1] = gameBInfoToSave[iC1].instanceInfo;
         }
@@ -55,7 +54,7 @@ public class GameHandler :MonoBehaviour {
     }
 
     private void LoadInstancedPrefabs(SaveObject loaded) {
-        InstanceInfo[] listBInfo = loaded.playerCreatedScenario.instancedPrefabs.placedBuildingInfo;
+        InstanceInfo[] listBInfo = loaded.playerCreatedScenario.moveableObjects.placedMoveableInfo;
         foreach (InstanceInfo iInfo in listBInfo) {
             BuildingManager.AddMoveableObjectsFromInfo(iInfo);
         }
@@ -84,18 +83,27 @@ public class GameHandler :MonoBehaviour {
     }
     [Serializable]
     public class playerCreatedScenario {
-        public instancedPrefabs instancedPrefabs {
+        public MoveableObjects moveableObjects {
             set;
             get;
         }
 
     }
     [Serializable]
-    public class instancedPrefabs {
-        public InstanceInfo[] placedBuildingInfo {
+    public class MoveableObjects {
+        public InstanceInfo[] placedMoveableInfo {
             set;
             get;
         }
 
     }
+}
+
+
+[System.Serializable]
+public class myVector3 {
+    public float x;
+    public float y;
+    public float z;
+    public float w;
 }

@@ -15,7 +15,7 @@ namespace StarterAssets
     {
         public const string MenuRoot = "Tools/Starter Assets";
 
-        // prefab names
+        // transform names
         private const string MainCameraPrefabName = "MainCamera";
         private const string PlayerCapsulePrefabName = "PlayerCapsule";
 
@@ -55,7 +55,7 @@ namespace StarterAssets
                 }
                 else
                 {
-                    Debug.LogError("Couldn't find Cinemachine Virtual Camera prefab");
+                    Debug.LogError("Couldn't find Cinemachine Virtual Camera transform");
                 }
             }
             else
@@ -90,7 +90,7 @@ namespace StarterAssets
                 }
                 else
                 {
-                    Debug.LogError("Couldn't find Starter Assets Main Camera prefab");
+                    Debug.LogError("Couldn't find Starter Assets Main Camera transform");
                 }
             }
             else

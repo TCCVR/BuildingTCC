@@ -4,33 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 
-[System.Serializable]
-public class myVector3 {
-    public float x;
-    public float y;
-    public float z;
-    public float w;
-}
 
 
-[System.Serializable]
-public class InstanceInfo {
-    public string SOName;
-    public string instanceName;
-    public myVector3 position;
-    public myVector3 rotation;
-    public myVector3 scale;
-}
-
-public class MoveableObjectsInfo: MonoBehaviour {
-    public InstanceInfo instanceInfo;
-
-
-    public void LoadFromMOTypeSO(MoveableObjectsSO btSO, Transform instancedObjTransform) {
+public class MoveableObjectsInfo: TInstanceableObjectInfo {
+    public void LoadFromTypeSO(MoveableObjectsSO btSO, Transform instancedObjTransform) {
         if (this.instanceInfo is null)
             this.instanceInfo = new InstanceInfo();
 
-        this.instanceInfo.SOName = btSO.typeName;
+        this.instanceInfo.SOName = btSO.nameString;
         this.instanceInfo.instanceName = instancedObjTransform.name;
 
         this.instanceInfo.position = new myVector3 { };

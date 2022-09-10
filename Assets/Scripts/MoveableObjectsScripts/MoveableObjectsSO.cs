@@ -3,8 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu()]
-public class MoveableObjectsSO : ScriptableObject {
-    public string typeName;
-    public Transform transform;
-    public Sprite sprite;
+public class MoveableObjectsSO : TInstanceableObjectSO {
 }

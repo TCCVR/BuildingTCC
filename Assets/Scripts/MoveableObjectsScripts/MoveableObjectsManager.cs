@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MoveableObjectsManager : MonoBehaviour {
+public class MoveableObjectsManager : TInstanceableObjectsManager {
     [SerializeField] private Transform playerTransform;
     public List<MoveableObjectsSO> moveableObjectsTypeSOList;
     [SerializeField] private MoveableObjectsSO activeMoveableObjectsType;
@@ -17,6 +17,7 @@ public class MoveableObjectsManager : MonoBehaviour {
 
     private void Awake() {
         MoveableObjectsTypeSelectUI initUI = GameHandlerBaseObj.GetComponent<MoveableObjectsTypeSelectUI>();
+        activeMoveableObjectsType = moveableObjectsTypeSOList[0];
     }
 
     private void Update() {
@@ -56,7 +57,7 @@ public class MoveableObjectsManager : MonoBehaviour {
         Transform newPlacedMoveableObjects = Instantiate(activeMoveableObjectsType.transform, mouseWorldPosition, transform.rotation * Quaternion.Euler(0, 45 * counter, 0));
         newPlacedMoveableObjects.transform.parent = MOInstancesList.transform;
         MoveableObjectsInfo newMoveableObjectsInfo = newPlacedMoveableObjects.gameObject.AddComponent<MoveableObjectsInfo>();
-        newMoveableObjectsInfo.LoadFromMOTypeSO(activeMoveableObjectsType, newPlacedMoveableObjects);
+        newMoveableObjectsInfo.LoadFromTypeSO(activeMoveableObjectsType, newPlacedMoveableObjects);
     }
 
     public void AddMoveableObjectsFromInfo(InstanceInfo bInfo) {
@@ -64,7 +65,7 @@ public class MoveableObjectsManager : MonoBehaviour {
         MoveableObjectsSO typeSO;
 
         foundSOTypeFromSerialized = moveableObjectsTypeSOList
-            .Where(d => d.typeName == bInfo.SOName)
+            .Where(d => d.nameString == bInfo.SOName)
                 .ToArray();
 
         if (foundSOTypeFromSerialized.Count<MoveableObjectsSO>() == 0) {
@@ -88,7 +89,7 @@ public class MoveableObjectsManager : MonoBehaviour {
         buildScale.z = bInfo.scale.z;
         newPlacedBuilding.localScale = buildScale;
         MoveableObjectsInfo newBuildingInfo = newPlacedBuilding.gameObject.AddComponent<MoveableObjectsInfo>();
-        newBuildingInfo.LoadFromMOTypeSO(activeMoveableObjectsType, newPlacedBuilding);
+        newBuildingInfo.LoadFromTypeSO(activeMoveableObjectsType, newPlacedBuilding);
 
         newPlacedBuilding.transform.parent = MOInstancesList.transform;
         return;

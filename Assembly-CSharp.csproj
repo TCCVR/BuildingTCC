@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{1FC91A83-20F2-3F6A-EEA3-256211CC5E57}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -59,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\MoveableObjectsScripts\MoveableObjectsManager.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\Button_UI.cs" />
+    <Compile Include="Assets\Scripts\InstanceableObjectsDef\TInstanceableObjectInfo.cs" />
     <Compile Include="Assets\Scripts\MoveableObjectsScripts\MoveableObjectsInfo.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualJoystick.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualTouchZone.cs" />
@@ -81,7 +81,9 @@
     <Compile Include="Assets\CodeMonkey\MonoBehaviours\PositionRendererSorter.cs" />
     <Compile Include="Assets\Scripts\GameHandler.cs" />
     <Compile Include="Assets\StarterAssets\FirstPersonController\Scripts\FirstPersonController.cs" />
+    <Compile Include="Assets\Scripts\InstanceableObjectsDef\TInstanceableObjectsManager.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\FunctionUpdater.cs" />
+    <Compile Include="Assets\Scripts\InstanceableObjectsDef\TInstanceableObjectSO.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\FunctionTimer.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\UI_Bar.cs" />
@@ -93,6 +95,12 @@
     <Compile Include="Assets\CodeMonkey\Utils\UI_BarMultiple.cs" />
     <Compile Include="Assets\CodeMonkey\CMDebug.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\FunctionPeriodic.cs" />
+    <Compile Include="Assets\Scripts\GridObjectsScripts\GridObjectsInfo.cs" />
+    <Compile Include="Assets\Scripts\GridObjectsScripts\GridObjectsSO.cs" />
+    <Compile Include="Assets\Scripts\GridSystem\GridBuildingSystem3D.cs" />
+    <Compile Include="Assets\Scripts\GridSystem\GridXZ.cs" />
+    <Compile Include="Assets\Scripts\InstanceableObjectsDef\TInstanceableObjectMono.cs" />
+    <Compile Include="Assets\Scripts\InstanceableObjectsDef\GhostObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LowPolyOfficeProps_LITE\About.txt" />
