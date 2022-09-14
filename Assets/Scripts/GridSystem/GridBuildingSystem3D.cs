@@ -13,9 +13,9 @@ public class GridBuildingSystem3D : MonoBehaviour {
 
 
     private GridXZ<GridObject> grid;
-    [SerializeField] private List<TInstanceableObjectSO> instanceableObjectSOList = null;
-    private TInstanceableObjectSO instanceableObjectSO;
-    private TInstanceableObjectSO.Dir dir;
+    [SerializeField] private List<TInstantiableObjectSO> instanceableObjectSOList = null;
+    private TInstantiableObjectSO instanceableObjectSO;
+    private TInstantiableObjectSO.Dir dir;
 
     private void Awake() {
         Instance = this;
@@ -34,7 +34,7 @@ public class GridBuildingSystem3D : MonoBehaviour {
         private GridXZ<GridObject> grid;
         private int x;
         private int y;
-        public TInstanceableObjectMono placedObject;
+        public TInstantiableObjectInfo placedObject;
 
         public GridObject(GridXZ<GridObject> grid, int x, int y) {
             this.grid = grid;
@@ -47,7 +47,7 @@ public class GridBuildingSystem3D : MonoBehaviour {
             return x + ", " + y + "\n" + placedObject;
         }
 
-        public void SetPlacedObject(TInstanceableObjectMono placedObject) {
+        public void SetPlacedObject(TInstantiableObjectInfo placedObject) {
             this.placedObject = placedObject;
             grid.TriggerGridObjectChanged(x, y);
         }
@@ -57,7 +57,7 @@ public class GridBuildingSystem3D : MonoBehaviour {
             grid.TriggerGridObjectChanged(x, y);
         }
 
-        public TInstanceableObjectMono GetPlacedObject() {
+        public TInstantiableObjectInfo GetPlacedObject() {
             return placedObject;
         }
 
@@ -90,7 +90,7 @@ public class GridBuildingSystem3D : MonoBehaviour {
                 Vector2Int rotationOffset = instanceableObjectSO.GetRotationOffset(dir);
                 Vector3 placedObjectWorldPosition = grid.GetWorldPosition(placedObjectOrigin.x, placedObjectOrigin.y) + new Vector3(rotationOffset.x, 0, rotationOffset.y) * grid.GetCellSize();
 
-                TInstanceableObjectMono placedObject = TInstanceableObjectMono.Create(placedObjectWorldPosition, placedObjectOrigin, dir, instanceableObjectSO);
+                TInstantiableObjectInfo placedObject = TInstantiableObjectInfo.Create(placedObjectWorldPosition, dir, instanceableObjectSO);
 
                 foreach (Vector2Int gridPosition in gridPositionList) {
                     grid.GetGridObject(gridPosition.x, gridPosition.y).SetPlacedObject(placedObject);
@@ -106,7 +106,7 @@ public class GridBuildingSystem3D : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.R)) {
-            dir = TInstanceableObjectSO.GetNextDir(dir);
+            dir = TInstantiableObjectSO.GetNextDir(dir);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) { instanceableObjectSO = instanceableObjectSOList[0]; RefreshSelectedObjectType(); }
@@ -121,7 +121,7 @@ public class GridBuildingSystem3D : MonoBehaviour {
             Vector3 mousePosition = Mouse3D.GetMouseWorldPosition();
             if (grid.GetGridObject(mousePosition) != null) {
                 // Valid Grid Position
-                TInstanceableObjectMono placedObject = grid.GetGridObject(mousePosition).GetPlacedObject();
+                TInstantiableObjectInfo placedObject = grid.GetGridObject(mousePosition).GetPlacedObject();
                 if (placedObject != null) {
                     // Demolish
                     placedObject.DestroySelf();
@@ -170,7 +170,7 @@ public class GridBuildingSystem3D : MonoBehaviour {
         }
     }
 
-    public TInstanceableObjectSO GetInstanceableObjectSO() {
+    public TInstantiableObjectSO GetInstanceableObjectSO() {
         return instanceableObjectSO;
     }
 

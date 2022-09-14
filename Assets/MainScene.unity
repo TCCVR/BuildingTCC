@@ -620,7 +620,6 @@ Transform:
   m_Children:
   - {fileID: 1262355947}
   - {fileID: 460897768}
-  - {fileID: 2015165400}
   - {fileID: 196185848}
   - {fileID: 349818141}
   m_Father: {fileID: 0}
@@ -638,9 +637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552aa105d32bcc845a05e4d1fb1f6045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerCreatedScenario: {fileID: 842754518}
   MoveableObjectsInstancesList: {fileID: 1262355946}
-  ManagerObject: {fileID: 1262355946}
 --- !u!4 &46129311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1381132681371883810, guid: f544a2a9fed71534f85ea81385e80b16, type: 3}
@@ -1770,7 +1767,7 @@ GameObject:
   - component: {fileID: 196185848}
   - component: {fileID: 196185849}
   m_Layer: 0
-  m_Name: GridBuildingSystem
+  m_Name: GridObjectsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1788,7 +1785,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 41398270}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &196185849
 MonoBehaviour:
@@ -2415,6 +2412,7 @@ MonoBehaviour:
   mouseColliderLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  playerTransform: {fileID: 1934851131}
 --- !u!4 &299072850
 Transform:
   m_ObjectHideFlags: 0
@@ -2814,7 +2812,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 41398270}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &349818142
 MonoBehaviour:
@@ -9268,9 +9266,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1262355946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c66fe0f1d2989e43afa3fcf08f4e176, type: 3}
+  m_Script: {fileID: 11500000, guid: 33b116edfec664d4ba88c6016551b147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  managedType: 0
   playerTransform: {fileID: 1934851131}
   moveableObjectsTypeSOList:
   - {fileID: 11400000, guid: 5e17eab32a02c964d8422e9e8749117e, type: 2}
@@ -13769,36 +13768,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1381132681371883810, guid: f544a2a9fed71534f85ea81385e80b16, type: 3}
   m_PrefabInstance: {fileID: 858676060}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2015165399
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2015165400}
-  m_Layer: 0
-  m_Name: GridObjectsManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2015165400
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2015165399}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 41398270}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2021251068
 PrefabInstance:
   m_ObjectHideFlags: 0

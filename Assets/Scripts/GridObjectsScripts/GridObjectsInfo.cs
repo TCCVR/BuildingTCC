@@ -4,13 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 
-public class GridObjectsInfo :TInstanceableObjectInfo {
+public class GridObjectsInfo :TInstantiableObjectInfo {
 
-    public void LoadFromTypeSO(GridObjectsSO btSO, Transform instancedObjTransform) {
+    public override void LoadInfo(TInstantiableObjectSO btSO, Transform instancedObjTransform) {
         if (this.instanceInfo is null)
             this.instanceInfo = new InstanceInfo();
 
+        this.instanceInfo.SOType = TInstantiableObjectSystem.IntantiableTypes.GridObjects;
         this.instanceInfo.SOName = btSO.nameString;
+        this.instanceInfo.width = btSO.width;
+        this.instanceInfo.height = btSO.height;
         this.instanceInfo.instanceName = instancedObjTransform.name;
 
         this.instanceInfo.position = new myVector3 { };

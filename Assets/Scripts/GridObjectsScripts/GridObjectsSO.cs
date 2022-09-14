@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu()]
-public class GridObjectsSO :TInstanceableObjectSO {
+public class GridObjectsSO :TInstantiableObjectSO {
 }

@@ -7,14 +7,9 @@ using UnityEngine.UI;
 using Newtonsoft.Json;
 public class GameHandler :MonoBehaviour {
 
-    [SerializeField] private GameObject PlayerCreatedScenario;
     [SerializeField] private GameObject MoveableObjectsInstancesList;
-    [SerializeField] private GameObject ManagerObject;
-    
 
-
-
-    private MoveableObjectsManager BuildingManager;
+    private MovableObjectsManager BuildingManager;
 
     //test
 
@@ -23,7 +18,7 @@ public class GameHandler :MonoBehaviour {
     }
 
     private void Start() {
-        BuildingManager = ManagerObject.GetComponent<MoveableObjectsManager>();
+        BuildingManager = MovableObjectsManager.Instance;
     }
 
     private void Update() {
@@ -38,7 +33,7 @@ public class GameHandler :MonoBehaviour {
     }
 
     private void Save() {
-        MoveableObjectsInfo[] gameBInfoToSave = MoveableObjectsInstancesList.GetComponentsInChildren<MoveableObjectsInfo>();
+        MovableObjectsInfo[] gameBInfoToSave = MoveableObjectsInstancesList.GetComponentsInChildren<MovableObjectsInfo>();
         SaveObject saveObject = new SaveObject();
         saveObject.playerCreatedScenario = new playerCreatedScenario();
         saveObject.playerCreatedScenario.moveableObjects = new MoveableObjects();
@@ -56,7 +51,8 @@ public class GameHandler :MonoBehaviour {
     private void LoadInstancedPrefabs(SaveObject loaded) {
         InstanceInfo[] listBInfo = loaded.playerCreatedScenario.moveableObjects.placedMoveableInfo;
         foreach (InstanceInfo iInfo in listBInfo) {
-            BuildingManager.AddMoveableObjectsFromInfo(iInfo);
+            BuildingManager.addFromInfo(iInfo);
+            
         }
         return;
     }
