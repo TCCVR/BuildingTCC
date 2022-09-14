@@ -13,9 +13,9 @@ public class GridBuildingSystem3D : MonoBehaviour {
 
 
     private GridXZ<GridObject> grid;
-    [SerializeField] private List<TInstantiableObjectSO> instanceableObjectSOList = null;
-    private TInstantiableObjectSO instanceableObjectSO;
-    private TInstantiableObjectSO.Dir dir;
+    [SerializeField] private List<GridObjectsSO> instanceableObjectSOList = null;
+    private GridObjectsSO instanceableObjectSO;
+    private GridObjectsSO.Dir dir;
 
     private void Awake() {
         Instance = this;
@@ -90,7 +90,7 @@ public class GridBuildingSystem3D : MonoBehaviour {
                 Vector2Int rotationOffset = instanceableObjectSO.GetRotationOffset(dir);
                 Vector3 placedObjectWorldPosition = grid.GetWorldPosition(placedObjectOrigin.x, placedObjectOrigin.y) + new Vector3(rotationOffset.x, 0, rotationOffset.y) * grid.GetCellSize();
 
-                TInstantiableObjectInfo placedObject = TInstantiableObjectInfo.Create(placedObjectWorldPosition, dir, instanceableObjectSO);
+                GridObjectsInfo placedObject = GridObjectsInfo.Create(placedObjectWorldPosition, dir, instanceableObjectSO) as GridObjectsInfo;
 
                 foreach (Vector2Int gridPosition in gridPositionList) {
                     grid.GetGridObject(gridPosition.x, gridPosition.y).SetPlacedObject(placedObject);
@@ -106,7 +106,7 @@ public class GridBuildingSystem3D : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.R)) {
-            dir = TInstantiableObjectSO.GetNextDir(dir);
+            dir = GridObjectsSO.GetNextDir(dir);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) { instanceableObjectSO = instanceableObjectSOList[0]; RefreshSelectedObjectType(); }
@@ -126,7 +126,7 @@ public class GridBuildingSystem3D : MonoBehaviour {
                     // Demolish
                     placedObject.DestroySelf();
 
-                    List<Vector2Int> gridPositionList = placedObject.GetGridPositionList();
+                    List<Vector2Int> gridPositionList = (placedObject as GridObjectsInfo).GetGridPositionList();
                     foreach (Vector2Int gridPosition in gridPositionList) {
                         grid.GetGridObject(gridPosition.x, gridPosition.y).ClearPlacedObject();
                     }
@@ -164,7 +164,7 @@ public class GridBuildingSystem3D : MonoBehaviour {
 
     public Quaternion GetPlacedObjectRotation() {
         if (instanceableObjectSO != null) {
-            return Quaternion.Euler(0, instanceableObjectSO.GetRotationAngle(dir), 0);
+            return Quaternion.Euler(0, GridObjectsSO.GetRotationAngle(dir), 0);
         } else {
             return Quaternion.identity;
         }

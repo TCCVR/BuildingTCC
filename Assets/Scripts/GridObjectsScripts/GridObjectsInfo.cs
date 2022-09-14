@@ -5,15 +5,25 @@ using UnityEngine;
 using Newtonsoft.Json;
 
 public class GridObjectsInfo :TInstantiableObjectInfo {
+    public static TInstantiableObjectInfo Create(Vector3 worldPosition, GridObjectsSO.Dir dir, TInstantiableObjectSO instanceableObjectSO) {
+        Transform placedObjectTransform = Instantiate(instanceableObjectSO.transform, worldPosition, Quaternion.Euler(0, GridObjectsSO.GetRotationAngle(dir), 0));
 
-    public override void LoadInfo(TInstantiableObjectSO btSO, Transform instancedObjTransform) {
+        TInstantiableObjectInfo placedObject = placedObjectTransform.GetComponent<TInstantiableObjectInfo>();
+        placedObject.LoadInfo(instanceableObjectSO, placedObjectTransform);
+        placedObject.instanceInfo.dir = dir;
+
+        return placedObject;
+    }
+
+    public override void LoadInfo<T>(T btSO, Transform instancedObjTransform) {
         if (this.instanceInfo is null)
             this.instanceInfo = new InstanceInfo();
 
         this.instanceInfo.SOType = TInstantiableObjectSystem.IntantiableTypes.GridObjects;
-        this.instanceInfo.SOName = btSO.nameString;
-        this.instanceInfo.width = btSO.width;
-        this.instanceInfo.height = btSO.height;
+        GridObjectsSO btSO2 = btSO as GridObjectsSO;
+        this.instanceInfo.SOName = btSO2.nameString;
+        this.instanceInfo.width = btSO2.width;
+        this.instanceInfo.height = btSO2.height;
         this.instanceInfo.instanceName = instancedObjTransform.name;
 
         this.instanceInfo.position = new myVector3 { };
@@ -34,5 +44,8 @@ public class GridObjectsInfo :TInstantiableObjectInfo {
         return;
     }
 
+    public List<Vector2Int> GetGridPositionList() {
+        return GridObjectsSO.GetGridPositionList(instanceInfo.width, instanceInfo.height, new Vector2Int(Mathf.FloorToInt(instanceInfo.position.x / 2), Mathf.FloorToInt(instanceInfo.position.z / 2)), instanceInfo.dir);
+    }
 }
 

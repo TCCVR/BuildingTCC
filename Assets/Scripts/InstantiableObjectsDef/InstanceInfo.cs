@@ -9,7 +9,7 @@ public class InstanceInfo {
     public myVector3 position;
     public myVector3 rotation;
     public myVector3 scale;
-    public TInstantiableObjectSO.Dir dir;
+    public GridObjectsSO.Dir dir;
     public int width;
     public int height;
 }

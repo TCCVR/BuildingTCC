@@ -1800,10 +1800,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instanceableObjectSOList:
-  - {fileID: 11400000, guid: 60df781e54b4630459b27c5b0a889ee5, type: 2}
-  - {fileID: 11400000, guid: 5f5bc8919187bd74b8d202849460801c, type: 2}
-  - {fileID: 11400000, guid: 8f97a143fdfd61f4ab82be6cd78d79fd, type: 2}
-  - {fileID: 11400000, guid: 3bf684fc03c7c9a4a97f404abee2fcfe, type: 2}
+  - {fileID: 11400000, guid: 78af40520fa904843ab53916d3d7c240, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &203381106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9270,7 +9270,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   managedType: 0
-  playerTransform: {fileID: 1934851131}
   moveableObjectsTypeSOList:
   - {fileID: 11400000, guid: 5e17eab32a02c964d8422e9e8749117e, type: 2}
   - {fileID: 11400000, guid: 237698e3196f39c46b3a3f4f29e61691, type: 2}

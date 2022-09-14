@@ -6,14 +6,13 @@ using UnityEngine;
 
 
 public class MovableObjectsInfo: TInstantiableObjectInfo {
-    public override void LoadInfo(TInstantiableObjectSO btSO, Transform instancedObjTransform) {
+    public override void LoadInfo<T>(T btSO, Transform instancedObjTransform) {
         if (this.instanceInfo is null)
             this.instanceInfo = new InstanceInfo();
 
         this.instanceInfo.SOType = TInstantiableObjectSystem.IntantiableTypes.MoveableObjects;
-        this.instanceInfo.SOName = btSO.nameString;
-        this.instanceInfo.width = btSO.width;
-        this.instanceInfo.height = btSO.height;
+        MovableObjectsSO btSO2 = btSO as MovableObjectsSO;
+        this.instanceInfo.SOName = btSO2.nameString;
         this.instanceInfo.instanceName = instancedObjTransform.name;
 
         this.instanceInfo.position = new myVector3 { };
