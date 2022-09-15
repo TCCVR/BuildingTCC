@@ -87,11 +87,11 @@
     <Compile Include="Assets\Scripts\InstantiableObjectsDef\TInstantiableObjectSO.cs" />
     <Compile Include="Assets\Scripts\InstantiableObjectsDef\TInstantiableObjectSystem.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
-    <Compile Include="Assets\Scripts\GridSystem\GridXZ.cs" />
+    <Compile Include="Assets\Scripts\GridObjectsScripts\GridXZ.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\FunctionTimer.cs" />
     <Compile Include="Assets\Scripts\InstantiableObjectsDef\TInstantiableObjectInfo.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\UI_Bar.cs" />
-    <Compile Include="Assets\Scripts\GridSystem\GridBuildingSystem3D.cs" />
+    <Compile Include="Assets\Scripts\GridObjectsScripts\GridBuildingSystem3D.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
     <Compile Include="Assets\Scripts\MoveableObjectsScripts\MovableObjectsSO.cs" />
     <Compile Include="Assets\Scripts\Mouse3D.cs" />
@@ -103,6 +103,8 @@
     <Compile Include="Assets\Scripts\InstantiableObjectsDef\InstanceInfo.cs" />
     <Compile Include="Assets\CodeMonkey\CMDebug.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\FunctionPeriodic.cs" />
+    <Compile Include="Assets\Scripts\GridObjectsScripts\GridObjectsManager.cs" />
+    <Compile Include="Assets\Scripts\GridObjectsScripts\GridEdgeObjectsInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LowPolyOfficeProps_LITE\About.txt" />

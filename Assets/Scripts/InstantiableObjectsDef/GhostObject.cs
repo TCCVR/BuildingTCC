@@ -5,7 +5,6 @@ using UnityEngine;
 public class GhostObject :MonoBehaviour {
 
     private Transform visual;
-    private TInstantiableObjectSO placedObjectTypeSO;
 
     private void Start() {
         RefreshVisual();

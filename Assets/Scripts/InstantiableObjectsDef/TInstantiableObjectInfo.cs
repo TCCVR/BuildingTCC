@@ -8,7 +8,7 @@ public abstract class TInstantiableObjectInfo :MonoBehaviour {
     public abstract void LoadInfo<TInstantiableObjectSO>(TInstantiableObjectSO btSO, Transform instancedObjTransform);
 
 
-    public virtual TInstantiableObjectInfo Create(InstanceInfo instanceInfo, TInstantiableObjectSO instanceableObjectSO, Transform parent) {
+    public static TInstantiableObjectInfo Create<T, TInfo>(InstanceInfo instanceInfo, T instanceableObjectSO, Transform parent) {
         Transform placedObjectTransform;
         Vector3 buildPos = new Vector3();
         buildPos.x = instanceInfo.position.x;
@@ -23,16 +23,16 @@ public abstract class TInstantiableObjectInfo :MonoBehaviour {
         buildRot.y = instanceInfo.rotation.y;
         buildRot.z = instanceInfo.rotation.z;
         buildRot.w = instanceInfo.rotation.w;
-        placedObjectTransform = Instantiate(instanceableObjectSO.transform, buildPos, buildRot);
+        placedObjectTransform = Instantiate((instanceableObjectSO as TInstantiableObjectSO).transform, buildPos, buildRot);
         //placedObjectTransform = Instantiate(instanceableObjectSO.transform, buildPos, Quaternion.Euler(0, instanceableObjectSO.GetRotationAngle(instanceInfo.dir), 0));
 
         placedObjectTransform.localScale = buildScale;
         placedObjectTransform.transform.parent = parent;
 
-        TInstantiableObjectInfo placedObject = placedObjectTransform.GetComponent<TInstantiableObjectInfo>();
-        placedObject.LoadInfo(instanceableObjectSO, placedObjectTransform);
+        TInfo placedObject = placedObjectTransform.GetComponent<TInfo>();
+        (placedObject as TInstantiableObjectInfo).LoadInfo(instanceableObjectSO, placedObjectTransform);
 
-        return placedObject;
+        return (placedObject as TInstantiableObjectInfo);
     }
 
     public void DestroySelf() {

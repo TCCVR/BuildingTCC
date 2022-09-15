@@ -1,55 +1,51 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class MovableObjectsManager : TInstantiableObjectsManager {
     public static MovableObjectsManager Instance { get; private set; }
-
-    [SerializeField] public List<MovableObjectsSO> moveableObjectsTypeSOList;
-    [SerializeField] private MovableObjectsSO activeMoveableObjectsType;
+    [SerializeField] public List<MovableObjectsSO> movableObjectsTypeSOList;
+    [SerializeField] private MovableObjectsSO activeMovableObjectsType;
     [SerializeField] public GameObject MOInstancesList;
     private int counter;
+    private bool currentManager = false;
 
 
-    [SerializeField] private GameObject GameHandlerBaseObj;
-    [SerializeField] private GameObject PlayerCreatedScenario;
 
 
     private void Awake() {
         Instance = this;
         this.managedType = TInstantiableObjectSystem.IntantiableTypes.MoveableObjects;
-        MovableObjectsTypeSelectUI initUI = GameHandlerBaseObj.GetComponent<MovableObjectsTypeSelectUI>();
-        activeMoveableObjectsType = moveableObjectsTypeSOList[0];
+        MovableObjectsTypeSelectUI initUI = MovableObjectsTypeSelectUI.Instance;
+        activeMovableObjectsType = movableObjectsTypeSOList[0];
         mouseClickAdd = mouseClickAddFunc;
         addFromInfo = addFromInfoFunc;
+        TInstantiableObjectSystem.Instance.Managers.Add(TInstantiableObjectSystem.IntantiableTypes.MoveableObjects, this);
+        TInstantiableObjectSystem.Instance.OnKeyPressed += OnKeyPressed;
+        TInstantiableObjectSystem.Instance.OnMouse0 += OnMouse0;
+        TInstantiableObjectSystem.Instance.OnMouse1 += OnMouse1;
+        TInstantiableObjectSystem.Instance.OnMouseMid += OnMouseMid;
+        TInstantiableObjectSystem.Instance.OnMouseScroll += OnMouseScroll;
+        if (!TInstantiableObjectSystem.Instance.CurrentManager) {
+            ActivateManager();
+            Debug.Log("current manager name: " + TInstantiableObjectSystem.Instance.CurrentManager.name);
+        }
     }
 
     private void Update() {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
-            mouseClickAddFunc();
-        }
 
-        if (Input.GetMouseButtonDown(1)) {
-            counter += 1;
-            if (counter == 8) {
-                counter = 0;
-            }
-            print(counter);
-        }
-        if (Input.GetKeyDown(KeyCode.F)) {
-            counter = 0;
-            print("Counter Reset");
-        }
+        
     }
 
+
     public void SetActiveBuildingType (MovableObjectsSO moveableObjectsTypeSO) {
-        activeMoveableObjectsType = moveableObjectsTypeSO;
+        activeMovableObjectsType = moveableObjectsTypeSO;
     }
 
     public MovableObjectsSO GetActiveMOType() {
-        return activeMoveableObjectsType;
+        return activeMovableObjectsType;
     }
 
     private void mouseClickAddFunc() {
@@ -60,14 +56,14 @@ public class MovableObjectsManager : TInstantiableObjectsManager {
             return;
         }
 
-        Transform newPlacedMoveableObjects = Instantiate(activeMoveableObjectsType.transform, mouseWorldPosition, transform.rotation * Quaternion.Euler(0, 45 * counter, 0));
+        Transform newPlacedMoveableObjects = Instantiate(activeMovableObjectsType.transform, mouseWorldPosition, transform.rotation * Quaternion.Euler(0, 45 * counter, 0));
         newPlacedMoveableObjects.transform.parent = MOInstancesList.transform;
-        MovableObjectsInfo newMoveableObjectsInfo = newPlacedMoveableObjects.gameObject.AddComponent<MovableObjectsInfo>();
-        newMoveableObjectsInfo.LoadInfo(activeMoveableObjectsType, newPlacedMoveableObjects);
+        MovableObjectsInfo newMoveableObjectsInfo = newPlacedMoveableObjects.gameObject.GetComponent<MovableObjectsInfo>();
+        newMoveableObjectsInfo.LoadInfo(activeMovableObjectsType, newPlacedMoveableObjects);
     }
 
     public MovableObjectsSO[] FindSOTypeFromName(string name) {
-        return moveableObjectsTypeSOList
+        return movableObjectsTypeSOList
             .Where(d => d.nameString == name)
                 .ToArray();
     }
@@ -76,7 +72,7 @@ public class MovableObjectsManager : TInstantiableObjectsManager {
         MovableObjectsSO[] foundSOTypeFromSerialized;
         MovableObjectsSO typeSO;
 
-        foundSOTypeFromSerialized = moveableObjectsTypeSOList
+        foundSOTypeFromSerialized = movableObjectsTypeSOList
             .Where(d => d.nameString == bInfo.instanceName)
                 .ToArray();
 
@@ -85,28 +81,56 @@ public class MovableObjectsManager : TInstantiableObjectsManager {
             return;
         }
         typeSO = foundSOTypeFromSerialized[0];
-        Vector3 buildPos = new Vector3();
-        buildPos.x = bInfo.position.x;
-        buildPos.y = bInfo.position.y;
-        buildPos.z = bInfo.position.z;
-        Quaternion buildRot = new Quaternion();
-        buildRot.x = bInfo.rotation.x;
-        buildRot.y = bInfo.rotation.y;
-        buildRot.z = bInfo.rotation.z;
-        buildRot.w = bInfo.rotation.w;
-        Transform newPlacedBuilding = Instantiate(typeSO.transform, buildPos, buildRot);
-        Vector3 buildScale = new Vector3();
-        buildScale.x = bInfo.scale.x;
-        buildScale.y = bInfo.scale.y;
-        buildScale.z = bInfo.scale.z;
-        newPlacedBuilding.localScale = buildScale;
-        MovableObjectsInfo newBuildingInfo = newPlacedBuilding.gameObject.AddComponent<MovableObjectsInfo>();
-        newBuildingInfo.LoadInfo(activeMoveableObjectsType, newPlacedBuilding);
-
-        newPlacedBuilding.transform.parent = MOInstancesList.transform;
+        MovableObjectsInfo newBuildingInfo = MovableObjectsInfo.Create<MovableObjectsSO, MovableObjectsInfo>(bInfo, typeSO, MOInstancesList.transform) as MovableObjectsInfo;
         return;
     }
 
+    public override void ActivateManager(){
+        TInstantiableObjectSystem.Instance.CurrentManager = Instance;
+        currentManager = true;
+    }
+    public override void DeactivateManager() {
+        currentManager = false;
+    }
 
+    public override void OnKeyPressed(object sender, TInstantiableObjectSystem.OnKeyPressedEventArgs e) { 
+        if (currentManager) {
+            Debug.Log("MoveableObjectManager KeyPressed!: " + e.keyPressed); 
+            if (e.keyPressed == "f") {
+                counter = 0;
+                print("Counter Reset");
+            }
 
+        }
+    }
+    public override void OnMouse0(object sender, EventArgs e) {
+        if (currentManager) {
+            Debug.Log("MoveableObjectManager OnMouse0!"); 
+            if(!EventSystem.current.IsPointerOverGameObject()) {
+                mouseClickAddFunc();
+            }
+        }
+    }
+    public override void OnMouse1(object sender, EventArgs e) {
+        if (currentManager) {
+            Debug.Log("MoveableObjectManager OnMouse1!"); 
+            counter += 1;
+            if (counter == 8) {
+                counter = 0;
+            }
+            print(counter);
+        }
+    }
+    public override void OnMouseMid(object sender, EventArgs e) {
+        if (currentManager) {
+            Debug.Log("MoveableObjectManager OnMouseMid!");
+
+        }
+    }
+    public override void OnMouseScroll(object sender, TInstantiableObjectSystem.OnMouseScrollEventArgs e) {
+        if (currentManager) {
+            Debug.Log("MoveableObjectManager OnMouseScroll!");
+
+        }
+    }
 }

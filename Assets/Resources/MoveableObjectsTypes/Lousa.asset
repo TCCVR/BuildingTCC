@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec072ecf0b959844903e65348423fb3, type: 3}
   m_Name: Lousa
   m_EditorClassIdentifier: 
-  typeName: Lousa
+  nameString: 
+  intantiableType: 2
   transform: {fileID: 4473655760522394, guid: 883fda0b73369fe41bc2ed262338a937, type: 3}
+  visual: {fileID: 0}
   sprite: {fileID: 21300000, guid: 36c3d74684c3b264cbc0ad6ed097f876, type: 3}
+  width: 0
+  height: 0

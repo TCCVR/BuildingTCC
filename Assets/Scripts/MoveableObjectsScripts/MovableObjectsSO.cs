@@ -4,4 +4,5 @@ using UnityEngine;
 
 [CreateAssetMenu()]
 public class MovableObjectsSO : TInstantiableObjectSO {
+
 }

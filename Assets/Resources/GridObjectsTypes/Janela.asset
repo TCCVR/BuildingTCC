@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec072ecf0b959844903e65348423fb3, type: 3}
+  m_Script: {fileID: 11500000, guid: b9f302b9f680361499fb80439228daaf, type: 3}
   m_Name: Janela
   m_EditorClassIdentifier: 
   nameString: Janela
-  transform: {fileID: 4249889236172922, guid: d8553808ed1fd2a41982e26a8f099b9a, type: 3}
+  intantiableType: 1
+  transform: {fileID: 6493113680349103707, guid: ca4ae6eaead207d408ebf38a06580229, type: 3}
   visual: {fileID: 2738421185131440287, guid: f17dc83ad5b0ee340ba9be6f31578369, type: 3}
   sprite: {fileID: 21300000, guid: a3cd080596609f94399da1b3d274f20f, type: 3}
-  width: 0
-  height: 0
+  width: 3
+  height: 3

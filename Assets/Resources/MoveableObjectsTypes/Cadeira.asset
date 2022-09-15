@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec072ecf0b959844903e65348423fb3, type: 3}
   m_Name: Cadeira
   m_EditorClassIdentifier: 
-  typeName: Cadeira
-  transform: {fileID: 4808682210020090, guid: 2ff7704997af3ca468ea39420cfd35ec, type: 3}
+  nameString: Cadeira
+  intantiableType: 2
+  transform: {fileID: 6429059616644111646, guid: 10879b77321a2a74f997df25ee22eddb, type: 3}
+  visual: {fileID: 5171425194862824229, guid: d8b987192c2a89741a1ebc3e54857aed, type: 3}
   sprite: {fileID: 21300000, guid: 3d99c90f77501374aae818c2a13c2527, type: 3}
+  width: 0
+  height: 0

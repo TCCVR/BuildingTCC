@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec072ecf0b959844903e65348423fb3, type: 3}
   m_Name: Caneta
   m_EditorClassIdentifier: 
-  typeName: Caneta
+  nameString: 
+  intantiableType: 2
   transform: {fileID: 400000, guid: 7d5eed7726604d242947a41ad7fb329c, type: 3}
+  visual: {fileID: 0}
   sprite: {fileID: 21300000, guid: 48046bc1cfd7bdd4383a9b0c70020c38, type: 3}
+  width: 0
+  height: 0

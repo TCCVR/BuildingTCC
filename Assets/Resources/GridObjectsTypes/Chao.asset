@@ -17,5 +17,5 @@ MonoBehaviour:
   transform: {fileID: 3735315229440471146, guid: 6f587f78f63e8d844b4e6aae8884c8e5, type: 3}
   visual: {fileID: 3485694587151694788, guid: a7a418c8641cb044bb03212e2f1fb742, type: 3}
   sprite: {fileID: 21300000, guid: 32f5a73ad88748a4791c318fdf0c2ea2, type: 3}
-  width: 2
-  height: 2
+  width: 3
+  height: 3

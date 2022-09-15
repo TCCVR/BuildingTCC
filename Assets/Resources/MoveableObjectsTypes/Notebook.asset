@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec072ecf0b959844903e65348423fb3, type: 3}
   m_Name: Notebook
   m_EditorClassIdentifier: 
-  typeName: Notebook
+  nameString: 
+  intantiableType: 0
   transform: {fileID: 4225381643663648, guid: 112cc81e36e745449bf229e4dbb3e073, type: 3}
+  visual: {fileID: 0}
   sprite: {fileID: 21300000, guid: 1b018eec5a766a646843472366d490dc, type: 3}
+  width: 0
+  height: 0
