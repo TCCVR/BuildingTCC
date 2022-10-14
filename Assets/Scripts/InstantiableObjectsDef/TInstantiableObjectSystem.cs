@@ -25,6 +25,9 @@ public class TInstantiableObjectSystem : MonoBehaviour {
     public event EventHandler OnMouse0;
     public event EventHandler OnMouse1;
     public event EventHandler OnMouseMid;
+    public event EventHandler OnActiveGridLevelChanged;
+    public event EventHandler OnSelectedChanged;
+    public event EventHandler OnObjectPlaced;
 
     public event EventHandler<OnMouseScrollEventArgs> OnMouseScroll;
     public class OnMouseScrollEventArgs {

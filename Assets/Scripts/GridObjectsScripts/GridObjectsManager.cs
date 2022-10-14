@@ -58,13 +58,12 @@ public class GridObjectsManager :TInstantiableObjectsManager {
     private void mouseClickAddFunc() {
         Vector3 mouseWorldPosition = Mouse3D.GetMouseWorldPosition();
         float maxBuildDistance = 10f;
-
         if (Mouse3D.GetDistanceToPlayer() >= maxBuildDistance) {
             return;
         }
-
-
     }
+
+
     private void addFromInfoFunc(InstanceInfo bInfo) {
         GridObjectsSO[] foundSOTypeFromSerialized;
         GridObjectsSO typeSO;
@@ -162,6 +161,16 @@ public class GridObjectsManager :TInstantiableObjectsManager {
         }
 
     }
+
+
+
+    
+
+
+
+
+
+
 
     public Vector2Int GetGridPosition(Vector3 worldPosition) {
         selectedGrid.GetXZ(worldPosition, out int x, out int z);

@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class GhostObject :MonoBehaviour {
 
+    
     private Transform visual;
 
     private void Start() {
@@ -18,9 +18,8 @@ public class GhostObject :MonoBehaviour {
 
     private void LateUpdate() { //LateUpdate
         Vector3 targetPosition = GridBuildingSystem3D.Instance.GetMouseWorldSnappedPosition();
-        targetPosition.y = 1f;
+        targetPosition.y = 0f;
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 15f);
-
         transform.rotation = Quaternion.Lerp(transform.rotation, GridBuildingSystem3D.Instance.GetPlacedObjectRotation(), Time.deltaTime * 15f);
     }
 

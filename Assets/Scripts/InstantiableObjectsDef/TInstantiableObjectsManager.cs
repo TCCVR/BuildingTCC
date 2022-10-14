@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class TInstantiableObjectsManager :MonoBehaviour {
+public abstract class TInstantiableObjectsManager: MonoBehaviour {
     public delegate void MouseClickAddIntantiableObjectWithInfo();
     public delegate void AddInstantiableObjectsFromInfo(InstanceInfo bInfo);
 
@@ -12,6 +12,9 @@ public abstract class TInstantiableObjectsManager :MonoBehaviour {
     public TInstantiableObjectSystem.IntantiableTypes managedType;
 
 
+    /// <summary>
+    /// Activates manager functionalities  
+    /// </summary>
     public abstract void ActivateManager();
     public abstract void DeactivateManager();
     public abstract void OnKeyPressed(object sender, TInstantiableObjectSystem.OnKeyPressedEventArgs e);

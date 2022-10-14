@@ -68,7 +68,7 @@ public class GridBuildingSystem3D : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetMouseButtonDown(0) && instanceableObjectSO != null) {
+        if (Input.GetMouseButtonDown(0) && instanceableObjectSO) {
 
             Vector3 mousePosition = Mouse3D.GetMouseWorldPosition();
             grid.GetXZ(mousePosition, out int x, out int z);

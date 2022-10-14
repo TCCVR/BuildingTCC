@@ -8,6 +8,9 @@ public abstract class TInstantiableObjectInfo :MonoBehaviour {
     public abstract void LoadInfo<TInstantiableObjectSO>(TInstantiableObjectSO btSO, Transform instancedObjTransform);
 
 
+    //
+    // Summary:
+    //     Create a info from its SO and transform
     public static TInstantiableObjectInfo Create<T, TInfo>(InstanceInfo instanceInfo, T instanceableObjectSO, Transform parent) {
         Transform placedObjectTransform;
         Vector3 buildPos = new Vector3();

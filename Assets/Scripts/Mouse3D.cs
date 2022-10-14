@@ -19,6 +19,9 @@ public class Mouse3D : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// GetMouseWorldPosition get a vector3 of where is rayscast   
+    /// </summary>
     public static Vector3 GetMouseWorldPosition() => Instance.GetMouseWorldPosition_Instance();
 
     public static float GetDistanceToPlayer() => Instance.GetDistanceToPlayer_Instance();

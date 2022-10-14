@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MovableObjectsTypeSelectUI : MonoBehaviour {
-    [SerializeField] private GameObject ManagerObject;
-    private MovableObjectsManager moveableObjectsManager;
+public class MovableObjectsTypeSelectUI : TInstantiableObjectsTypeSelectUI {
     public static MovableObjectsTypeSelectUI Instance { get; private set; }
 
+    private MovableObjectsManager moveableObjectsManager;
+
     private Dictionary<MovableObjectsSO, Transform> moveableObjectsBtnDictionary;
+
     private void Start() {
         moveableObjectsManager = MovableObjectsManager.Instance;
 
@@ -17,28 +18,8 @@ public class MovableObjectsTypeSelectUI : MonoBehaviour {
 
 
         moveableObjectsBtnDictionary = new Dictionary<MovableObjectsSO, Transform>();
-        int index = 0;
-        
-        foreach(MovableObjectsSO moveableObjectsTypeSO in moveableObjectsManager.movableObjectsTypeSOList) {
-            
-            Transform moveableObjectsBtnTransform  = Instantiate(moveableObjectsBtnTemplate, transform);
-            moveableObjectsBtnTransform.gameObject.SetActive(true);
 
-            moveableObjectsBtnTransform.GetComponent<RectTransform>().anchoredPosition += new Vector2(index * 110, 0);
-            moveableObjectsBtnTransform.Find("image").GetComponent<Image>().sprite = moveableObjectsTypeSO.sprite;
-
-            moveableObjectsBtnTransform.GetComponent<Button>().onClick.AddListener(() => {
-                moveableObjectsManager.SetActiveBuildingType(moveableObjectsTypeSO);
-                Debug.Log(moveableObjectsTypeSO);
-                UpdateSelectedVisual();
-            });
-
-            moveableObjectsBtnDictionary[moveableObjectsTypeSO] = moveableObjectsBtnTransform;
-            index++;
-        }
-
-
-        UpdateSelectedVisual();
+        //UpdateSelectedVisual();
     }
 
     private void Awake() {
@@ -52,7 +33,7 @@ public class MovableObjectsTypeSelectUI : MonoBehaviour {
             UpdateSelectedVisual();
         }
     }
-    private void UpdateSelectedVisual() {
+    public override void UpdateSelectedVisual() {
         foreach (MovableObjectsSO moveableObjectsTypeSO in moveableObjectsBtnDictionary.Keys) {
             moveableObjectsBtnDictionary[moveableObjectsTypeSO].Find("selected").gameObject.SetActive(false);
         }

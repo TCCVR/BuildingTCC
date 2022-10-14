@@ -15,9 +15,9 @@ public class MovableObjectsManager : TInstantiableObjectsManager {
 
 
 
-    private void Awake() {
+    private void Start() {
         Instance = this;
-        this.managedType = TInstantiableObjectSystem.IntantiableTypes.MoveableObjects;
+        managedType = TInstantiableObjectSystem.IntantiableTypes.MoveableObjects;
         MovableObjectsTypeSelectUI initUI = MovableObjectsTypeSelectUI.Instance;
         activeMovableObjectsType = movableObjectsTypeSOList[0];
         mouseClickAdd = mouseClickAddFunc;
@@ -36,10 +36,14 @@ public class MovableObjectsManager : TInstantiableObjectsManager {
 
     private void Update() {
 
-        
+ 
     }
 
-
+    /// <summary>
+    /// Changes active SO type
+    /// </summary>
+    /// <param name="moveableObjectsTypeSO">SO type to activate</param>
+    /// <returns></returns>
     public void SetActiveBuildingType (MovableObjectsSO moveableObjectsTypeSO) {
         activeMovableObjectsType = moveableObjectsTypeSO;
     }
