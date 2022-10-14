@@ -18,7 +18,7 @@ namespace CodeMonkey {
 
     /*
      * Global Asset references
-     * Edit Asset references in the prefab CodeMonkey/Resources/CodeMonkeyAssets
+     * Edit Asset references in the transform CodeMonkey/Resources/CodeMonkeyAssets
      * */
     public class Assets : MonoBehaviour {
 

@@ -29,7 +29,7 @@ namespace StarterAssets
                 }
                 else
                 {
-                    Debug.LogError("Couldn't find player armature prefab");
+                    Debug.LogError("Couldn't find player armature transform");
                 }
             }
             else
