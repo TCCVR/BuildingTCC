@@ -2,17 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridEdgeObjectsInfo :TInstantiableObjectInfo {
+public class GridEdgeObjectsInfo : TInstantiableObjectInfo {
 
-    public static TInstantiableObjectInfo Create(Vector3 worldPosition, GridObjectsSO.Dir dir, TInstantiableObjectSO instanceableObjectSO) {
-        Transform placedObjectTransform = Instantiate(instanceableObjectSO.transform, worldPosition, Quaternion.Euler(0, GridObjectsSO.GetRotationAngle(dir), 0));
 
-        TInstantiableObjectInfo placedObject = placedObjectTransform.GetComponent<TInstantiableObjectInfo>();
-        placedObject.LoadInfo(instanceableObjectSO, placedObjectTransform);
-        placedObject.instanceInfo.dir = dir;
-
-        return placedObject;
-    }
 
     public override void LoadInfo<TInstantiableObjectSO>(TInstantiableObjectSO btSO, Transform instancedObjTransform) {
         throw new System.NotImplementedException();

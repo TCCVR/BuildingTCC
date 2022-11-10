@@ -6,22 +6,29 @@ using UnityEngine.EventSystems;
 
 public class MovableObjectsManager : TInstantiableObjectsManager {
     public static MovableObjectsManager Instance { get; private set; }
+
+    GhostMovableObject ghostMovableObject;
+
     [SerializeField] public List<MovableObjectsSO> movableObjectsTypeSOList;
     [SerializeField] private MovableObjectsSO activeMovableObjectsType;
     [SerializeField] public GameObject MOInstancesList;
+
+    private float looseObjectEulerY;
     private int counter;
     private bool currentManager = false;
 
+    private void Awake() {
+        Instance = this;
+        managedType = TInstantiableObjectSystem.IntantiableTypes.MoveableObjects;
+        activeMovableObjectsType = movableObjectsTypeSOList[0];
+        mouseClickAdd = mouseClickAddFunc;
+        addFromInfo = addFromInfoFunc;
+    }
 
 
 
     private void Start() {
-        Instance = this;
-        managedType = TInstantiableObjectSystem.IntantiableTypes.MoveableObjects;
         MovableObjectsTypeSelectUI initUI = MovableObjectsTypeSelectUI.Instance;
-        activeMovableObjectsType = movableObjectsTypeSOList[0];
-        mouseClickAdd = mouseClickAddFunc;
-        addFromInfo = addFromInfoFunc;
         TInstantiableObjectSystem.Instance.Managers.Add(TInstantiableObjectSystem.IntantiableTypes.MoveableObjects, this);
         TInstantiableObjectSystem.Instance.OnKeyPressed += OnKeyPressed;
         TInstantiableObjectSystem.Instance.OnMouse0 += OnMouse0;
@@ -89,18 +96,27 @@ public class MovableObjectsManager : TInstantiableObjectsManager {
         return;
     }
 
+    public float GetMovableObjectEulerY() {
+        return looseObjectEulerY;
+    }
+
     public override void ActivateManager(){
         TInstantiableObjectSystem.Instance.CurrentManager = Instance;
+        if (ghostMovableObject is null) {
+            ghostMovableObject = GhostMovableObject.Instance;
+        }
+        ghostMovableObject.Activation();
         currentManager = true;
     }
     public override void DeactivateManager() {
+        ghostMovableObject.Activation(false);
         currentManager = false;
     }
 
     public override void OnKeyPressed(object sender, TInstantiableObjectSystem.OnKeyPressedEventArgs e) { 
         if (currentManager) {
             Debug.Log("MoveableObjectManager KeyPressed!: " + e.keyPressed); 
-            if (e.keyPressed == "f") {
+            if (e.keyPressed == KeyCode.F) {
                 counter = 0;
                 print("Counter Reset");
             }

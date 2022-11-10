@@ -65,7 +65,7 @@
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
     <Compile Include="Assets\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\UI_TextComplex.cs" />
-    <Compile Include="Assets\Scripts\InstantiableObjectsDef\GhostObject.cs" />
+    <Compile Include="Assets\Scripts\InstantiableObjectsDef\TGhostObject.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\Button_Sprite.cs" />
     <Compile Include="Assets\Scripts\FileUtils.cs" />
     <Compile Include="Assets\CodeMonkey\MonoBehaviours\CameraFollowSetup.cs" />
@@ -81,6 +81,7 @@
     <Compile Include="Assets\StarterAssets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\UtilsClass.cs" />
     <Compile Include="Assets\CodeMonkey\MonoBehaviours\PositionRendererSorter.cs" />
+    <Compile Include="Assets\Scripts\GridObjectsScripts\GhostGridObject.cs" />
     <Compile Include="Assets\Scripts\InstantiableObjectsDef\TInstantiableObjectsTypeSelectUI.cs" />
     <Compile Include="Assets\Scripts\GameHandler.cs" />
     <Compile Include="Assets\StarterAssets\FirstPersonController\Scripts\FirstPersonController.cs" />
@@ -89,13 +90,14 @@
     <Compile Include="Assets\Scripts\InstantiableObjectsDef\TInstantiableObjectSO.cs" />
     <Compile Include="Assets\Scripts\InstantiableObjectsDef\TInstantiableObjectSystem.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
-    <Compile Include="Assets\Scripts\GridObjectsScripts\GridXZ.cs" />
+    <Compile Include="Assets\Scripts\GridXZ.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\FunctionTimer.cs" />
+    <Compile Include="Assets\Scripts\GridObjectsScripts\GridEdgeObjectsPosition.cs" />
     <Compile Include="Assets\Scripts\InstantiableObjectsDef\TInstantiableObjectInfo.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\UI_Bar.cs" />
-    <Compile Include="Assets\Scripts\GridObjectsScripts\GridBuildingSystem3D.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
     <Compile Include="Assets\Scripts\MoveableObjectsScripts\MovableObjectsSO.cs" />
+    <Compile Include="Assets\Scripts\GridObjectsScripts\GridEdgeObjectsSO.cs" />
     <Compile Include="Assets\Scripts\Mouse3D.cs" />
     <Compile Include="Assets\CodeMonkey\MonoBehaviours\ComponentActions.cs" />
     <Compile Include="Assets\Scripts\GameAssets.cs" />
@@ -107,6 +109,9 @@
     <Compile Include="Assets\CodeMonkey\CMDebug.cs" />
     <Compile Include="Assets\Scripts\GridObjectsScripts\GridObjectsManager.cs" />
     <Compile Include="Assets\CodeMonkey\Utils\FunctionPeriodic.cs" />
+    <Compile Include="Assets\Scripts\MoveableObjectsScripts\GhostMovableObject.cs" />
+    <Compile Include="Assets\Scripts\GridObject.cs" />
+    <Compile Include="Assets\Scripts\GridObjectsScripts\GhostGridEdgeObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LowPolyOfficeProps_LITE\About.txt" />

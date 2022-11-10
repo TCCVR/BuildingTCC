@@ -5,11 +5,31 @@ using UnityEngine;
 using Newtonsoft.Json;
 
 public class GridObjectsInfo :TInstantiableObjectInfo {
-    public static TInstantiableObjectInfo Create(Vector3 worldPosition, GridObjectsSO.Dir dir, TInstantiableObjectSO instanceableObjectSO) {
-        Transform placedObjectTransform = Instantiate(instanceableObjectSO.transform, worldPosition, Quaternion.Euler(0, GridObjectsSO.GetRotationAngle(dir), 0));
+    
+    public enum Edge {
+        Up,
+        Down,
+        Left,
+        Right
+    }
 
-        TInstantiableObjectInfo placedObject = placedObjectTransform.GetComponent<TInstantiableObjectInfo>();
-        placedObject.LoadInfo(instanceableObjectSO, placedObjectTransform);
+    [SerializeField] private GridEdgeObjectsPosition upGridEdgePosition;
+    [SerializeField] private GridEdgeObjectsPosition downGridEdgePosition;
+    [SerializeField] private GridEdgeObjectsPosition leftGridEdgePosition;
+    [SerializeField] private GridEdgeObjectsPosition rightGridEdgePosition;
+
+    private GridEdgeObjectsPosition upEdgeObject;
+    private GridEdgeObjectsPosition downEdgeObject;
+    private GridEdgeObjectsPosition leftEdgeObject;
+    private GridEdgeObjectsPosition rightEdgeObject;
+
+    private Vector2Int origin;
+
+    public static GridObjectsInfo Create(Vector3 worldPosition, GridObjectsSO.Dir dir, GridObjectsSO gridObjectsInfo, GameObject parent) {
+        Transform placedObjectTransform = Instantiate(gridObjectsInfo.transform, worldPosition, Quaternion.Euler(0, GridObjectsSO.GetRotationAngle(dir), 0));
+        placedObjectTransform.parent = parent.transform;
+        GridObjectsInfo placedObject = placedObjectTransform.GetComponent<GridObjectsInfo>();
+        placedObject.LoadInfo(gridObjectsInfo, placedObjectTransform);
         placedObject.instanceInfo.dir = dir;
 
         return placedObject;
@@ -42,6 +62,11 @@ public class GridObjectsInfo :TInstantiableObjectInfo {
         this.instanceInfo.scale.y = instancedObjTransform.lossyScale.y;
         this.instanceInfo.scale.z = instancedObjTransform.lossyScale.z;
         return;
+    }
+
+
+    public Vector2Int GetGridPosition() {
+        return origin;
     }
 
     public List<Vector2Int> GetGridPositionList() {

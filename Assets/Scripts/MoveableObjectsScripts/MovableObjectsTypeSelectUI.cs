@@ -27,11 +27,11 @@ public class MovableObjectsTypeSelectUI : TInstantiableObjectsTypeSelectUI {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Tab)) {
-            MovableObjectsSO NextMoveableObjectsType = NextBuildingTypeOnList();
-            moveableObjectsManager.SetActiveBuildingType(NextMoveableObjectsType);
-            UpdateSelectedVisual();
-        }
+        //if (Input.GetKeyDown(KeyCode.Tab)) {
+        //    MovableObjectsSO NextMoveableObjectsType = NextBuildingTypeOnList();
+        //    moveableObjectsManager.SetActiveBuildingType(NextMoveableObjectsType);
+        //    UpdateSelectedVisual();
+        //}
     }
     public override void UpdateSelectedVisual() {
         foreach (MovableObjectsSO moveableObjectsTypeSO in moveableObjectsBtnDictionary.Keys) {

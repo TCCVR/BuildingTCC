@@ -600,6 +600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 41398270}
   - component: {fileID: 41398271}
+  - component: {fileID: 41398272}
   m_Layer: 0
   m_Name: GameHandler
   m_TagString: Untagged
@@ -636,7 +637,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552aa105d32bcc845a05e4d1fb1f6045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveableObjectsInstancesList: {fileID: 1262355946}
+  MoveableObjectsInstancesParent: {fileID: 1931784404}
+  GridObjectsInstancesParent: {fileID: 259864250}
+--- !u!114 &41398272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41398269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70740731b3d15c44a4d1489fce7e966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  USEDKEYS: 2000000077000000610000007300000064000000
 --- !u!4 &46129311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1381132681371883810, guid: f544a2a9fed71534f85ea81385e80b16, type: 3}
@@ -1764,7 +1779,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 196185848}
-  - component: {fileID: 196185849}
   - component: {fileID: 196185850}
   m_Layer: 0
   m_Name: GridObjectsManager
@@ -1787,21 +1801,6 @@ Transform:
   m_Father: {fileID: 1702622487}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &196185849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196185847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 069af50ca00a0a248ad629f0437ff142, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  instanceableObjectSOList:
-  - {fileID: 11400000, guid: 78af40520fa904843ab53916d3d7c240, type: 2}
-  - {fileID: 11400000, guid: 755756a8e198dc4429293a2f743e691b, type: 2}
 --- !u!114 &196185850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1816,10 +1815,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   managedType: 0
   gridInstancesList: {fileID: 259864250}
-  gridObjectsTypeSOList:
-  - {fileID: 11400000, guid: 78af40520fa904843ab53916d3d7c240, type: 2}
-  - {fileID: 11400000, guid: 755756a8e198dc4429293a2f743e691b, type: 2}
   gridObjectsType: {fileID: 11400000, guid: 78af40520fa904843ab53916d3d7c240, type: 2}
+  placedObjectEdgeColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &203381106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2808,6 +2807,7 @@ GameObject:
   m_Component:
   - component: {fileID: 349818141}
   - component: {fileID: 349818142}
+  - component: {fileID: 349818143}
   m_Layer: 0
   m_Name: GhostObject
   m_TagString: Untagged
@@ -2838,7 +2838,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 349818140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57a54b78859b6a04594a1a0a642ed5c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 687ae3beeb7f4b341a668fb19f840a83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &349818143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349818140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 583f1e3587f26c94eb5e14779a61c0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &350279269
@@ -6592,7 +6604,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridObjectsTypeSOList:
   - {fileID: 11400000, guid: 78af40520fa904843ab53916d3d7c240, type: 2}
-  - {fileID: 11400000, guid: 755756a8e198dc4429293a2f743e691b, type: 2}
+  gridEdgeObjectsTypeSOList:
+  - {fileID: 11400000, guid: 172087709120a844496f240f8b7d910a, type: 2}
   movableObjectsTypeSOList:
   - {fileID: 11400000, guid: 5e17eab32a02c964d8422e9e8749117e, type: 2}
   - {fileID: 11400000, guid: 237698e3196f39c46b3a3f4f29e61691, type: 2}
