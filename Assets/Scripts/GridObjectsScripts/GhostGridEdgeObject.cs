@@ -37,9 +37,16 @@ public class GhostGridEdgeObject: TGhostObject {
     }
 
     protected override void GhostLateUpdate() {
-        Vector3 targetPosition = GridObjectsManager.Instance.GetMouseWorldSnappedPosition();
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 15f);
-        transform.rotation = Quaternion.Lerp(transform.rotation, GridObjectsManager.Instance.GetPlacedObjectRotation(), Time.deltaTime * 15f);
+        GridEdgeObjectsPosition floorEdgePosition = GridObjectsManager.Instance.GetMouseFloorEdgePosition();
+        if (floorEdgePosition != null) {
+            transform.position = Vector3.Lerp(transform.position, floorEdgePosition.transform.position, Time.deltaTime * 15f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, floorEdgePosition.transform.rotation, Time.deltaTime * 25f);
+        }
+        else {
+            Vector3 targetPosition = GridObjectsManager.Instance.GetMouseWorldSnappedPosition();
+            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 15f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.identity, Time.deltaTime * 25f);
+        }
     }
 
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 public class GhostGridObject: TGhostObject {
 
-    public static GhostGridObject Instance { get; private set; } 
+    public static GhostGridObject Instance { get; private set; }
 
     private void Awake() {
         Instance = this;

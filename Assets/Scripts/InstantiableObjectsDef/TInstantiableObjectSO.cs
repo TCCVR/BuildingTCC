@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class TInstantiableObjectSO : ScriptableObject {
     public string nameString;
-    public TInstantiableObjectSystem.IntantiableTypes intantiableType;
+    public TInstantiableObjectSystem.InstantiableTypes instantiableType;
     public Transform transform;
     public Transform visual;
     public Sprite sprite;

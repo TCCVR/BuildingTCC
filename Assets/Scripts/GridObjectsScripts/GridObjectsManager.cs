@@ -6,18 +6,19 @@ using UnityEngine;
 public class GridObjectsManager :TInstantiableObjectsManager {
     public static GridObjectsManager Instance { get; private set; }
 
-    private const float GRID_HEIGHT = 2.5f;
-
     GhostGridObject ghostGridObject;
+    GhostGridEdgeObject ghostGridEdgeObject;
 
 
     [SerializeField] public GameObject gridInstancesList;
-    private List<GridObjectsSO> gridObjectsTypeSOList;
-    [SerializeField] private GridObjectsSO gridObjectsType;
+    private List<GridObjectsSO> gridObjectsSOList;
+    [SerializeField] private GridObjectsSO currentSO;
+    private int listCounter = 0;
+    
 
     private List<GridXZ<GridObject>> gridList;
     private GridXZ<GridObject> selectedGrid;
-    private GridObjectsSO.Dir dir;
+    private TInstantiableObjectSO.Dir dir;
 
     private bool currentManager = false;
 
@@ -30,18 +31,19 @@ public class GridObjectsManager :TInstantiableObjectsManager {
 
     private void Awake() {
         Instance = this;
-        managedType = TInstantiableObjectSystem.IntantiableTypes.GridObjects;
+        managedType = TInstantiableObjectSystem.InstantiableTypes.GridObjects;
         mouseClickAdd = mouseClickAddFunc;
         addFromInfo = addFromInfoFunc;
-        //MovableObjectsTypeSelectUI initUI = MovableObjectsTypeSelectUI.Instance;
+        dir = TInstantiableObjectSO.Dir.Up;
 
     }
 
     private void Start() {
         gridList = GameHandler.Instance.gridList;
         selectedGrid = gridList[0];
+        gridObjectsSOList = GameAssets.Instance.gridObjectsTypeSOList;
 
-        TInstantiableObjectSystem.Instance.Managers.Add(TInstantiableObjectSystem.IntantiableTypes.GridObjects, Instance);
+        TInstantiableObjectSystem.Instance.Managers.Add(TInstantiableObjectSystem.InstantiableTypes.GridObjects, Instance);
         TInstantiableObjectSystem.Instance.OnKeyPressed += OnKeyPressed;
         TInstantiableObjectSystem.Instance.OnMouse0 += OnMouse0;
         TInstantiableObjectSystem.Instance.OnMouse1 += OnMouse1;
@@ -52,58 +54,79 @@ public class GridObjectsManager :TInstantiableObjectsManager {
             Debug.Log("current manager name: " + TInstantiableObjectSystem.Instance.CurrentManager.name);
         }
 
-        gridObjectsTypeSOList = GameAssets.Instance.gridObjectsTypeSOList;
-        gridObjectsType = gridObjectsTypeSOList[0];
+    }
+
+    private void Update() {
+        HandleGridSelectAutomatic();
     }
 
     public override void ActivateManager() {
         TInstantiableObjectSystem.Instance.CurrentManager = Instance;
-        if ( ghostGridObject is null) {
+        if (ghostGridObject is null) {
             ghostGridObject = GhostGridObject.Instance;
         }
-        ghostGridObject.Activation();
+        if (ghostGridEdgeObject is null) {
+            ghostGridEdgeObject = GhostGridEdgeObject.Instance;
+        }
+        if (currentSO is null) {
+            currentSO = gridObjectsSOList[listCounter];
+        }
         currentManager = true;
+        ActivateGhostObject();
     }
 
     public override void DeactivateManager() {
-        ghostGridObject.Activation(false);
+        ghostGridObject?.Activation(false);
+        ghostGridEdgeObject?.Activation(false);
         currentManager = false;
     }
 
     private void mouseClickAddFunc() {
-        if (gridObjectsType.intantiableType == TInstantiableObjectSystem.IntantiableTypes.GridObjects) {
+        if (currentSO.instantiableType == TInstantiableObjectSystem.InstantiableTypes.GridObjects) {
             Vector3 mousePosition = Mouse3D.GetMouseWorldPosition();
-            selectedGrid.GetXZ(mousePosition, out int x, out int z);
+            if (Vector3.Distance(TInstantiableObjectSystem.Instance.playerTransform.position, mousePosition) < Constants.MAXBUILDINGDISTANCE) {
+                selectedGrid.GetXZ(mousePosition, out int x, out int z);
+                Vector2Int placedObjectOrigin = new Vector2Int(x, z);
+                placedObjectOrigin = selectedGrid.ValidateGridPosition(placedObjectOrigin);
 
-            Vector2Int placedObjectOrigin = new Vector2Int(x, z);
-            placedObjectOrigin = selectedGrid.ValidateGridPosition(placedObjectOrigin);
-
-            // Test Can Build
-            List<Vector2Int> gridPositionList = gridObjectsType.GetGridPositionList(placedObjectOrigin, dir);
-            bool canBuild = true;
-            foreach (Vector2Int gridPosition in gridPositionList) {
-                if (!selectedGrid.GetGridObject(gridPosition.x, gridPosition.y).CanBuild()) {
-                    canBuild = false;
-                    break;
-                }
-            }
-
-            if (canBuild) {
-                Vector2Int rotationOffset = gridObjectsType.GetRotationOffset(dir);
-                Vector3 placedObjectWorldPosition = selectedGrid.GetWorldPosition(placedObjectOrigin.x, placedObjectOrigin.y) + new Vector3(rotationOffset.x, 0, rotationOffset.y) * selectedGrid.GetCellSize();
-
-                GridObjectsInfo placedObject = GridObjectsInfo.Create(placedObjectWorldPosition, dir, gridObjectsType, GameHandler.Instance.GridObjectsInstancesParent);
-
+                // Test Can Build
+                List<Vector2Int> gridPositionList = currentSO.GetGridPositionList(placedObjectOrigin, dir);
+                bool canBuild = true;
                 foreach (Vector2Int gridPosition in gridPositionList) {
-                    selectedGrid.GetGridObject(gridPosition.x, gridPosition.y).SetPlacedObject(placedObject);
+                    if (!selectedGrid.GetGridObject(gridPosition.x, gridPosition.y).CanBuild()) {
+                        canBuild = false;
+                        break;
+                    }
                 }
-                // "?" = NULL?
-                //OnObjectPlaced?.Invoke(this, EventArgs.Empty);
+                if (canBuild) {
+                    Vector2Int rotationOffset = currentSO.GetRotationOffset(dir);
+                    Vector3 placedObjectWorldPosition = selectedGrid.GetWorldPosition(placedObjectOrigin.x, placedObjectOrigin.y) + new Vector3(rotationOffset.x, 0, rotationOffset.y) * selectedGrid.GetCellSize();
 
-                //DeselectObjectType();
-            }
-            else {
+                    GridObjectsInfo placedObject = GridObjectsInfo.Create(placedObjectWorldPosition, dir, currentSO, GameHandler.Instance.GridObjectsInstancesParent);
+
+                    foreach (Vector2Int gridPosition in gridPositionList) {
+                        selectedGrid.GetGridObject(gridPosition.x, gridPosition.y).SetPlacedObject(placedObject);
+                    }
+                    // "?" = NULL?
+                    OnObjectPlaced?.Invoke(this, EventArgs.Empty);
+
+                    //DeselectObjectType();
+                }
+                else {
                     // Cannot build here
+                }
+            }
+        }
+        else if (currentSO.instantiableType == TInstantiableObjectSystem.InstantiableTypes.GridEdgeObjects) {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, placedObjectEdgeColliderLayerMask)) {
+                // Raycast Hit Edge Object
+                if (raycastHit.collider.TryGetComponent(out GridEdgeObjectsPosition floorEdgePosition)) {
+                    if (raycastHit.collider.transform.parent.TryGetComponent(out GridObjectsInfo floorPlacedObject)) {
+                        // Found parent FloorPlacedObject
+                        floorPlacedObject.PlaceEdge(floorEdgePosition.edge, currentSO);
+                    }
+                }
             }
         }
     }
@@ -113,7 +136,7 @@ public class GridObjectsManager :TInstantiableObjectsManager {
         GridObjectsSO[] foundSOTypeFromSerialized;
         GridObjectsSO typeSO;
 
-        foundSOTypeFromSerialized = gridObjectsTypeSOList
+        foundSOTypeFromSerialized = (gridObjectsSOList)
             .Where(d => d.nameString == bInfo.instanceName)
                 .ToArray();
 
@@ -132,12 +155,15 @@ public class GridObjectsManager :TInstantiableObjectsManager {
             if (e.keyPressed == KeyCode.R) {
                 dir = GridObjectsSO.GetNextDir(dir);
             }
+            else if (e.keyPressed == KeyCode.Tab) {
+                NextSO();
+            }
         }
     }
 
     public override void OnMouse0(object sender, EventArgs e) {
         if (currentManager) {
-                mouseClickAdd();
+            mouseClickAdd();
         }
     }
 
@@ -162,7 +188,7 @@ public class GridObjectsManager :TInstantiableObjectsManager {
 
     private void HandleGridSelectAutomatic() {
         Vector3 mousePosition = Mouse3D.GetMouseWorldPosition();
-        float gridHeight = GRID_HEIGHT;
+        float gridHeight = Constants.GRIDVERTICALSIZE;
         int newGridIndex = Mathf.Clamp(Mathf.RoundToInt(mousePosition.y / gridHeight), 0, gridList.Count - 1);
         selectedGrid = gridList[newGridIndex];
         OnActiveGridLevelChanged?.Invoke(this, EventArgs.Empty);
@@ -206,8 +232,8 @@ public class GridObjectsManager :TInstantiableObjectsManager {
         Vector3 mousePosition = Mouse3D.GetMouseWorldPosition();
         selectedGrid.GetXZ(mousePosition, out int x, out int z);
 
-        if (gridObjectsType != null) {
-            Vector2Int rotationOffset = gridObjectsType.GetRotationOffset(dir);
+        if (currentSO is object) {
+            Vector2Int rotationOffset = currentSO.GetRotationOffset(dir);
             Vector3 placedObjectWorldPosition = selectedGrid.GetWorldPosition(x, z) + new Vector3(rotationOffset.x, 0, rotationOffset.y) * selectedGrid.GetCellSize();
             return placedObjectWorldPosition;
         }
@@ -217,7 +243,7 @@ public class GridObjectsManager :TInstantiableObjectsManager {
     }
 
     public Quaternion GetPlacedObjectRotation() {
-        if (gridObjectsType != null) {
+        if (currentSO is object) {
             return Quaternion.Euler(0, GridObjectsSO.GetRotationAngle(dir), 0);
         }
         else {
@@ -226,10 +252,42 @@ public class GridObjectsManager :TInstantiableObjectsManager {
     }
 
     public TInstantiableObjectSO GetInstanceableObjectSO() {
-        return gridObjectsType;
+        return currentSO;
     }
 
     public int GetActiveGridLevel() {
         return gridList.IndexOf(selectedGrid);
+    }
+
+    public void ActivateGhostObject() {
+        if (currentSO?.instantiableType == TInstantiableObjectSystem.InstantiableTypes.GridObjects) {
+            ghostGridEdgeObject.Activation(false);
+            ghostGridObject.Activation();
+        }
+        else if (currentSO?.instantiableType == TInstantiableObjectSystem.InstantiableTypes.GridEdgeObjects) {
+            ghostGridObject.Activation(false);
+            ghostGridEdgeObject.Activation();
+        }
+    }
+
+    public void NextSO() {
+        if (currentSO is null) {
+            currentSO = gridObjectsSOList[listCounter];
+            ActivateGhostObject();
+        }
+        else {
+            TInstantiableObjectSystem.InstantiableTypes pastType = gridObjectsSOList[listCounter].instantiableType;
+            if (listCounter < gridObjectsSOList.Count - 1) {
+                listCounter++;
+            }
+            else {
+                listCounter = 0;
+            }
+            currentSO = gridObjectsSOList[listCounter];
+            if (currentSO.instantiableType != pastType) {
+                ActivateGhostObject();
+            }
+        }
+        OnSelectedChanged.Invoke(this, EventArgs.Empty);
     }
 }

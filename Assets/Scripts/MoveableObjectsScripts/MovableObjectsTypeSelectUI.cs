@@ -34,19 +34,20 @@ public class MovableObjectsTypeSelectUI : TInstantiableObjectsTypeSelectUI {
         //}
     }
     public override void UpdateSelectedVisual() {
-        foreach (MovableObjectsSO moveableObjectsTypeSO in moveableObjectsBtnDictionary.Keys) {
-            moveableObjectsBtnDictionary[moveableObjectsTypeSO].Find("selected").gameObject.SetActive(false);
-        }
+        //foreach (MovableObjectsSO moveableObjectsTypeSO in moveableObjectsBtnDictionary.Keys) {
+        //    moveableObjectsBtnDictionary[moveableObjectsTypeSO].Find("selected").gameObject.SetActive(false);
+        //}
 
-        MovableObjectsSO activeMoveableObjectsType = moveableObjectsManager.GetActiveMOType();
-        moveableObjectsBtnDictionary[activeMoveableObjectsType].Find("selected").gameObject.SetActive(true);
+        //MovableObjectsSO activeMoveableObjectsType = moveableObjectsManager.GetInstanceableObjectSO();
+        //moveableObjectsBtnDictionary[activeMoveableObjectsType].Find("selected").gameObject.SetActive(true);
     }
 
     private MovableObjectsSO NextBuildingTypeOnList() {
-        int indexCurrentBT = moveableObjectsManager.movableObjectsTypeSOList.IndexOf(moveableObjectsManager.GetActiveMOType());
-        if (indexCurrentBT == moveableObjectsManager.movableObjectsTypeSOList.Count - 1)
-            return moveableObjectsManager.movableObjectsTypeSOList[0];
-        else
-            return moveableObjectsManager.movableObjectsTypeSOList[indexCurrentBT + 1];
+        //int indexCurrentBT = moveableObjectsManager.movableObjectsTypeSOList.IndexOf(moveableObjectsManager.GetInstanceableObjectSO());
+        //if (indexCurrentBT == moveableObjectsManager.movableObjectsTypeSOList.Count - 1)
+        //    return moveableObjectsManager.movableObjectsTypeSOList[0];
+        //else
+        //    return moveableObjectsManager.movableObjectsTypeSOList[indexCurrentBT + 1];
+        return null;
     }
 }

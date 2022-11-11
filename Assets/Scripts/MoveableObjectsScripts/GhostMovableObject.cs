@@ -9,7 +9,7 @@ public class GhostMovableObject :TGhostObject {
         Instance.Activation(false);
     }
     private void Start() {
-        GridObjectsManager.Instance.OnSelectedChanged += Instance_OnSelectedChanged;
+        MovableObjectsManager.Instance.OnSelectedChanged += Instance_OnSelectedChanged;
     }
 
     protected override void RefreshVisual() {
@@ -19,7 +19,7 @@ public class GhostMovableObject :TGhostObject {
                 visual = null;
             }
 
-            TInstantiableObjectSO instanceableObjectSO = GridObjectsManager.Instance.GetInstanceableObjectSO();
+            TInstantiableObjectSO instanceableObjectSO = MovableObjectsManager.Instance.GetInstanceableObjectSO();
             if (instanceableObjectSO != null) {
                 visual = Instantiate(instanceableObjectSO.visual, Vector3.zero, Quaternion.identity);
                 visual.parent = transform;
