@@ -17,9 +17,10 @@ public class TInstantiableObjectSystem : MonoBehaviour {
     public Dictionary<IntantiableTypes, TInstantiableObjectsManager> Managers;
     public TInstantiableObjectsManager CurrentManager;
 
+
     public event EventHandler<OnKeyPressedEventArgs> OnKeyPressed;
     public class OnKeyPressedEventArgs {
-        public string keyPressed;
+        public KeyCode keyPressed;
     }
 
     public event EventHandler OnMouse0;
@@ -58,7 +59,14 @@ public class TInstantiableObjectSystem : MonoBehaviour {
                 SwitchManagers();
             }
             else {
-                OnKeyPressed(this, new OnKeyPressedEventArgs { keyPressed = Input.inputString });
+                foreach (KeyCode key in Enum.GetValues(typeof(KeyCode))) {
+                    if (!Constants.Instance.USEDKEYS.Contains(key)) {
+                        if (Input.GetKeyDown(key)) {
+                            OnKeyPressed(this, new OnKeyPressedEventArgs { keyPressed = key });
+                            break;
+                        };
+                    };
+                };
             }
         }
     }
@@ -80,6 +88,8 @@ public class TInstantiableObjectSystem : MonoBehaviour {
                 break;
 
         }
+        Debug.Log("current manager name: " + TInstantiableObjectSystem.Instance.CurrentManager.name);
         return;
     }
+
 };
