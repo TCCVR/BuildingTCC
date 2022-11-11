@@ -9,27 +9,32 @@ public class MovableObjectsManager : TInstantiableObjectsManager {
 
     GhostMovableObject ghostMovableObject;
 
-    [SerializeField] public List<MovableObjectsSO> movableObjectsTypeSOList;
-    [SerializeField] private MovableObjectsSO activeMovableObjectsType;
+    public List<MovableObjectsSO> movableObjectsTypeSOList;
+    private MovableObjectsSO activeMovableObjectsType;
     [SerializeField] public GameObject MOInstancesList;
 
     private float looseObjectEulerY;
-    private int counter;
+    private int angleDiscreetCounter = 0;
+    private int listCounter = 0;
     private bool currentManager = false;
+
+    public event EventHandler OnSelectedChanged;
+    public event EventHandler OnObjectPlaced;
 
     private void Awake() {
         Instance = this;
-        managedType = TInstantiableObjectSystem.IntantiableTypes.MoveableObjects;
-        activeMovableObjectsType = movableObjectsTypeSOList[0];
+        managedType = TInstantiableObjectSystem.InstantiableTypes.MoveableObjects;
         mouseClickAdd = mouseClickAddFunc;
         addFromInfo = addFromInfoFunc;
+        //MovableObjectsTypeSelectUI initUI = MovableObjectsTypeSelectUI.Instance;
     }
 
 
 
     private void Start() {
+        movableObjectsTypeSOList = GameAssets.Instance.movableObjectsTypeSOList;
         MovableObjectsTypeSelectUI initUI = MovableObjectsTypeSelectUI.Instance;
-        TInstantiableObjectSystem.Instance.Managers.Add(TInstantiableObjectSystem.IntantiableTypes.MoveableObjects, this);
+        TInstantiableObjectSystem.Instance.Managers.Add(TInstantiableObjectSystem.InstantiableTypes.MoveableObjects, this);
         TInstantiableObjectSystem.Instance.OnKeyPressed += OnKeyPressed;
         TInstantiableObjectSystem.Instance.OnMouse0 += OnMouse0;
         TInstantiableObjectSystem.Instance.OnMouse1 += OnMouse1;
@@ -41,22 +46,21 @@ public class MovableObjectsManager : TInstantiableObjectsManager {
         }
     }
 
-    private void Update() {
 
- 
+    public override void ActivateManager() {
+        TInstantiableObjectSystem.Instance.CurrentManager = Instance;
+        if (ghostMovableObject is null) {
+            ghostMovableObject = GhostMovableObject.Instance;
+        }
+        if (activeMovableObjectsType is null) {
+            activeMovableObjectsType = movableObjectsTypeSOList[listCounter];
+        }
+        ghostMovableObject.Activation();
+        currentManager = true;
     }
-
-    /// <summary>
-    /// Changes active SO type
-    /// </summary>
-    /// <param name="moveableObjectsTypeSO">SO type to activate</param>
-    /// <returns></returns>
-    public void SetActiveBuildingType (MovableObjectsSO moveableObjectsTypeSO) {
-        activeMovableObjectsType = moveableObjectsTypeSO;
-    }
-
-    public MovableObjectsSO GetActiveMOType() {
-        return activeMovableObjectsType;
+    public override void DeactivateManager() {
+        ghostMovableObject.Activation(false);
+        currentManager = false;
     }
 
     private void mouseClickAddFunc() {
@@ -67,7 +71,7 @@ public class MovableObjectsManager : TInstantiableObjectsManager {
             return;
         }
 
-        Transform newPlacedMoveableObjects = Instantiate(activeMovableObjectsType.transform, mouseWorldPosition, transform.rotation * Quaternion.Euler(0, 45 * counter, 0));
+        Transform newPlacedMoveableObjects = Instantiate(activeMovableObjectsType.transform, mouseWorldPosition, transform.rotation * Quaternion.Euler(0, 45 * angleDiscreetCounter, 0));
         newPlacedMoveableObjects.transform.parent = MOInstancesList.transform;
         MovableObjectsInfo newMoveableObjectsInfo = newPlacedMoveableObjects.gameObject.GetComponent<MovableObjectsInfo>();
         newMoveableObjectsInfo.LoadInfo(activeMovableObjectsType, newPlacedMoveableObjects);
@@ -96,36 +100,20 @@ public class MovableObjectsManager : TInstantiableObjectsManager {
         return;
     }
 
-    public float GetMovableObjectEulerY() {
-        return looseObjectEulerY;
-    }
-
-    public override void ActivateManager(){
-        TInstantiableObjectSystem.Instance.CurrentManager = Instance;
-        if (ghostMovableObject is null) {
-            ghostMovableObject = GhostMovableObject.Instance;
-        }
-        ghostMovableObject.Activation();
-        currentManager = true;
-    }
-    public override void DeactivateManager() {
-        ghostMovableObject.Activation(false);
-        currentManager = false;
-    }
 
     public override void OnKeyPressed(object sender, TInstantiableObjectSystem.OnKeyPressedEventArgs e) { 
         if (currentManager) {
-            Debug.Log("MoveableObjectManager KeyPressed!: " + e.keyPressed); 
             if (e.keyPressed == KeyCode.F) {
-                counter = 0;
-                print("Counter Reset");
+                angleDiscreetCounter = 0;
+            }
+            else if (e.keyPressed == KeyCode.Tab) {
+                NextSO();
             }
 
         }
     }
     public override void OnMouse0(object sender, EventArgs e) {
         if (currentManager) {
-            Debug.Log("MoveableObjectManager OnMouse0!"); 
             if(!EventSystem.current.IsPointerOverGameObject()) {
                 mouseClickAddFunc();
             }
@@ -133,24 +121,44 @@ public class MovableObjectsManager : TInstantiableObjectsManager {
     }
     public override void OnMouse1(object sender, EventArgs e) {
         if (currentManager) {
-            Debug.Log("MoveableObjectManager OnMouse1!"); 
-            counter += 1;
-            if (counter == 8) {
-                counter = 0;
+            angleDiscreetCounter += 1;
+            if (angleDiscreetCounter == 8) {
+                angleDiscreetCounter = 0;
             }
-            print(counter);
+            print(angleDiscreetCounter);
         }
     }
     public override void OnMouseMid(object sender, EventArgs e) {
         if (currentManager) {
-            Debug.Log("MoveableObjectManager OnMouseMid!");
 
         }
     }
     public override void OnMouseScroll(object sender, TInstantiableObjectSystem.OnMouseScrollEventArgs e) {
         if (currentManager) {
-            Debug.Log("MoveableObjectManager OnMouseScroll!");
 
         }
+    }
+
+    public float GetMovableObjectEulerY() {
+        return looseObjectEulerY;
+    }
+
+    public TInstantiableObjectSO GetInstanceableObjectSO() {
+        return activeMovableObjectsType;
+    }
+
+
+    public void NextSO() {
+        if (activeMovableObjectsType is null) {
+            activeMovableObjectsType = movableObjectsTypeSOList[listCounter];
+        }
+        if (listCounter < movableObjectsTypeSOList.Count - 1) {
+            listCounter++;
+        }
+        else {
+            listCounter = 0;
+        }
+        activeMovableObjectsType = movableObjectsTypeSOList[listCounter];
+        OnSelectedChanged.Invoke(this, EventArgs.Empty);
     }
 }

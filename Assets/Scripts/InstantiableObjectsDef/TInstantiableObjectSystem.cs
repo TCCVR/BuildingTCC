@@ -7,16 +7,17 @@ public class TInstantiableObjectSystem : MonoBehaviour {
 
     public static TInstantiableObjectSystem Instance { get; private set; }
 
-    public enum IntantiableTypes {
+    public enum InstantiableTypes {
         GridObjects, //Construções
         GridEdgeObjects, //paredes das construções
         MoveableObjects, //objetos interagiveis
         SensorObjects,   //sensores
     }
 
-    public Dictionary<IntantiableTypes, TInstantiableObjectsManager> Managers;
+    public Dictionary<InstantiableTypes, TInstantiableObjectsManager> Managers;
     public TInstantiableObjectsManager CurrentManager;
 
+    [SerializeField] public Transform playerTransform;
 
     public event EventHandler<OnKeyPressedEventArgs> OnKeyPressed;
     public class OnKeyPressedEventArgs {
@@ -38,7 +39,7 @@ public class TInstantiableObjectSystem : MonoBehaviour {
 
     private void Awake() {
         Instance = this;
-        Managers = new Dictionary<IntantiableTypes, TInstantiableObjectsManager>();
+        Managers = new Dictionary<InstantiableTypes, TInstantiableObjectsManager>();
     }
 
     private void Update() {
@@ -73,17 +74,17 @@ public class TInstantiableObjectSystem : MonoBehaviour {
 
     private void SwitchManagers() {
         switch (CurrentManager.managedType) {
-            case IntantiableTypes.GridObjects:
-                if (Managers.ContainsKey(IntantiableTypes.MoveableObjects)) {
+            case InstantiableTypes.GridObjects:
+                if (Managers.ContainsKey(InstantiableTypes.MoveableObjects)) {
                     CurrentManager.DeactivateManager();
-                    Managers[IntantiableTypes.MoveableObjects].ActivateManager();
+                    Managers[InstantiableTypes.MoveableObjects].ActivateManager();
                 }
                 break;
 
-            case IntantiableTypes.MoveableObjects:
-                if (Managers.ContainsKey(IntantiableTypes.GridObjects)) {
+            case InstantiableTypes.MoveableObjects:
+                if (Managers.ContainsKey(InstantiableTypes.GridObjects)) {
                     CurrentManager.DeactivateManager();
-                    Managers[IntantiableTypes.GridObjects].ActivateManager();
+                    Managers[InstantiableTypes.GridObjects].ActivateManager();
                 }                
                 break;
 
