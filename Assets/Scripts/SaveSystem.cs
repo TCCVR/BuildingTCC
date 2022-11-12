@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public static class SaveSystem {
 
@@ -9,6 +10,7 @@ public static class SaveSystem {
     private const string SAVE_EXTENSION = "txt";
 
     public static void Init() {
+        
         if (!Directory.Exists(SAVE_FOLDER)) {
             Directory.CreateDirectory(SAVE_FOLDER);
         }
