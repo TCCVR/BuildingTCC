@@ -2,11 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-<<<<<<< HEAD
     <CscToolPath>D:\Unity\2020.3.36f1\Editor\Data\Tools\RoslynScripts</CscToolPath>
-=======
-    <CscToolPath>C:\Program Files\2020.3.36f1\Editor\Data\Tools\RoslynScripts</CscToolPath>
->>>>>>> main
     <CscToolExe>unity_csc.bat</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
@@ -60,11 +56,7 @@
      <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
      <Compile Include="Assets\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\UI_TextComplex.cs" />
-<<<<<<< HEAD
      <Compile Include="Assets\Scripts\InstantiableObjectsDef\GhostObject.cs" />
-=======
-     <Compile Include="Assets\Scripts\InstantiableObjectsDef\TGhostObject.cs" />
->>>>>>> main
      <Compile Include="Assets\CodeMonkey\Utils\Button_Sprite.cs" />
      <Compile Include="Assets\Scripts\FileUtils.cs" />
      <Compile Include="Assets\CodeMonkey\MonoBehaviours\CameraFollowSetup.cs" />
@@ -73,22 +65,15 @@
      <Compile Include="Assets\CodeMonkey\MonoBehaviours\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\SaveSystem.cs" />
      <Compile Include="Assets\CodeMonkey\Assets.cs" />
-<<<<<<< HEAD
      <Compile Include="Assets\Scripts\GridObjectsScripts\GridEdgeObjectsInfo.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\World_Sprite.cs" />
-=======
-     <Compile Include="Assets\CodeMonkey\Utils\World_Sprite.cs" />
      <Compile Include="Assets\Scripts\GridObject.cs" />
->>>>>>> main
      <Compile Include="Assets\CodeMonkey\Utils\World_Bar.cs" />
      <Compile Include="Assets\StarterAssets\FirstPersonController\Scripts\BasicRigidBodyPush.cs" />
      <Compile Include="Assets\StarterAssets\TutorialInfo\Scripts\Readme.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\UtilsClass.cs" />
      <Compile Include="Assets\CodeMonkey\MonoBehaviours\PositionRendererSorter.cs" />
-<<<<<<< HEAD
-=======
      <Compile Include="Assets\Scripts\GridObjectsScripts\GhostGridObject.cs" />
->>>>>>> main
      <Compile Include="Assets\Scripts\InstantiableObjectsDef\TInstantiableObjectsTypeSelectUI.cs" />
      <Compile Include="Assets\Scripts\GameHandler.cs" />
      <Compile Include="Assets\StarterAssets\FirstPersonController\Scripts\FirstPersonController.cs" />
@@ -97,21 +82,13 @@
      <Compile Include="Assets\Scripts\InstantiableObjectsDef\TInstantiableObjectSO.cs" />
      <Compile Include="Assets\Scripts\InstantiableObjectsDef\TInstantiableObjectSystem.cs" />
      <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
-<<<<<<< HEAD
      <Compile Include="Assets\Scripts\GridObjectsScripts\GridXZ.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\FunctionTimer.cs" />
      <Compile Include="Assets\Scripts\InstantiableObjectsDef\TInstantiableObjectInfo.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\UI_Bar.cs" />
-     <Compile Include="Assets\Scripts\GridObjectsScripts\GridBuildingSystem3D.cs" />
-=======
-     <Compile Include="Assets\Scripts\GridXZ.cs" />
      <Compile Include="Assets\Scripts\GridObjectsScripts\GhostGridEdgeObject.cs" />
-     <Compile Include="Assets\CodeMonkey\Utils\FunctionTimer.cs" />
      <Compile Include="Assets\Scripts\GridObjectsScripts\GridEdgeObjectsPosition.cs" />
      <Compile Include="Assets\Scripts\MoveableObjectsScripts\GhostMovableObject.cs" />
-     <Compile Include="Assets\Scripts\InstantiableObjectsDef\TInstantiableObjectInfo.cs" />
-     <Compile Include="Assets\CodeMonkey\Utils\UI_Bar.cs" />
->>>>>>> main
      <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
      <Compile Include="Assets\Scripts\MoveableObjectsScripts\MovableObjectsSO.cs" />
      <Compile Include="Assets\Scripts\Mouse3D.cs" />
@@ -130,7 +107,6 @@
      <None Include="Assets\StarterAssets\Environment\Shaders\Built-in_RP\Triplanar.shader" />
      <None Include="Assets\StarterAssets\license.txt" />
  <Reference Include="UnityEngine">
-<<<<<<< HEAD
  <HintPath>D:/Unity/2020.3.36f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
