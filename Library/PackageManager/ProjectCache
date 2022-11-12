@@ -1,14 +1,24 @@
 m_ProjectFiles:
   m_ManifestFileStatus:
 <<<<<<< HEAD
+    m_FilePath: C:/Development/Unity/Projects/BuildingTCC/Packages/manifest.json
+=======
+<<<<<<< HEAD
     m_FilePath: D:/TCC Building/BuildingTCC/Packages/manifest.json
 =======
     m_FilePath: C:/Users/ellen/OneDrive/Documentos/GitHub/BuildingTCC/Packages/manifest.json
+>>>>>>> main
 >>>>>>> main
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
+<<<<<<< HEAD
+      ticks: 637940363489641064
+    m_Hash: 1627436198
+  m_LockFileStatus:
+    m_FilePath: C:/Development/Unity/Projects/BuildingTCC/Packages/packages-lock.json
+=======
 <<<<<<< HEAD
       ticks: 637941957811755815
     m_Hash: 1928051213
@@ -20,16 +30,22 @@ m_ProjectFiles:
   m_LockFileStatus:
     m_FilePath: C:/Users/ellen/OneDrive/Documentos/GitHub/BuildingTCC/Packages/packages-lock.json
 >>>>>>> main
+>>>>>>> main
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
+<<<<<<< HEAD
+      ticks: 637940364161332264
+    m_Hash: 2526621963
+=======
 <<<<<<< HEAD
       ticks: 637941957811765817
 =======
       ticks: 638010901025480198
 >>>>>>> main
     m_Hash: 2754840973
+>>>>>>> main
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
@@ -41,9 +57,13 @@ m_PackageAssets:
       version: 2.6.15
       source: 1
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.cinemachine@2.6.15
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.cinemachine@2.6.15
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.cinemachine@2.6.15
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.cinemachine
       name: com.unity.cinemachine
@@ -219,9 +239,13 @@ m_PackageAssets:
       version: 1.15.18
       source: 1
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.collab-proxy@1.15.18
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.collab-proxy@1.15.18
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.collab-proxy@1.15.18
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.collab-proxy
       name: com.unity.collab-proxy
@@ -291,6 +315,7 @@ m_PackageAssets:
         - 1.17.1
         - 1.17.2
         - 1.17.6
+        - 1.17.7
         - 2.0.0-preview.6
         - 2.0.0-preview.8
         - 2.0.0-preview.15
@@ -307,6 +332,7 @@ m_PackageAssets:
         - 1.17.1
         - 1.17.2
         - 1.17.6
+        - 1.17.7
         - 2.0.0-preview.6
         - 2.0.0-preview.8
         - 2.0.0-preview.15
@@ -366,9 +392,13 @@ m_PackageAssets:
       version: 2.0.7
       source: 1
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.ide.rider@2.0.7
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.ide.rider@2.0.7
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.ide.rider@2.0.7
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.ide.rider
       name: com.unity.ide.rider
@@ -378,7 +408,7 @@ m_PackageAssets:
         email: 
         url: 
       category: 
-      type: asset
+      type: 
       description: The JetBrains Rider Editor package provides an integration for
         using the JetBrains Rider IDE as a code editor for Unity. It adds support
         for generating .csproj files for code completion and auto-discovery of installations.
@@ -473,7 +503,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 0
+      hideInEditor: 1
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -491,9 +521,13 @@ m_PackageAssets:
       version: 2.0.16
       source: 1
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.ide.visualstudio@2.0.16
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.ide.visualstudio@2.0.16
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.ide.visualstudio@2.0.16
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.ide.visualstudio
       name: com.unity.ide.visualstudio
@@ -503,7 +537,7 @@ m_PackageAssets:
         email: 
         url: 
       category: 
-      type: asset
+      type: 
       description: Code editor integration for supporting Visual Studio as code editor
         for unity. Adds support for generating csproj files for intellisense purposes,
         auto discovery of installations, etc.
@@ -572,7 +606,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 0
+      hideInEditor: 1
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -590,9 +624,13 @@ m_PackageAssets:
       version: 1.2.5
       source: 1
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.ide.vscode@1.2.5
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.ide.vscode@1.2.5
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.ide.vscode@1.2.5
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.ide.vscode
       name: com.unity.ide.vscode
@@ -602,7 +640,7 @@ m_PackageAssets:
         email: 
         url: 
       category: 
-      type: asset
+      type: 
       description: Code editor integration for supporting Visual Studio Code as code
         editor for unity. Adds support for generating csproj files for intellisense
         purposes, auto discovery of installations, etc.
@@ -649,7 +687,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 0
+      hideInEditor: 1
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -667,9 +705,13 @@ m_PackageAssets:
       version: 1.3.0
       source: 1
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.inputsystem@1.3.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.inputsystem@1.3.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.inputsystem@1.3.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.inputsystem
       name: com.unity.inputsystem
@@ -721,6 +763,7 @@ m_PackageAssets:
         - 1.4.1
         - 1.4.2
         - 1.4.3
+        - 1.4.4
         compatible:
         - 0.1.2-preview
         - 0.2.0-preview
@@ -757,6 +800,7 @@ m_PackageAssets:
         - 1.4.1
         - 1.4.2
         - 1.4.3
+        - 1.4.4
         verified: 1.3.0
       dependencies:
       - name: com.unity.modules.uielements
@@ -807,9 +851,13 @@ m_PackageAssets:
       version: 3.0.2
       source: 1
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.nuget.newtonsoft-json
       name: com.unity.nuget.newtonsoft-json
@@ -819,7 +867,7 @@ m_PackageAssets:
         email: 
         url: 
       category: 
-      type: library
+      type: 
       description: 'Newtonsoft Json for use in Unity projects and Unity packages.
         Currently synced to version 13.0.1.
 
@@ -891,9 +939,13 @@ m_PackageAssets:
       version: 1.1.33
       source: 1
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.test-framework@1.1.33
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.test-framework@1.1.33
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.test-framework@1.1.33
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.test-framework
       name: com.unity.test-framework
@@ -903,7 +955,7 @@ m_PackageAssets:
         email: 
         url: 
       category: Unity Test Framework
-      type: asset
+      type: 
       description: Test framework for running Edit mode and Play mode tests in Unity.
       status: 4
       errors: []
@@ -980,7 +1032,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 0
+      hideInEditor: 1
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -998,9 +1050,13 @@ m_PackageAssets:
       version: 3.0.6
       source: 1
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.textmeshpro@3.0.6
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.textmeshpro@3.0.6
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.textmeshpro@3.0.6
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.textmeshpro
       name: com.unity.textmeshpro
@@ -1010,7 +1066,7 @@ m_PackageAssets:
         email: 
         url: 
       category: Text Rendering
-      type: asset
+      type: 
       description: 'TextMeshPro is the ultimate text solution for Unity. It''s the
         perfect replacement for Unity''s UI Text and the legacy Text Mesh.
 
@@ -1150,7 +1206,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 0
+      hideInEditor: 1
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -1168,9 +1224,13 @@ m_PackageAssets:
       version: 1.4.8
       source: 1
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.timeline@1.4.8
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.timeline@1.4.8
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.timeline@1.4.8
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.timeline
       name: com.unity.timeline
@@ -1260,6 +1320,7 @@ m_PackageAssets:
         - 1.7.0
         - 1.7.1
         - 1.7.2
+        - 1.8.0
         compatible:
         - 1.4.8
         - 1.5.0-pre.2
@@ -1289,6 +1350,7 @@ m_PackageAssets:
         - 1.7.0
         - 1.7.1
         - 1.7.2
+        - 1.8.0
         verified: 1.4.8
       dependencies:
       - name: com.unity.modules.director
@@ -1340,9 +1402,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.ugui@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.ugui@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.ugui@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.ugui
       name: com.unity.ugui
@@ -1407,9 +1473,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.ai@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.ai@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.ai@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.ai
       name: com.unity.modules.ai
@@ -1459,9 +1529,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.androidjni@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.androidjni@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.androidjni@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.androidjni
       name: com.unity.modules.androidjni
@@ -1511,9 +1585,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.animation@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.animation@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.animation@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.animation
       name: com.unity.modules.animation
@@ -1563,9 +1641,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.assetbundle@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.assetbundle@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.assetbundle@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.assetbundle
       name: com.unity.modules.assetbundle
@@ -1615,9 +1697,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.audio@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.audio@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.audio@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.audio
       name: com.unity.modules.audio
@@ -1667,9 +1753,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.cloth@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.cloth@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.cloth@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.cloth
       name: com.unity.modules.cloth
@@ -1723,9 +1813,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.director@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.director@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.director@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.director
       name: com.unity.modules.director
@@ -1783,9 +1877,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.imageconversion@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.imageconversion@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.imageconversion@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.imageconversion
       name: com.unity.modules.imageconversion
@@ -1836,9 +1934,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.imgui@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.imgui@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.imgui@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.imgui
       name: com.unity.modules.imgui
@@ -1888,9 +1990,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.jsonserialize@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.jsonserialize@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.jsonserialize@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.jsonserialize
       name: com.unity.modules.jsonserialize
@@ -1940,9 +2046,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.particlesystem@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.particlesystem@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.particlesystem@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.particlesystem
       name: com.unity.modules.particlesystem
@@ -1992,9 +2102,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.physics@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.physics@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.physics@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.physics
       name: com.unity.modules.physics
@@ -2044,9 +2158,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.physics2d@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.physics2d@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.physics2d@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.physics2d
       name: com.unity.modules.physics2d
@@ -2096,9 +2214,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.screencapture@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.screencapture@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.screencapture@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.screencapture
       name: com.unity.modules.screencapture
@@ -2152,9 +2274,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.terrain@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.terrain@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.terrain@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.terrain
       name: com.unity.modules.terrain
@@ -2204,9 +2330,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.terrainphysics@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.terrainphysics@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.terrainphysics@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.terrainphysics
       name: com.unity.modules.terrainphysics
@@ -2264,9 +2394,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.tilemap@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.tilemap@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.tilemap@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.tilemap
       name: com.unity.modules.tilemap
@@ -2320,9 +2454,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.ui@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.ui@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.ui@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.ui
       name: com.unity.modules.ui
@@ -2372,9 +2510,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.uielements@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.uielements@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.uielements@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.uielements
       name: com.unity.modules.uielements
@@ -2440,9 +2582,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.umbra@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.umbra@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.umbra@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.umbra
       name: com.unity.modules.umbra
@@ -2492,9 +2638,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.unityanalytics@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.unityanalytics@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.unityanalytics@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.unityanalytics
       name: com.unity.modules.unityanalytics
@@ -2552,9 +2702,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.unitywebrequest@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.unitywebrequest@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.unitywebrequest@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.unitywebrequest
       name: com.unity.modules.unitywebrequest
@@ -2604,9 +2758,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.unitywebrequestassetbundle
       name: com.unity.modules.unitywebrequestassetbundle
@@ -2664,9 +2822,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.unitywebrequestaudio@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.unitywebrequestaudio@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.unitywebrequestaudio@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.unitywebrequestaudio
       name: com.unity.modules.unitywebrequestaudio
@@ -2724,9 +2886,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.unitywebrequesttexture@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.unitywebrequesttexture@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.unitywebrequesttexture@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.unitywebrequesttexture
       name: com.unity.modules.unitywebrequesttexture
@@ -2784,9 +2950,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.unitywebrequestwww@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.unitywebrequestwww@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.unitywebrequestwww@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.unitywebrequestwww
       name: com.unity.modules.unitywebrequestwww
@@ -2860,9 +3030,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.vehicles@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.vehicles@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.vehicles@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.vehicles
       name: com.unity.modules.vehicles
@@ -2916,9 +3090,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.video@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.video@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.video@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.video
       name: com.unity.modules.video
@@ -2980,9 +3158,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.vr@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.vr@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.vr@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.vr
       name: com.unity.modules.vr
@@ -3046,9 +3228,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.wind@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.wind@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.wind@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.wind
       name: com.unity.modules.wind
@@ -3098,9 +3284,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.xr@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.xr@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.xr@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.xr
       name: com.unity.modules.xr
@@ -3162,9 +3352,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.subsystems@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.subsystems@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.subsystems@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.subsystems
       name: com.unity.modules.subsystems
@@ -3218,9 +3412,13 @@ m_PackageAssets:
       version: 1.0.0
       source: 2
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.modules.uielementsnative@1.0.0
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.modules.uielementsnative@1.0.0
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.modules.uielementsnative@1.0.0
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.modules.uielementsnative
       name: com.unity.modules.uielementsnative
@@ -3281,9 +3479,13 @@ m_PackageAssets:
       version: 1.0.6
       source: 1
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.ext.nunit@1.0.6
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.ext.nunit@1.0.6
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.ext.nunit@1.0.6
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.ext.nunit
       name: com.unity.ext.nunit
@@ -3293,7 +3495,7 @@ m_PackageAssets:
         email: 
         url: 
       category: Libraries
-      type: asset
+      type: 
       description: Custom version of the nunit package build to work with Unity.
         Used by the Unity Test Framework.
       status: 4
@@ -3332,7 +3534,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 0
+      hideInEditor: 1
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -3350,9 +3552,13 @@ m_PackageAssets:
       version: 1.0.1
       source: 1
 <<<<<<< HEAD
+      resolvedPath: C:\Development\Unity\Projects\BuildingTCC\Library\PackageCache\com.unity.services.core@1.0.1
+=======
+<<<<<<< HEAD
       resolvedPath: D:\TCC Building\BuildingTCC\Library\PackageCache\com.unity.services.core@1.0.1
 =======
       resolvedPath: C:\Users\ellen\OneDrive\Documentos\GitHub\BuildingTCC\Library\PackageCache\com.unity.services.core@1.0.1
+>>>>>>> main
 >>>>>>> main
       assetPath: Packages/com.unity.services.core
       name: com.unity.services.core
@@ -3388,6 +3594,7 @@ m_PackageAssets:
         - 1.4.2
         - 1.4.3
         - 1.5.2
+        - 1.6.0
         compatible:
         - 1.0.1
         - 1.1.0-pre.7
@@ -3405,6 +3612,7 @@ m_PackageAssets:
         - 1.4.2
         - 1.4.3
         - 1.5.2
+        - 1.6.0
         verified: 1.4.3
       dependencies:
       - name: com.unity.modules.unitywebrequest
@@ -3436,8 +3644,12 @@ m_PackageAssets:
   m_LocalPackages:
     m_LocalFileStatus: []
 <<<<<<< HEAD
+m_ProjectPath: C:/Development/Unity/Projects/BuildingTCC/Packages
+=======
+<<<<<<< HEAD
 m_ProjectPath: D:/TCC Building/BuildingTCC/Packages
 =======
 m_ProjectPath: C:/Users/ellen/OneDrive/Documentos/GitHub/BuildingTCC/Packages
+>>>>>>> main
 >>>>>>> main
 m_EditorVersion: 2020.3.36f1 (71f96b79b9f0)

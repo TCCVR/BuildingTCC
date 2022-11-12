@@ -68,11 +68,7 @@ MonoBehaviour:
       y: 0
       z: 0
       w: 0
-    dir: 3
-    gridCoordinates:
-      x: 0
-      y: 0
-      z: 0
+    dir: 1
     width: 2
     height: 2
   upGridEdgePosition: {fileID: 1054332726300958204}
@@ -267,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cdf245c025f98d46be0dc4c2abf576b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  edge: 0
+  edge: 3
 --- !u!1001 &4041574770895414479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -592,4 +588,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cdf245c025f98d46be0dc4c2abf576b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  edge: 3
+  edge: 4
