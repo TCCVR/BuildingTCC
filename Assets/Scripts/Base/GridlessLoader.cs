@@ -23,6 +23,7 @@ public class GridlessLoader :MonoBehaviour {
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.F3)) {
+            Debug.Log("(Input.GetKeyDown(KeyCode.F3))");
             LoadGridless();
         }
     }
