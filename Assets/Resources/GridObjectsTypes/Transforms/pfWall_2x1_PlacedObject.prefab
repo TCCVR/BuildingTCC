@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 4782235985580720507}
   - component: {fileID: 9183959527346404516}
   - component: {fileID: 2201318620188767329}
+  - component: {fileID: 5575600309790221338}
   m_Layer: 0
   m_Name: pfWall_2x1_PlacedObject
   m_TagString: Untagged
@@ -160,10 +161,6 @@ MonoBehaviour:
       z: 0
       w: 0
     dir: 3
-    gridCoordinates:
-      x: 0
-      y: 0
-      z: 0
     width: 1
     height: 2
   upGridEdgePosition: {fileID: 0}
@@ -183,6 +180,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   edge: 0
+--- !u!65 &5575600309790221338
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4782235985580720506}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.042715, y: 2.5441196, z: 0.24323833}
+  m_Center: {x: 0.9860821, y: 1.1568252, z: 0.0040252656}
 --- !u!1001 &7346722232957242318
 PrefabInstance:
   m_ObjectHideFlags: 0
