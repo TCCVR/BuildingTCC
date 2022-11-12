@@ -1,24 +1,44 @@
 ﻿
-using System.Collections;
+using System.Collections.Generic;
 using System;
-using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
 using Newtonsoft.Json;
 public class GameHandler :MonoBehaviour {
 
-    [SerializeField] private GameObject MoveableObjectsInstancesList;
+    public static GameHandler Instance { get; private set; }
 
-    private MovableObjectsManager BuildingManager;
+    [SerializeField] public GameObject MoveableObjectsInstancesParent;
+    [SerializeField] public GameObject GridObjectsInstancesParent;
 
-    //test
+    private MovableObjectsManager movableObjectsManager;
+    private GridObjectsManager gridObjectsManager;
+
+    public List<GridXZ<GridObject>> gridList;
+
+
+
+
 
     private void Awake() {
+        Instance = this;
         SaveSystem.Init();
+
+        int gridWidth = Constants.GRIDWIDTH;
+        int gridHeight = Constants.GRIDHEIGHT;
+        float cellSize = Constants.CELLSIZE;
+        gridList = new List<GridXZ<GridObject>>();
+        int gridVerticalCount = Constants.GRIDVERTICALCOUNT;
+        float gridVerticalSize = Constants.GRIDVERTICALSIZE;
+        for (int i = 0; i < gridVerticalCount; i++) {
+            GridXZ<GridObject> grid = new GridXZ<GridObject>(gridWidth, gridHeight, cellSize, new Vector3(0, gridVerticalSize * i, 0), (GridXZ<GridObject> g, int x, int y) => new GridObject(g, x, y));
+            gridList.Add(grid);
+        }
+
     }
 
     private void Start() {
-        BuildingManager = MovableObjectsManager.Instance;
+        movableObjectsManager = MovableObjectsManager.Instance;
+        gridObjectsManager = GridObjectsManager.Instance;
     }
 
     private void Update() {
@@ -33,7 +53,7 @@ public class GameHandler :MonoBehaviour {
     }
 
     private void Save() {
-        MovableObjectsInfo[] gameBInfoToSave = MoveableObjectsInstancesList.GetComponentsInChildren<MovableObjectsInfo>();
+        MovableObjectsInfo[] gameBInfoToSave = MoveableObjectsInstancesParent.GetComponentsInChildren<MovableObjectsInfo>();
         SaveObject saveObject = new SaveObject();
         saveObject.playerCreatedScenario = new playerCreatedScenario();
         saveObject.playerCreatedScenario.moveableObjects = new MoveableObjects();
@@ -51,7 +71,7 @@ public class GameHandler :MonoBehaviour {
     private void LoadInstancedPrefabs(SaveObject loaded) {
         InstanceInfo[] listBInfo = loaded.playerCreatedScenario.moveableObjects.placedMoveableInfo;
         foreach (InstanceInfo iInfo in listBInfo) {
-            BuildingManager.addFromInfo(iInfo);
+            movableObjectsManager.addFromInfo(iInfo);
             
         }
         return;
@@ -91,15 +111,7 @@ public class GameHandler :MonoBehaviour {
             set;
             get;
         }
-
     }
 }
 
 
-[System.Serializable]
-public class myVector3 {
-    public float x;
-    public float y;
-    public float z;
-    public float w;
-}

@@ -9,11 +9,11 @@ public class GameAssets :MonoBehaviour {
     [SerializeField] public List<MovableObjectsSO> movableObjectsTypeSOList;
 
 
-    void Start() {
+    void Awake() {
         Instance = this;
     }
 
 
-
+    
 
 }

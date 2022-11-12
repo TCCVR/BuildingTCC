@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 public abstract class TInstantiableObjectsManager: MonoBehaviour {
@@ -9,7 +8,7 @@ public abstract class TInstantiableObjectsManager: MonoBehaviour {
     public MouseClickAddIntantiableObjectWithInfo mouseClickAdd;
     public AddInstantiableObjectsFromInfo addFromInfo;
 
-    public TInstantiableObjectSystem.IntantiableTypes managedType;
+    public TInstantiableObjectSystem.InstantiableTypes managedType;
 
 
     /// <summary>

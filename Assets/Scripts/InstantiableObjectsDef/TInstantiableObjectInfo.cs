@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class TInstantiableObjectInfo :MonoBehaviour {
+public abstract class TInstantiableObjectInfo: MonoBehaviour {
+
     public InstanceInfo instanceInfo;
     Vector2Int origin;
-    public abstract void LoadInfo<TInstantiableObjectSO>(TInstantiableObjectSO btSO, Transform instancedObjTransform);
-
 
     //
     // Summary:
@@ -37,6 +36,10 @@ public abstract class TInstantiableObjectInfo :MonoBehaviour {
 
         return (placedObject as TInstantiableObjectInfo);
     }
+
+
+    public abstract void LoadInfo<TInstantiableObjectSO>(TInstantiableObjectSO btSO, Transform instancedObjTransform);
+
 
     public void DestroySelf() {
         Destroy(gameObject);

@@ -7,19 +7,21 @@ public class TInstantiableObjectSystem : MonoBehaviour {
 
     public static TInstantiableObjectSystem Instance { get; private set; }
 
-    public enum IntantiableTypes {
+    public enum InstantiableTypes {
         GridObjects, //Construções
         GridEdgeObjects, //paredes das construções
         MoveableObjects, //objetos interagiveis
         SensorObjects,   //sensores
     }
 
-    public Dictionary<IntantiableTypes, TInstantiableObjectsManager> Managers;
+    public Dictionary<InstantiableTypes, TInstantiableObjectsManager> Managers;
     public TInstantiableObjectsManager CurrentManager;
+
+    [SerializeField] public Transform playerTransform;
 
     public event EventHandler<OnKeyPressedEventArgs> OnKeyPressed;
     public class OnKeyPressedEventArgs {
-        public string keyPressed;
+        public KeyCode keyPressed;
     }
 
     public event EventHandler OnMouse0;
@@ -37,7 +39,7 @@ public class TInstantiableObjectSystem : MonoBehaviour {
 
     private void Awake() {
         Instance = this;
-        Managers = new Dictionary<IntantiableTypes, TInstantiableObjectsManager>();
+        Managers = new Dictionary<InstantiableTypes, TInstantiableObjectsManager>();
     }
 
     private void Update() {
@@ -58,28 +60,37 @@ public class TInstantiableObjectSystem : MonoBehaviour {
                 SwitchManagers();
             }
             else {
-                OnKeyPressed(this, new OnKeyPressedEventArgs { keyPressed = Input.inputString });
+                foreach (KeyCode key in Enum.GetValues(typeof(KeyCode))) {
+                    if (!Constants.Instance.USEDKEYS.Contains(key)) {
+                        if (Input.GetKeyDown(key)) {
+                            OnKeyPressed(this, new OnKeyPressedEventArgs { keyPressed = key });
+                            break;
+                        };
+                    };
+                };
             }
         }
     }
 
     private void SwitchManagers() {
         switch (CurrentManager.managedType) {
-            case IntantiableTypes.GridObjects:
-                if (Managers.ContainsKey(IntantiableTypes.MoveableObjects)) {
+            case InstantiableTypes.GridObjects:
+                if (Managers.ContainsKey(InstantiableTypes.MoveableObjects)) {
                     CurrentManager.DeactivateManager();
-                    Managers[IntantiableTypes.MoveableObjects].ActivateManager();
+                    Managers[InstantiableTypes.MoveableObjects].ActivateManager();
                 }
                 break;
 
-            case IntantiableTypes.MoveableObjects:
-                if (Managers.ContainsKey(IntantiableTypes.GridObjects)) {
+            case InstantiableTypes.MoveableObjects:
+                if (Managers.ContainsKey(InstantiableTypes.GridObjects)) {
                     CurrentManager.DeactivateManager();
-                    Managers[IntantiableTypes.GridObjects].ActivateManager();
+                    Managers[InstantiableTypes.GridObjects].ActivateManager();
                 }                
                 break;
 
         }
+        Debug.Log("current manager name: " + TInstantiableObjectSystem.Instance.CurrentManager.name);
         return;
     }
+
 };
