@@ -1,6 +1,9 @@
 {
     "name": "SteamVR",
+<<<<<<< HEAD
     "rootNamespace": "",
+=======
+>>>>>>> main
     "references": [
         "SteamVR_Windows_EditorHelper",
         "Unity.XR.OpenVR",
