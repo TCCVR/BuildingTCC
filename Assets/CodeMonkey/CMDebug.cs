@@ -55,13 +55,13 @@ namespace CodeMonkey {
 
         // Creates a Text pop up at the world position
         public static void TextPopup(string text, Vector3 position, float popupTime = 1f) {
-            UtilsClass.CreateWorldTextPopup(text, position, popupTime);
+            //UtilsClass.CreateWorldTextPopup(text, position, popupTime);
         }
 
         // Text Updater in World, (parent == null) = world position
-        public static FunctionUpdater TextUpdater(Func<string> GetTextFunc, Vector3 localPosition, Transform parent = null, int fontSize = 40, Color? color = null, TextAnchor textAnchor = TextAnchor.UpperLeft, TextAlignment textAlignment = TextAlignment.Left, int sortingOrder = UtilsClass.sortingOrderDefault) {
-            return UtilsClass.CreateWorldTextUpdater(GetTextFunc, localPosition, parent, fontSize, color, textAnchor, textAlignment, sortingOrder);
-        }
+        //public static FunctionUpdater TextUpdater(Func<string> GetTextFunc, Vector3 localPosition, Transform parent = null, int fontSize = 40, Color? color = null, TextAnchor textAnchor = TextAnchor.UpperLeft, TextAlignment textAlignment = TextAlignment.Left, int sortingOrder = UtilsClass.sortingOrderDefault) {
+            //return UtilsClass.CreateWorldTextUpdater(GetTextFunc, localPosition, parent, fontSize, color, textAnchor, textAlignment, sortingOrder);
+        //}
 
         // Text Updater in UI
         public static FunctionUpdater TextUpdaterUI(Func<string> GetTextFunc, Vector2 anchoredPosition) {
@@ -75,7 +75,7 @@ namespace CodeMonkey {
                 gameObject.transform.position = UtilsClass.GetMouseWorldPosition() + positionOffset;
                 return false;
             });
-            TextUpdater(GetTextFunc, Vector3.zero, gameObject.transform);
+            //TextUpdater(GetTextFunc, Vector3.zero, gameObject.transform);
         }
 
         // Trigger Action on Key
