@@ -6,7 +6,6 @@ namespace BuildingSystem {
     public abstract class TInstantiableObjectInfo :MonoBehaviour {
 
         public InstanceInfo instanceInfo;
-        Vector2Int origin;
 
         //
         // Summary:

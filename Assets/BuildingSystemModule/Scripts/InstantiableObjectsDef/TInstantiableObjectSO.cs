@@ -4,7 +4,8 @@ using UnityEngine;
 
 
 namespace BuildingSystem {
-    public abstract class TInstantiableObjectSO :ScriptableObject {
+    [CreateAssetMenu]
+    public class TInstantiableObjectSO :ScriptableObject {
         public string nameString;
         public Constants.InstantiableTypes instantiableType;
         public Transform transform;
@@ -64,9 +65,9 @@ namespace BuildingSystem {
         public Vector2Int GetRotationOffset(Constants.Dir dir) {
             switch (dir) {
                 default:
+                case Constants.Dir.Up: return new Vector2Int(width, height);
                 case Constants.Dir.Down: return new Vector2Int(0, 0);
                 case Constants.Dir.Left: return new Vector2Int(0, width);
-                case Constants.Dir.Up: return new Vector2Int(width, height);
                 case Constants.Dir.Right: return new Vector2Int(height, 0);
             }
         }

@@ -11,15 +11,12 @@ namespace BuildingSystem {
             SaveSystem.Init();
         }
 
-        void Start() {
-
-        }
         private void Update() {
-            if (Input.GetKeyDown(KeyCode.F1)) {
+            if (Input.GetKeyDown(BuildingSystem.Instance.SaveKey)) {
                 Save();
             }
 
-            if (Input.GetKeyDown(KeyCode.F2)) {
+            if (Input.GetKeyDown(BuildingSystem.Instance.BuildingModeLoadKey)) {
                 LoadToGrid();
             }
 
@@ -58,9 +55,7 @@ namespace BuildingSystem {
                 if (iInfo.SOType == Constants.InstantiableTypes.GridObjects) {
                     TInstantiableObjectSystem.Instance.GridObjectsManager.AddFromInfo(iInfo);
                 }
-            }
-            foreach (InstanceInfo iInfo in listBInfo) {
-                if (iInfo.SOType == Constants.InstantiableTypes.GridEdgeObjects) {
+                else if (iInfo.SOType == Constants.InstantiableTypes.GridEdgeObjects) {
                     TInstantiableObjectSystem.Instance.GridObjectsManager.AddFromInfo(iInfo);
                 }
             }

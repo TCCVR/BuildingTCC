@@ -33,9 +33,9 @@ namespace BuildingSystem {
             TInstantiableObjectSO btSO2 = btSO as TInstantiableObjectSO;
             this.instanceInfo.SOType = btSO2.instantiableType;
             this.instanceInfo.SOName = btSO2.nameString;
+            this.instanceInfo.instanceName = instancedObjTransform.name;
             this.instanceInfo.width = btSO2.width;
             this.instanceInfo.height = btSO2.height;
-            this.instanceInfo.instanceName = instancedObjTransform.name;
 
             this.instanceInfo.position = new MyVector3 { };
             this.instanceInfo.position.x = instancedObjTransform.position.x;

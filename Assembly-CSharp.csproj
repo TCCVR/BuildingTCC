@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\BuildingSystemModule\Scripts\GridObjectsScripts\GridObjectsInfo.cs" />
-    <Compile Include="Assets\BuildingSystemModule\Scripts\GridXZ.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\GridXZ.cs" />
     <Compile Include="Assets\Scripts\UtilsClass.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\MoveableObjectsScripts\MovableObjectsInfo.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualJoystick.cs" />
@@ -65,16 +65,19 @@
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
     <Compile Include="Assets\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TGhostObject.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\BuildingSystem.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\FileUtils.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\MoveableObjectsScripts\MovableObjectsManager.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\SaveSystem.cs" />
     <Compile Include="Assets\StarterAssets\FirstPersonController\Scripts\BasicRigidBodyPush.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\GridObjectsScripts\GhostGridObject.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectsTypeSelectUI.cs" />
-    <Compile Include="Assets\BuildingSystemModule\Scripts\GameHandler.cs" />
+    <Compile Include="Assets\Scripts\GameHandler.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Interfaces\IPCInputSubscriber.cs" />
     <Compile Include="Assets\StarterAssets\FirstPersonController\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectsManager.cs" />
-    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\GridlessLoader.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Interfaces\IPCInputHandler.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\GridlessLoader.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectSO.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectSystem.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
@@ -85,27 +88,26 @@
     <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectInfo.cs" />
     <Compile Include="Assets\Scripts\Sensors\WindowGraph.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
-    <Compile Include="Assets\BuildingSystemModule\Scripts\GridObject.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\GridObject.cs" />
     <Compile Include="Assets\Scripts\Sensors\NewBehaviourScript1.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\Mouse3D.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\EventArgsClasses.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\Assets.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\Constants.cs" />
-    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\InstanceInfo.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Interfaces\ISwitchBuildintHandler.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Interfaces\ISwitchBuildingSubscriber.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\InstanceInfo.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\GridObjectsScripts\GridObjectsManager.cs" />
-    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\IPCInputHandler.cs" />
-    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\IPCInputSubscriber.cs" />
-    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\EventArgsClasses.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LowPolyOfficeProps_LITE\About.txt" />
+    <None Include="Assets\Saves\save_4.txt" />
+    <None Include="Assets\Saves\save_3.txt" />
     <None Include="Assets\Saves\save_5.txt" />
-    <None Include="Assets\Saves\save_6.txt" />
     <None Include="Assets\StarterAssets\Environment\Shaders\Built-in_RP\Triplanar.shader" />
     <None Include="Assets\StarterAssets\license.txt" />
     <None Include="Assets\Saves\save_1.txt" />
     <None Include="Assets\Saves\save_2.txt" />
-    <None Include="Assets\Saves\save_3.txt" />
-    <None Include="Assets\Saves\save_4.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

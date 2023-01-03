@@ -5,8 +5,9 @@ using UnityEngine;
 
 
 namespace BuildingSystem {
-    public class GridObjectsManager :TInstantiableObjectsManager, IPCInputSubscriber {
+    public class GridObjectsManager :TInstantiableObjectsManager, IPCInputSubscriber, ISwitchBuildingSubscriber {
         public static GridObjectsManager Instance { get; private set; }
+
         GhostGridObject ghostGridObject;
         GhostGridEdgeObject ghostGridEdgeObject;
 
@@ -19,17 +20,19 @@ namespace BuildingSystem {
         [SerializeField] private LayerMask placedObjectEdgeColliderLayerMask;
 
 
+        public override bool IsBuildingMode {
+            get { return BuildingSystem.Instance.IsBuildingMode; }
+        }
         public event EventHandler OnActiveGridLevelChanged;
         public event EventHandler OnSelectedChanged;
         public event EventHandler OnObjectPlaced;
 
         private void Awake() {
             Instance = this;
-            managedType = Constants.InstantiableTypes.GridObjects;
+            ManagedType = Constants.InstantiableTypes.GridObjects;
             MouseClickAdd = MouseClickAddFunc;
             AddFromInfo = AddFromInfoFunc;
-            dir = Constants.Dir.Up;
-
+            dir = Constants.Dir.Down;
         }
 
         private void Start() {
@@ -38,52 +41,62 @@ namespace BuildingSystem {
 
             TInstantiableObjectSystem.Instance.Managers.Add(Constants.InstantiableTypes.GridObjects, Instance);
             TInstantiableObjectSystem.Instance.Managers.Add(Constants.InstantiableTypes.GridEdgeObjects, Instance);
-            TInstantiableObjectSystem.Instance.OnKeyPressed += Subs_OnKeyPressed;
-            TInstantiableObjectSystem.Instance.OnMouse0 += Subs_OnMouse0;
-            TInstantiableObjectSystem.Instance.OnMouse1 += Subs_OnMouse1;
-            TInstantiableObjectSystem.Instance.OnMouseMid += Subs_OnMouseMid;
-            TInstantiableObjectSystem.Instance.OnMouseScroll += Subs_OnMouseScroll;
+            BuildingSystem.Instance.OnKeyPressed += Subs_OnKeyPressed;
+            BuildingSystem.Instance.OnMouse0 += Subs_OnMouse0;
+            BuildingSystem.Instance.OnMouse1 += Subs_OnMouse1;
+            BuildingSystem.Instance.OnMouseMid += Subs_OnMouseMid;
+            BuildingSystem.Instance.OnMouseScroll += Subs_OnMouseScroll;
+            BuildingSystem.Instance.OnEnableSwitch += Subs_OnBuildingModeEnable;
+            BuildingSystem.Instance.OnDisableSwitch += Subs_OnBuildingModeDisable;
             if (!TInstantiableObjectSystem.Instance.CurrentManager) {
                 ActivateManager();
-                Debug.Log("current manager name: " + TInstantiableObjectSystem.Instance.CurrentManager.name);
+                //Debug.Log("current manager name: " + TInstantiableObjectSystem.Instance.CurrentManager.name);
             }
 
         }
 
         private void Update() {
-            HandleGridSelectAutomatic();
+            if (IsBuildingMode) {
+                HandleGridSelectAutomatic();
+            }
         }
 
         public override void ActivateManager() {
-            TInstantiableObjectSystem.Instance.CurrentManager = Instance;
-            if (ghostGridObject is null) {
-                ghostGridObject = GhostGridObject.Instance;
+            if (IsBuildingMode) {
+                TInstantiableObjectSystem.Instance.CurrentManager = Instance;
+                if (ghostGridObject is null) {
+                    ghostGridObject = GhostGridObject.Instance;
+                }
+                if (ghostGridEdgeObject is null) {
+                    ghostGridEdgeObject = GhostGridEdgeObject.Instance;
+                }
+                if (currentSO is null) {
+                    currentSO = Assets.Instance.gridObjectsTypeSOList[listCounter];
+                }
+                currentManager = true;
+                ActivateGhostObject();
+                TInstantiableObjectsTypeSelectUI.Instance.ClearUpdateButtons(Assets.Instance.gridObjectsTypeSOList);
             }
-            if (ghostGridEdgeObject is null) {
-                ghostGridEdgeObject = GhostGridEdgeObject.Instance;
-            }
-            if (currentSO is null) {
-                currentSO = Assets.Instance.gridObjectsTypeSOList[listCounter];
-            }
-            currentManager = true;
-            ActivateGhostObject();
-            TInstantiableObjectsTypeSelectUI.Instance.ClearUpdateButtons(Assets.Instance.gridObjectsTypeSOList);
         }
 
         public override void DeactivateManager() {
-            ghostGridObject?.Activation(false);
-            ghostGridEdgeObject?.Activation(false);
-            currentManager = false;
+            if (IsBuildingMode) {
+                ghostGridObject?.Activation(false);
+                ghostGridEdgeObject?.Activation(false);
+                currentManager = false;
+            }
         }
 
-        private void AddGridObject(TInstantiableObjectSO objectsSO, Vector3 worldPosition, GridXZ<GridObject> targetGrid, Constants.Dir targetDir = Constants.Dir.Down) {
-            if (Vector3.Distance(TInstantiableObjectSystem.Instance.playerTransform.position, worldPosition) < Constants.MAXBUILDINGDISTANCE) {
+        private void AddGridObject(TInstantiableObjectSO objectsSO, Vector3 worldPosition, GridXZ<GridObject> targetGrid, 
+                    Constants.Dir targetDir = Constants.Dir.Down) {
+            if (Vector3.Distance(BuildingSystem.Instance.PlayerTransform.position, worldPosition) < Constants.MAXBUILDINGDISTANCE) {
                 targetGrid.GetXZ(worldPosition, out int x, out int z);
                 Vector2Int placedObjectOrigin = new Vector2Int(x, z);
                 placedObjectOrigin = targetGrid.ValidateGridPosition(placedObjectOrigin);
 
                 // Test Can Build
-                List<Vector2Int> gridPositionList = GridXZ<GridObject>.GetGridPositionList(objectsSO.width, objectsSO.height, placedObjectOrigin, targetDir);
+                List<Vector2Int> gridPositionList = GridXZ<GridObject>.GetGridPositionList(objectsSO.width, objectsSO.height, 
+                    placedObjectOrigin, targetDir);
                 bool canBuild = true;
                 foreach (Vector2Int gridPosition in gridPositionList) {
                     if (!targetGrid.GetGridObject(gridPosition.x, gridPosition.y).CanBuild()) {
@@ -93,20 +106,16 @@ namespace BuildingSystem {
                 }
                 if (canBuild) {
                     Vector2Int rotationOffset = objectsSO.GetRotationOffset(targetDir);
-                    Vector3 placedObjectWorldPosition = targetGrid.GetWorldPosition(placedObjectOrigin.x, placedObjectOrigin.y) + new Vector3(rotationOffset.x, 0, rotationOffset.y) * targetGrid.GetCellSize();
+                    Vector3 placedObjectWorldPosition = targetGrid.GetWorldPosition(placedObjectOrigin.x, placedObjectOrigin.y)
+                        + new Vector3(rotationOffset.x, 0, rotationOffset.y) * targetGrid.GetCellSize();
 
-                    GridObjectsInfo placedObject = GridObjectsInfo.Create(placedObjectWorldPosition, targetDir, objectsSO, TInstantiableObjectSystem.Instance.GridObjectsInstancesParent);
+                    GridObjectsInfo placedObject = GridObjectsInfo.Create(placedObjectWorldPosition, targetDir, objectsSO, 
+                        TInstantiableObjectSystem.Instance.GridObjectsInstancesParent);
 
                     foreach (Vector2Int gridPosition in gridPositionList) {
                         targetGrid.GetGridObject(gridPosition.x, gridPosition.y).SetPlacedObject(placedObject);
                     }
-                    // "?" = NULL?
                     OnObjectPlaced?.Invoke(this, EventArgs.Empty);
-
-                    //DeselectObjectType();
-                }
-                else {
-                    // Cannot build here
                 }
             }
         }
@@ -142,9 +151,6 @@ namespace BuildingSystem {
 
 
         private void AddFromInfoFunc(InstanceInfo bInfo) {
-            TInstantiableObjectSO typeSO;
-            Vector3 worldPosition;
-
             TInstantiableObjectSO foundSOTypeFromSerialized = Assets.Instance.gridObjectsTypeSOList
                 .FirstOrDefault(d => d.nameString == bInfo.SOName);
 
@@ -152,51 +158,60 @@ namespace BuildingSystem {
                 Debug.Log("GridObjectsSO: " + bInfo.SOName + " was NOT serialized in this buildVer.");
                 return;
             }
-            typeSO = foundSOTypeFromSerialized;
-            worldPosition = bInfo.position.ToVector3();
+            TInstantiableObjectSO typeSO = foundSOTypeFromSerialized;
+            Vector3 worldPosition = bInfo.position.ToVector3();
 
-            if (typeSO.instantiableType == Constants.InstantiableTypes.GridObjects) {
+            if (typeSO.instantiableType is Constants.InstantiableTypes.GridObjects) {
                 AddGridObject(typeSO, worldPosition, gridList[GetGridLevel(worldPosition)], bInfo.dir);
             }
-            else if (typeSO.instantiableType == Constants.InstantiableTypes.GridEdgeObjects) {
+            else if (typeSO.instantiableType is Constants.InstantiableTypes.GridEdgeObjects) {
                 AddGridEdgeObject(typeSO, worldPosition, bInfo.dir);
             }
-            GridObjectsInfo newBuildingInfo = GridObjectsInfo.Create<TInstantiableObjectSO, GridObjectsInfo>(bInfo, typeSO, InstancesList.transform) as GridObjectsInfo;
             return;
         }
 
+        public override void Subs_OnBuildingModeEnable(object sender, EventArgs eventArgs) {
+            if (IsBuildingMode) return;
 
-        public override void Subs_OnKeyPressed(object sender, OnKeyPressedEventArgs e) {
-            if (currentManager) {
-                if (e.keyPressed == KeyCode.R) {
+        }
+
+        public override void Subs_OnBuildingModeDisable(object sender, EventArgs eventArgs) {
+            if (!IsBuildingMode) return;
+
+        }
+
+
+        public override void Subs_OnKeyPressed(object sender, OnKeyPressedEventArgs keyPressedArgs) {
+            if (IsBuildingMode && currentManager) {
+                if (keyPressedArgs.keyPressed == KeyCode.R) {
                     dir = TInstantiableObjectSO.GetNextDir(dir);
                 }
-                else if (e.keyPressed == KeyCode.Tab) {
+                else if (keyPressedArgs.keyPressed == KeyCode.Tab) {
                     NextSO();
                 }
             }
         }
 
         public override void Subs_OnMouse0(object sender, EventArgs e) {
-            if (currentManager) {
+            if (IsBuildingMode && currentManager) {
                 MouseClickAdd();
             }
         }
 
         public override void Subs_OnMouse1(object sender, EventArgs e) {
-            if (currentManager) {
+            if (IsBuildingMode && currentManager) {
 
             }
         }
 
         public override void Subs_OnMouseMid(object sender, EventArgs e) {
-            if (currentManager) {
+            if (IsBuildingMode && currentManager) {
 
             }
         }
 
         public override void Subs_OnMouseScroll(object sender, OnMouseScrollEventArgs e) {
-            if (currentManager) {
+            if (IsBuildingMode && currentManager) {
 
             }
         }

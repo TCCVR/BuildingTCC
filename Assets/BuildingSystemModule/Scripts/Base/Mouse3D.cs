@@ -5,7 +5,6 @@ namespace BuildingSystem {
         public static Mouse3D Instance { get; private set; }
 
         [SerializeField] private LayerMask mouseColliderLayerMask = new LayerMask();
-        [SerializeField] private Transform playerTransform;
 
         private void Awake() {
             Instance = this;
@@ -25,7 +24,9 @@ namespace BuildingSystem {
 
         public static float GetDistanceToPlayer() => Instance.GetDistanceToPlayer_Instance();
         private float GetDistanceToPlayer_Instance() {
-            return Vector3.Distance(playerTransform.position, Instance.GetMouseWorldPosition_Instance());
+            if (BuildingSystem.Instance.PlayerTransform != null)
+                return Vector3.Distance(BuildingSystem.Instance.PlayerTransform.position, Instance.GetMouseWorldPosition_Instance());
+            else return -1;
         }
 
         private Vector3 GetMouseWorldPosition_Instance() {

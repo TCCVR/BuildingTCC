@@ -5,8 +5,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace BuildingSystem {
-    public class MovableObjectsManager :TInstantiableObjectsManager, IPCInputSubscriber {
+    public class MovableObjectsManager :TInstantiableObjectsManager, IPCInputSubscriber, ISwitchBuildingSubscriber {
         public static MovableObjectsManager Instance { get; private set; }
+        public override bool IsBuildingMode {
+            get { return BuildingSystem.Instance.IsBuildingMode; }
+        }
 
         GhostMovableObject ghostMovableObject;
 
@@ -14,57 +17,58 @@ namespace BuildingSystem {
         private int angleDiscreetCounter = 0;
         private bool currentManager = false;
 
-        public event EventHandler OnSelectedChanged;
-
         private void Awake() {
             Instance = this;
-            managedType = Constants.InstantiableTypes.MoveableObjects;
+            ManagedType = Constants.InstantiableTypes.MoveableObjects;
             MouseClickAdd = mouseClickAddFunc;
             AddFromInfo = addFromInfoFunc;
-            //MovableObjectsTypeSelectUI initUI = MovableObjectsTypeSelectUI.Instance;
         }
 
-
+        public event EventHandler OnSelectedChanged;
 
         private void Start() {
             TInstantiableObjectsTypeSelectUI initUI = TInstantiableObjectsTypeSelectUI.Instance;
             TInstantiableObjectSystem.Instance.Managers.Add(Constants.InstantiableTypes.MoveableObjects, this);
-            TInstantiableObjectSystem.Instance.OnKeyPressed += Subs_OnKeyPressed;
-            TInstantiableObjectSystem.Instance.OnMouse0 += Subs_OnMouse0;
-            TInstantiableObjectSystem.Instance.OnMouse1 += Subs_OnMouse1;
-            TInstantiableObjectSystem.Instance.OnMouseMid += Subs_OnMouseMid;
-            TInstantiableObjectSystem.Instance.OnMouseScroll += Subs_OnMouseScroll;
+            BuildingSystem.Instance.OnKeyPressed += Subs_OnKeyPressed;
+            BuildingSystem.Instance.OnMouse0 += Subs_OnMouse0;
+            BuildingSystem.Instance.OnMouse1 += Subs_OnMouse1;
+            BuildingSystem.Instance.OnMouseMid += Subs_OnMouseMid;
+            BuildingSystem.Instance.OnMouseScroll += Subs_OnMouseScroll;
+            BuildingSystem.Instance.OnEnableSwitch += Subs_OnBuildingModeEnable;
+            BuildingSystem.Instance.OnDisableSwitch += Subs_OnBuildingModeDisable;
             if (!TInstantiableObjectSystem.Instance.CurrentManager) {
                 ActivateManager();
-                Debug.Log("current manager name: " + TInstantiableObjectSystem.Instance.CurrentManager.name);
+                //Debug.Log("current manager name: " + TInstantiableObjectSystem.Instance.CurrentManager.name);
             }
         }
 
 
         public override void ActivateManager() {
-            TInstantiableObjectSystem.Instance.CurrentManager = Instance;
-            if (ghostMovableObject is null) {
-                ghostMovableObject = GhostMovableObject.Instance;
+            if (IsBuildingMode) {
+                TInstantiableObjectSystem.Instance.CurrentManager = Instance;
+                if (ghostMovableObject is null) {
+                    ghostMovableObject = GhostMovableObject.Instance;
+                }
+                if (currentSO is null) {
+                    currentSO = Assets.Instance.movableObjectsTypeSOList[listCounter];
+                }
+                ghostMovableObject.Activation();
+                currentManager = true;
+                TInstantiableObjectsTypeSelectUI.Instance.ClearUpdateButtons(Assets.Instance.movableObjectsTypeSOList);
             }
-            if (currentSO is null) {
-                currentSO = Assets.Instance.movableObjectsTypeSOList[listCounter];
-            }
-            ghostMovableObject.Activation();
-            currentManager = true;
-            //TInstantiableObjectsTypeSelectUI.Instance.ClearUpdateButtons(Assets.Instance.movableObjectsTypeSOList);
         }
+
         public override void DeactivateManager() {
-            ghostMovableObject.Activation(false);
-            currentManager = false;
+            if (IsBuildingMode) {
+                ghostMovableObject.Activation(false);
+                currentManager = false;
+            }
         }
 
         private void mouseClickAddFunc() {
             Vector3 mouseWorldPosition = Mouse3D.GetMouseWorldPosition();
-            float maxBuildDistance = 10f;
-
-            if (Mouse3D.GetDistanceToPlayer() >= maxBuildDistance) {
-                return;
-            }
+            float distanceToPlayer = Mouse3D.GetDistanceToPlayer();
+            if ((distanceToPlayer >= Constants.MAXBUILDINGDISTANCE) || (distanceToPlayer == -1) ) return;
 
             Transform newPlacedMoveableObjects = Instantiate(currentSO.transform, mouseWorldPosition, transform.rotation * Quaternion.Euler(0, 45 * angleDiscreetCounter, 0));
             newPlacedMoveableObjects.transform.parent = InstancesList.transform;
@@ -74,43 +78,49 @@ namespace BuildingSystem {
 
 
         private void addFromInfoFunc(InstanceInfo bInfo) {
-            List<TInstantiableObjectSO> foundSOTypeFromSerialized;
-            TInstantiableObjectSO typeSO;
+            TInstantiableObjectSO foundSOTypeFromSerialized = Assets.Instance.movableObjectsTypeSOList
+                .FirstOrDefault(d => d.nameString == bInfo.SOName);
 
-            foundSOTypeFromSerialized = Assets.Instance.movableObjectsTypeSOList
-                .Where(d => d.nameString == bInfo.instanceName).Select(d => (TInstantiableObjectSO)d)
-                    .ToList();
-
-            if (foundSOTypeFromSerialized.Count<TInstantiableObjectSO>() == 0) {
+            if (foundSOTypeFromSerialized is null) {
                 Debug.Log("MovableObjectsSO: " + bInfo.SOType + " was NOT serialized in this buildVer.");
                 return;
             }
-            typeSO = foundSOTypeFromSerialized[0];
-            MovableObjectsInfo newBuildingInfo = MovableObjectsInfo.Create<TInstantiableObjectSO, MovableObjectsInfo>(bInfo, typeSO, InstancesList.transform) as MovableObjectsInfo;
+            TInstantiableObjectSO typeSO = foundSOTypeFromSerialized;
+            Vector3 worldPosition = bInfo.position.ToVector3();
+            MovableObjectsInfo newBuildingInfo = MovableObjectsInfo.Create<TInstantiableObjectSO, MovableObjectsInfo>(bInfo, 
+                typeSO, InstancesList.transform) as MovableObjectsInfo;
             return;
         }
 
 
-        public override void Subs_OnKeyPressed(object sender, OnKeyPressedEventArgs e) {
-            if (currentManager) {
-                if (e.keyPressed == KeyCode.F) {
+        public override void Subs_OnBuildingModeEnable(object sender, EventArgs eventArgs) {
+            if (IsBuildingMode) return;
+        }
+
+        public override void Subs_OnBuildingModeDisable(object sender, EventArgs eventArgs) {
+            if (!IsBuildingMode) return;
+        }
+
+        public override void Subs_OnKeyPressed(object sender, OnKeyPressedEventArgs keyPressedArgs) {
+            if (IsBuildingMode && currentManager) {
+                if (keyPressedArgs.keyPressed == KeyCode.F) {
                     angleDiscreetCounter = 0;
                 }
-                else if (e.keyPressed == KeyCode.Tab) {
+                else if (keyPressedArgs.keyPressed == KeyCode.Tab) {
                     NextSO();
                 }
 
             }
         }
         public override void Subs_OnMouse0(object sender, EventArgs e) {
-            if (currentManager) {
+            if (IsBuildingMode && currentManager) {
                 if (!EventSystem.current.IsPointerOverGameObject()) {
                     mouseClickAddFunc();
                 }
             }
         }
         public override void Subs_OnMouse1(object sender, EventArgs e) {
-            if (currentManager) {
+            if (IsBuildingMode && currentManager) {
                 angleDiscreetCounter += 1;
                 if (angleDiscreetCounter == 8) {
                     angleDiscreetCounter = 0;
@@ -119,12 +129,12 @@ namespace BuildingSystem {
             }
         }
         public override void Subs_OnMouseMid(object sender, EventArgs e) {
-            if (currentManager) {
+            if (IsBuildingMode && currentManager) {
 
             }
         }
         public override void Subs_OnMouseScroll(object sender, OnMouseScrollEventArgs e) {
-            if (currentManager) {
+            if (IsBuildingMode && currentManager) {
 
             }
         }
@@ -151,5 +161,6 @@ namespace BuildingSystem {
             currentSO = Assets.Instance.movableObjectsTypeSOList[listCounter];
             OnSelectedChanged.Invoke(this, EventArgs.Empty);
         }
+
     }
 }

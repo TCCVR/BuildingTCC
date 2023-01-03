@@ -11,8 +11,8 @@ namespace BuildingSystem {
             if (this.instanceInfo is null)
                 this.instanceInfo = new InstanceInfo();
 
-            this.instanceInfo.SOType = Constants.InstantiableTypes.MoveableObjects;
             TInstantiableObjectSO btSO2 = btSO as TInstantiableObjectSO;
+            this.instanceInfo.SOType = btSO2.instantiableType;
             this.instanceInfo.SOName = btSO2.nameString;
             this.instanceInfo.instanceName = instancedObjTransform.name;
 
