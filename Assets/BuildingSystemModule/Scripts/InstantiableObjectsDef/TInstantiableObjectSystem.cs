@@ -4,10 +4,11 @@ using UnityEngine;
 
 
 namespace BuildingSystem {
-    public class TInstantiableObjectSystem :MonoBehaviour, IPCInputHandler {
-
+    public class TInstantiableObjectSystem :MonoBehaviour, IPCInputSubscriber, ISwitchBuildingSubscriber {
         public static TInstantiableObjectSystem Instance { get; private set; }
-        [SerializeField] public Transform playerTransform;
+        public bool IsBuildingMode {
+            get { return BuildingSystem.Instance.IsBuildingMode; }
+        }
         [SerializeField] public GameObject MoveableObjectsInstancesParent;
         [SerializeField] public GameObject GridObjectsInstancesParent;
 
@@ -17,14 +18,6 @@ namespace BuildingSystem {
         public List<GridXZ<GridObject>> gridList;
         public Dictionary<Constants.InstantiableTypes, TInstantiableObjectsManager> Managers;
         public TInstantiableObjectsManager CurrentManager;
-
-
-
-        public event EventHandler<OnKeyPressedEventArgs> OnKeyPressed;
-        public event EventHandler<OnMouseScrollEventArgs> OnMouseScroll;
-        public event EventHandler OnMouse0;
-        public event EventHandler OnMouse1;
-        public event EventHandler OnMouseMid;
 
         //public event EventHandler OnSelectedChanged;
         //public event EventHandler OnObjectPlaced;
@@ -48,59 +41,69 @@ namespace BuildingSystem {
         private void Start() {
             MovableObjectsManager = MovableObjectsManager.Instance;
             GridObjectsManager = GridObjectsManager.Instance;
+            BuildingSystem.Instance.OnKeyPressed += Subs_OnKeyPressed;
+            //BuildingSystem.Instance.OnMouse0 += Subs_OnMouse0;
+            //BuildingSystem.Instance.OnMouse1 += Subs_OnMouse1;
+            //BuildingSystem.Instance.OnMouseMid += Subs_OnMouseMid;
+            //BuildingSystem.Instance.OnMouseScroll += Subs_OnMouseScroll;
+            BuildingSystem.Instance.OnEnableSwitch += Subs_OnBuildingModeEnable;
+            BuildingSystem.Instance.OnDisableSwitch += Subs_OnBuildingModeDisable;
         }
 
-
-        private void Update() {
-            if (Input.GetMouseButtonDown(0)) {
-                OnMouse0.Invoke(this, EventArgs.Empty);
-            }
-            else if (Input.GetMouseButtonDown(1)) {
-                OnMouse1.Invoke(this, EventArgs.Empty);
-            }
-            else if (Input.GetMouseButtonDown(2)) {
-                OnMouseMid.Invoke(this, EventArgs.Empty);
-            }
-            else if (Input.mouseScrollDelta != Vector2.zero) {
-                OnMouseScroll.Invoke(this, new OnMouseScrollEventArgs { scrollDir = Input.mouseScrollDelta });
-            }
-            else if (Input.anyKeyDown) {
-                if (Input.GetKeyDown(KeyCode.KeypadEnter)) {
-                    SwitchManagers();
-                }
-                else {
-                    foreach (KeyCode key in Enum.GetValues(typeof(KeyCode))) {
-                        if (!Constants.USEDKEYS.Contains(key)) {
-                            if (Input.GetKeyDown(key)) {
-                                OnKeyPressed(this, new OnKeyPressedEventArgs { keyPressed = key });
-                                break;
-                            };
-                        };
-                    };
-                }
-            }
-        }
 
         private void SwitchManagers() {
-            switch (CurrentManager.managedType) {
-                case Constants.InstantiableTypes.GridObjects:
-                    if (Managers.ContainsKey(Constants.InstantiableTypes.MoveableObjects)) {
-                        CurrentManager.DeactivateManager();
-                        Managers[Constants.InstantiableTypes.MoveableObjects].ActivateManager();
-                    }
-                    break;
+            if (IsBuildingMode) {
+                switch (CurrentManager.ManagedType) {
+                    case Constants.InstantiableTypes.GridObjects:
+                        if (Managers.ContainsKey(Constants.InstantiableTypes.MoveableObjects)) {
+                            CurrentManager.DeactivateManager();
+                            Managers[Constants.InstantiableTypes.MoveableObjects].ActivateManager();
+                        }
+                        break;
 
-                case Constants.InstantiableTypes.MoveableObjects:
-                    if (Managers.ContainsKey(Constants.InstantiableTypes.GridObjects)) {
-                        CurrentManager.DeactivateManager();
-                        Managers[Constants.InstantiableTypes.GridObjects].ActivateManager();
-                    }
-                    break;
+                    case Constants.InstantiableTypes.MoveableObjects:
+                        if (Managers.ContainsKey(Constants.InstantiableTypes.GridObjects)) {
+                            CurrentManager.DeactivateManager();
+                            Managers[Constants.InstantiableTypes.GridObjects].ActivateManager();
+                        }
+                        break;
 
+                }
+                Debug.Log("current manager name: " + Instance.CurrentManager.name);
+                return;
             }
-            Debug.Log("current manager name: " + Instance.CurrentManager.name);
-            return;
         }
 
+        public void Subs_OnBuildingModeEnable(object sender, EventArgs eventArgs) {
+            if (IsBuildingMode) return;
+        }
+
+        public void Subs_OnBuildingModeDisable(object sender, EventArgs eventArgs) {
+            if (!IsBuildingMode) return;
+        }
+
+        public void Subs_OnKeyPressed(object sender, OnKeyPressedEventArgs keyPressedArgs) {
+            if (IsBuildingMode) {
+                if (keyPressedArgs.keyPressed == KeyCode.KeypadEnter) {
+                    SwitchManagers();
+                }
+            }
+        }
+
+        public void Subs_OnMouse0(object sender, EventArgs eventArgs) {
+
+        }
+
+        public void Subs_OnMouse1(object sender, EventArgs eventArgs) {
+
+        }
+
+        public void Subs_OnMouseMid(object sender, EventArgs eventArgs) {
+
+        }
+
+        public void Subs_OnMouseScroll(object sender, OnMouseScrollEventArgs eventArgs) {
+
+        }
     }
 }

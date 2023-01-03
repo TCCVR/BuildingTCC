@@ -1,22 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 
 namespace BuildingSystem {
-    public class TInstantiableObjectsTypeSelectUI :MonoBehaviour {
+    public class TInstantiableObjectsTypeSelectUI :MonoBehaviour, ISwitchBuildingSubscriber {
         public static TInstantiableObjectsTypeSelectUI Instance { get; private set; }
 
         [SerializeField] private GameObject BtnList;
         [SerializeField] private Transform BuildingButtonTemplate;
         private Dictionary<TInstantiableObjectSO, Transform> btnDictionary = new Dictionary<TInstantiableObjectSO, Transform>();
 
+        public bool IsBuildingMode {
+            get { return BuildingSystem.Instance.IsBuildingMode; }
+        }
         private void Start() {
-
             Transform moveableObjectsBtnTemplate = transform.Find("buildingButtonTemplate");
             moveableObjectsBtnTemplate.gameObject.SetActive(false);
-
-            //UpdateSelectedVisual();
+            BuildingSystem.Instance.OnEnableSwitch += Subs_OnBuildingModeEnable;
+            BuildingSystem.Instance.OnDisableSwitch += Subs_OnBuildingModeDisable;
         }
 
         private void Awake() {
@@ -40,18 +43,17 @@ namespace BuildingSystem {
         }
 
         public void ClearButtonList() {
-            List<Transform> btnLister = new List<Transform>();
-            foreach (TInstantiableObjectSO soObj in btnDictionary.Keys) {
-                btnLister.Add(btnDictionary[soObj]);
-            }
-            Debug.Log($"count = {btnLister.Count}");
-            btnDictionary.Clear();
-            btnLister.ForEach(x => Destroy(x.gameObject));
+            foreach (Transform soObj in btnDictionary.Values)
+                soObj.gameObject.SetActive(false);
         }
 
         public void ClearUpdateButtons(List<TInstantiableObjectSO> soList) {
             ClearButtonList();
             for (int index = 0; index < soList.Count; index++) {
+                if (btnDictionary.ContainsKey(soList[index])) {
+                    btnDictionary[soList[index]].gameObject.SetActive(true);
+                    continue; 
+                }
                 Transform buttonTransform = Instantiate(BuildingButtonTemplate, BtnList.transform);
                 buttonTransform.gameObject.SetActive(true);
                 buttonTransform.GetComponent<RectTransform>().position = new Vector2(index * 60 + 75, 0);
@@ -62,6 +64,16 @@ namespace BuildingSystem {
 
         public void NextButton() {
 
+        }
+
+        public void Subs_OnBuildingModeEnable(object sender, EventArgs eventArgs) {
+            if (IsBuildingMode) return;
+            ClearUpdateButtons(Assets.Instance.gridObjectsTypeSOList);
+        }
+
+        public void Subs_OnBuildingModeDisable(object sender, EventArgs eventArgs) {
+            if (!IsBuildingMode) return;
+            ClearButtonList();
         }
 
     }
