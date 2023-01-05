@@ -61,7 +61,7 @@ namespace BuildingSystem {
             return;
         }
         private void LoadGridless() {
-            string saveString = SaveSystem.Load();
+            string saveString = BuildingJSONSaveSystem.Load();
             if (saveString != null) {
                 SaveObject savedObject = JsonConvert.DeserializeObject<SaveObject>(saveString);
                 //Debug.Log("Loaded: " + JsonConvert.SerializeObject(savedObject));
