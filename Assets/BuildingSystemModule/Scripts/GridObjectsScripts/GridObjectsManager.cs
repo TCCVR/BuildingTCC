@@ -95,7 +95,7 @@ namespace BuildingSystem {
                 placedObjectOrigin = targetGrid.ValidateGridPosition(placedObjectOrigin);
 
                 // Test Can Build
-                List<Vector2Int> gridPositionList = GridXZ<GridObject>.GetGridPositionList(objectsSO.width, objectsSO.height, 
+                List<Vector2Int> gridPositionList = GridXZ<GridObject>.GetGridPositionList(objectsSO.width, objectsSO.depth, 
                     placedObjectOrigin, targetDir);
                 bool canBuild = true;
                 foreach (Vector2Int gridPosition in gridPositionList) {

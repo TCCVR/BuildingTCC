@@ -12,18 +12,18 @@ namespace BuildingSystem {
         }
 
         private int width;
-        private int height;
+        private int depth;
         private float cellSize;
         private Vector3 originPosition;
         private TGridObject[,] gridArray;
 
-        public GridXZ(int width, int height, float cellSize, Vector3 originPosition, Func<GridXZ<TGridObject>, int, int, TGridObject> createGridObject) {
+        public GridXZ(int width, int depth, float cellSize, Vector3 originPosition, Func<GridXZ<TGridObject>, int, int, TGridObject> createGridObject) {
             this.width = width;
-            this.height = height;
+            this.depth = depth;
             this.cellSize = cellSize;
             this.originPosition = originPosition;
 
-            gridArray = new TGridObject[width, height];
+            gridArray = new TGridObject[width, depth];
 
             for (int x = 0; x < gridArray.GetLength(0); x++) {
                 for (int z = 0; z < gridArray.GetLength(1); z++) {
@@ -33,7 +33,7 @@ namespace BuildingSystem {
 
             bool showDebug = false;
             if (showDebug) {
-                TextMesh[,] debugTextArray = new TextMesh[width, height];
+                TextMesh[,] debugTextArray = new TextMesh[width, depth];
 
                 for (int x = 0; x < gridArray.GetLength(0); x++) {
                     for (int z = 0; z < gridArray.GetLength(1); z++) {
@@ -42,8 +42,8 @@ namespace BuildingSystem {
                         Debug.DrawLine(GetWorldPosition(x, z), GetWorldPosition(x + 1, z), Color.white, 100f);
                     }
                 }
-                Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width, height), Color.white, 100f);
-                Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.white, 100f);
+                Debug.DrawLine(GetWorldPosition(0, depth), GetWorldPosition(width, depth), Color.white, 100f);
+                Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, depth), Color.white, 100f);
 
                 OnGridObjectChanged += (object sender, OnGridObjectChangedEventArgs eventArgs) => {
                     debugTextArray[eventArgs.x, eventArgs.z].text = gridArray[eventArgs.x, eventArgs.z]?.ToString();
@@ -56,7 +56,7 @@ namespace BuildingSystem {
         }
 
         public int GetHeight() {
-            return height;
+            return depth;
         }
 
         public float GetCellSize() {
@@ -73,7 +73,7 @@ namespace BuildingSystem {
         }
 
         public void SetGridObject(int x, int z, TGridObject value) {
-            if (x >= 0 && z >= 0 && x < width && z < height) {
+            if (x >= 0 && z >= 0 && x < width && z < depth) {
                 gridArray[x, z] = value;
                 TriggerGridObjectChanged(x, z);
             }
@@ -89,7 +89,7 @@ namespace BuildingSystem {
         }
 
         public TGridObject GetGridObject(int x, int z) {
-            if (x >= 0 && z >= 0 && x < width && z < height) {
+            if (x >= 0 && z >= 0 && x < width && z < depth) {
                 return gridArray[x, z];
             }
             else {
@@ -106,7 +106,7 @@ namespace BuildingSystem {
         public Vector2Int ValidateGridPosition(Vector2Int gridPosition) {
             return new Vector2Int(
                 Mathf.Clamp(gridPosition.x, 0, width - 1),
-                Mathf.Clamp(gridPosition.y, 0, height - 1)
+                Mathf.Clamp(gridPosition.y, 0, depth - 1)
             );
         }
 
@@ -114,7 +114,7 @@ namespace BuildingSystem {
             int x = gridPosition.x;
             int z = gridPosition.y;
 
-            if (x >= 0 && z >= 0 && x < width && z < height) {
+            if (x >= 0 && z >= 0 && x < width && z < depth) {
                 return true;
             }
             else {
@@ -127,7 +127,7 @@ namespace BuildingSystem {
             int x = gridPosition.x;
             int z = gridPosition.y;
 
-            if (x >= padding.x && z >= padding.y && x < width - padding.x && z < height - padding.y) {
+            if (x >= padding.x && z >= padding.y && x < width - padding.x && z < depth - padding.y) {
                 return true;
             }
             else {
