@@ -32,7 +32,7 @@ namespace BuildingSystem {
             this.instanceInfo.scale.y = instancedObjTransform.lossyScale.y;
             this.instanceInfo.scale.z = instancedObjTransform.lossyScale.z;
 
-            this.instanceInfo.dir = Constants.Dir.NotFixed;
+            this.instanceInfo.dir = BuildingSystemConstants.Dir.NotFixed;
             this.instanceInfo.height = 0;
             this.instanceInfo.width = 0;
 

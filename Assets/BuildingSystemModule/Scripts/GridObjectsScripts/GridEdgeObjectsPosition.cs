@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BuildingSystem {
     public class GridEdgeObjectsPosition :MonoBehaviour {
 
-        public Constants.Dir edge;
+        public BuildingSystemConstants.Dir edge;
 
     }
 

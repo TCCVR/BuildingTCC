@@ -19,7 +19,7 @@ namespace BuildingSystem {
 
         private void Awake() {
             Instance = this;
-            ManagedType = Constants.InstantiableTypes.MoveableObjects;
+            ManagedType = BuildingSystemConstants.InstantiableTypes.MoveableObjects;
             MouseClickAdd = mouseClickAddFunc;
             AddFromInfo = addFromInfoFunc;
         }
@@ -28,7 +28,7 @@ namespace BuildingSystem {
 
         private void Start() {
             TInstantiableObjectsTypeSelectUI initUI = TInstantiableObjectsTypeSelectUI.Instance;
-            TInstantiableObjectSystem.Instance.Managers.Add(Constants.InstantiableTypes.MoveableObjects, this);
+            TInstantiableObjectSystem.Instance.Managers.Add(BuildingSystemConstants.InstantiableTypes.MoveableObjects, this);
             BuildingSystem.Instance.OnKeyPressed += Subs_OnKeyPressed;
             BuildingSystem.Instance.OnMouse0 += Subs_OnMouse0;
             BuildingSystem.Instance.OnMouse1 += Subs_OnMouse1;
@@ -68,7 +68,7 @@ namespace BuildingSystem {
         private void mouseClickAddFunc() {
             Vector3 mouseWorldPosition = Mouse3D.GetMouseWorldPosition();
             float distanceToPlayer = Mouse3D.GetDistanceToPlayer();
-            if ((distanceToPlayer >= Constants.MAXBUILDINGDISTANCE) || (distanceToPlayer == -1) ) return;
+            if ((distanceToPlayer >= BuildingSystemConstants.MAXBUILDINGDISTANCE) || (distanceToPlayer == -1) ) return;
 
             Transform newPlacedMoveableObjects = Instantiate(currentSO.transform, mouseWorldPosition, transform.rotation * Quaternion.Euler(0, 45 * angleDiscreetCounter, 0));
             newPlacedMoveableObjects.transform.parent = InstancesList.transform;

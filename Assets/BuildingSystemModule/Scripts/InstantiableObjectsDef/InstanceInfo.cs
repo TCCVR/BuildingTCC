@@ -58,13 +58,13 @@ namespace BuildingSystem {
 
     [Serializable]
     public class InstanceInfo {
-        public Constants.InstantiableTypes SOType;
+        public BuildingSystemConstants.InstantiableTypes SOType;
         public string SOName;
         public string instanceName;
         public MyVector3 position;
         public MyVector3 rotation;
         public MyVector3 scale;
-        public Constants.Dir dir;
+        public BuildingSystemConstants.Dir dir;
         public int width;
         public int height;
     }
