@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 
 namespace BuildingSystem {
-    public class Constants :MonoBehaviour {
-        public static Constants Instance { get; private set; }
+    public class BuildingSystemConstants :MonoBehaviour {
+        public static BuildingSystemConstants Instance { get; private set; }
 
         public const float CELLSIZE = 1f;
         public const float GRIDVERTICALSIZE = 2.5f;

@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using System;
 namespace BuildingSystem {
-    public class OnKeyPressedEventArgs {
+    public class OnKeyPressedEventArgs: EventArgs {
         public KeyCode keyPressed;
     }
-    public class OnMouseScrollEventArgs {
+    public class OnMouseScrollEventArgs: EventArgs {
         public Vector2 scrollDir;
     }
 }

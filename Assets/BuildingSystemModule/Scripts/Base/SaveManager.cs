@@ -52,10 +52,10 @@ namespace BuildingSystem {
             }
             listBInfo = loaded.playerCreatedScenario.gridObjects.placedGridInfo;
             foreach (InstanceInfo iInfo in listBInfo) {
-                if (iInfo.SOType == Constants.InstantiableTypes.GridObjects) {
+                if (iInfo.SOType == BuildingSystemConstants.InstantiableTypes.GridObjects) {
                     TInstantiableObjectSystem.Instance.GridObjectsManager.AddFromInfo(iInfo);
                 }
-                else if (iInfo.SOType == Constants.InstantiableTypes.GridEdgeObjects) {
+                else if (iInfo.SOType == BuildingSystemConstants.InstantiableTypes.GridEdgeObjects) {
                     TInstantiableObjectSystem.Instance.GridObjectsManager.AddFromInfo(iInfo);
                 }
             }

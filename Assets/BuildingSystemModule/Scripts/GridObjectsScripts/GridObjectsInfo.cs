@@ -16,7 +16,7 @@ namespace BuildingSystem {
         private GridObjectsInfo rightEdgeObject;
 
 
-        public static GridObjectsInfo Create(Vector3 worldPosition, Constants.Dir dir, TInstantiableObjectSO gridObjectSO, GameObject parent) {
+        public static GridObjectsInfo Create(Vector3 worldPosition, BuildingSystemConstants.Dir dir, TInstantiableObjectSO gridObjectSO, GameObject parent) {
             GridObjectsInfo placedObject;
             Transform placedObjectTransform = Instantiate(gridObjectSO.transform, worldPosition, Quaternion.Euler(0, TInstantiableObjectSO.GetRotationAngle(dir), 0));
             placedObjectTransform.parent = parent.transform;
@@ -61,7 +61,7 @@ namespace BuildingSystem {
         }
 
 
-        public void PlaceEdge(Constants.Dir edge, TInstantiableObjectSO gridObjectSO, GameObject parent) {
+        public void PlaceEdge(BuildingSystemConstants.Dir edge, TInstantiableObjectSO gridObjectSO, GameObject parent) {
             GridObjectsInfo currentFloorEdgePlacedObject = GetFloorEdgePlacedObject(edge);
             if (currentFloorEdgePlacedObject != null) {
                 Destroy(currentFloorEdgePlacedObject.gameObject);
@@ -71,44 +71,44 @@ namespace BuildingSystem {
             SetGridEdgePlacedObject(edge, floorEdgePlacedObject);
         }
 
-        private GridEdgeObjectsPosition GetGridEdgePosition(Constants.Dir edge) {
+        private GridEdgeObjectsPosition GetGridEdgePosition(BuildingSystemConstants.Dir edge) {
             switch (edge) {
                 default:
-                case Constants.Dir.Up: return upGridEdgePosition;
-                case Constants.Dir.Down: return downGridEdgePosition;
-                case Constants.Dir.Left: return leftGridEdgePosition;
-                case Constants.Dir.Right: return rightGridEdgePosition;
+                case BuildingSystemConstants.Dir.Up: return upGridEdgePosition;
+                case BuildingSystemConstants.Dir.Down: return downGridEdgePosition;
+                case BuildingSystemConstants.Dir.Left: return leftGridEdgePosition;
+                case BuildingSystemConstants.Dir.Right: return rightGridEdgePosition;
             }
         }
 
-        private void SetGridEdgePlacedObject(Constants.Dir edge, GridObjectsInfo floorEdgePlacedObject) {
+        private void SetGridEdgePlacedObject(BuildingSystemConstants.Dir edge, GridObjectsInfo floorEdgePlacedObject) {
             switch (edge) {
                 default:
-                case Constants.Dir.Up:
+                case BuildingSystemConstants.Dir.Up:
                     upEdgeObject = floorEdgePlacedObject;
                     break;
-                case Constants.Dir.Down:
+                case BuildingSystemConstants.Dir.Down:
                     downEdgeObject = floorEdgePlacedObject;
                     break;
-                case Constants.Dir.Left:
+                case BuildingSystemConstants.Dir.Left:
                     leftEdgeObject = floorEdgePlacedObject;
                     break;
-                case Constants.Dir.Right:
+                case BuildingSystemConstants.Dir.Right:
                     rightEdgeObject = floorEdgePlacedObject;
                     break;
             }
         }
 
-        private GridObjectsInfo GetFloorEdgePlacedObject(Constants.Dir edge) {
+        private GridObjectsInfo GetFloorEdgePlacedObject(BuildingSystemConstants.Dir edge) {
             switch (edge) {
                 default:
-                case Constants.Dir.Up:
+                case BuildingSystemConstants.Dir.Up:
                     return upEdgeObject;
-                case Constants.Dir.Down:
+                case BuildingSystemConstants.Dir.Down:
                     return downEdgeObject;
-                case Constants.Dir.Left:
+                case BuildingSystemConstants.Dir.Left:
                     return leftEdgeObject;
-                case Constants.Dir.Right:
+                case BuildingSystemConstants.Dir.Right:
                     return rightEdgeObject;
             }
         }

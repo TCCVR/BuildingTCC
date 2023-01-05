@@ -134,20 +134,20 @@ namespace BuildingSystem {
                 return false;
             }
         }
-        public static List<Vector2Int> GetGridPositionList(int width, int height, Vector2Int offset, Constants.Dir dir) {
+        public static List<Vector2Int> GetGridPositionList(int width, int height, Vector2Int offset, BuildingSystemConstants.Dir dir) {
             List<Vector2Int> gridPositionList = new List<Vector2Int>();
             switch (dir) {
                 default:
-                case Constants.Dir.Down:
-                case Constants.Dir.Up:
+                case BuildingSystemConstants.Dir.Down:
+                case BuildingSystemConstants.Dir.Up:
                     for (int x = 0; x < width; x++) {
                         for (int y = 0; y < height; y++) {
                             gridPositionList.Add(offset + new Vector2Int(x, y));
                         }
                     }
                     break;
-                case Constants.Dir.Left:
-                case Constants.Dir.Right:
+                case BuildingSystemConstants.Dir.Left:
+                case BuildingSystemConstants.Dir.Right:
                     for (int x = 0; x < height; x++) {
                         for (int y = 0; y < width; y++) {
                             gridPositionList.Add(offset + new Vector2Int(x, y));
