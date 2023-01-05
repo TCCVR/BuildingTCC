@@ -82,7 +82,7 @@ namespace BuildingSystem {
                 .FirstOrDefault(d => d.nameString == bInfo.SOName);
 
             if (foundSOTypeFromSerialized is null) {
-                Debug.Log("MovableObjectsSO: " + bInfo.SOType + " was NOT serialized in this buildVer.");
+                //Debug.Log("MovableObjectsSO: " + bInfo.SOType + " was NOT serialized in this buildVer.");
                 return;
             }
             TInstantiableObjectSO typeSO = foundSOTypeFromSerialized;

@@ -155,7 +155,7 @@ namespace BuildingSystem {
                 .FirstOrDefault(d => d.nameString == bInfo.SOName);
 
             if (foundSOTypeFromSerialized is null) {
-                Debug.Log("GridObjectsSO: " + bInfo.SOName + " was NOT serialized in this buildVer.");
+                //Debug.Log("GridObjectsSO: " + bInfo.SOName + " was NOT serialized in this buildVer.");
                 return;
             }
             TInstantiableObjectSO typeSO = foundSOTypeFromSerialized;

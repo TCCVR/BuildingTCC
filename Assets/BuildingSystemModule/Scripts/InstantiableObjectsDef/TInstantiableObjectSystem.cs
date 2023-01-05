@@ -69,7 +69,7 @@ namespace BuildingSystem {
                         break;
 
                 }
-                Debug.Log("current manager name: " + Instance.CurrentManager.name);
+                //Debug.Log("current manager name: " + Instance.CurrentManager.name);
                 return;
             }
         }

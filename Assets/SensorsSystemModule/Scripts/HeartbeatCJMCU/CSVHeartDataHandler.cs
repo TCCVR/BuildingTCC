@@ -32,14 +32,14 @@ namespace SensorSystem {
             }
         }
         public void GenerateNewSaveName() {
-             CSVFILENAME = $"HeartData-{DateTime.Now}.csv";
+             CSVFILENAME = $"HeartData-{DateTime.Now.ToString("yyyyMMddHHmmss")}.csv";
         }
 
         public void SaveCached() {
             try {
                 StringBuilder saveString = new StringBuilder();
                 foreach (var data in CachedData) {
-                    saveString.Append($"{data.HeartBPM},{data.Timestamp}{Environment.NewLine}");
+                    saveString.Append($"{data.HeartBPM},{data.Timestamp.ToString()}{Environment.NewLine}");
                 }
                 File.AppendAllText(Path.Combine(PATHTOSAVEDATA, CSVFILENAME), saveString.ToString());
                 CachedData.Clear();

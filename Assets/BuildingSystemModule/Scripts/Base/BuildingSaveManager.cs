@@ -45,7 +45,7 @@ namespace BuildingSystem {
             }
 
             BuildingJSONSaveSystem.Save(JsonConvert.SerializeObject(saveObject));
-            Debug.Log("listBInfo: " + JsonConvert.SerializeObject(saveObject));
+            //Debug.Log("listBInfo: " + JsonConvert.SerializeObject(saveObject));
 
         }
 
@@ -71,11 +71,11 @@ namespace BuildingSystem {
             string saveString = BuildingJSONSaveSystem.Load();
             if (saveString != null) {
                 SaveObject savedObject = JsonConvert.DeserializeObject<SaveObject>(saveString);
-                Debug.Log("Loaded: " + JsonConvert.SerializeObject(savedObject));
+                //Debug.Log("Loaded: " + JsonConvert.SerializeObject(savedObject));
                 LoadGameObjectsIntoGrid(savedObject);
             }
             else {
-                Debug.Log("No save");
+                //Debug.Log("No save");
             }
         }
 

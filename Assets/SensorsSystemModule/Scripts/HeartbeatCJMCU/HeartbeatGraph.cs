@@ -29,8 +29,8 @@ namespace SensorSystem {
         private IHandleSensorData<HeartData> keepSensorData;
 
         private void Awake() {
-            Instance = this;
-            // Grab base objects references
+            Instance = this; 
+            valueList = new IntGraphValues(MaxVisibleValueAmount);
             graphContainer = transform.Find("graphContainer").GetComponent<RectTransform>();
             labelTemplateY = graphContainer.Find("labelTemplateY").GetComponent<RectTransform>();
             dashContainer = graphContainer.Find("dashContainer").GetComponent<RectTransform>();
@@ -41,20 +41,18 @@ namespace SensorSystem {
             graphVisualObjectList = new List<IGraphVisualObject>();
 
             IGraphVisual lineGraphVisual = new HeartbeatLineGraphVisual(graphContainer, dotSprite, Color.grey, new Color(1, 1, 1, .5f));
-
-
-
-            // Set up base values
-            valueList = new IntGraphValues(MaxVisibleValueAmount);
-            for (int i = 0; i < 30; i++) valueList.InsertValue(80 + i / 3);
             ShowGraph(valueList, lineGraphVisual, (int _i) => "Day " + (_i + 1), (float _f) => "" + Mathf.RoundToInt(_f));
 
         }
 
         private void Start() {
-             keepSensorData = new CSVHeartDataHandler();
+            keepSensorData = new CSVHeartDataHandler();
+            SensorManager.SensorServices.Add(this);
         }
 
+        private void OnDestroy() {
+            (keepSensorData as CSVHeartDataHandler).CloseFile();
+        }
 
         private void ShowGraph(IntGraphValues valueList, IGraphVisual graphVisual, Func<int, string> getAxisLabelX = null, Func<float, string> getAxisLabelY = null) {
             this.valueList = valueList;
@@ -132,12 +130,9 @@ namespace SensorSystem {
         private void UpdateValue(int index, int value) {
             float yMinimumBefore, yMaximumBefore;
             CalculateYScale(out yMinimumBefore, out yMaximumBefore);
-
-            valueList[index] = value;
-
             float graphWidth = graphContainer.sizeDelta.x;
             float graphHeight = graphContainer.sizeDelta.y;
-
+            valueList[index] = value;
             float yMinimum, yMaximum;
             CalculateYScale(out yMinimum, out yMaximum);
 
@@ -173,6 +168,29 @@ namespace SensorSystem {
                 }
             }
         }
+        private void UpdateValue(int value) {
+            float graphWidth = graphContainer.sizeDelta.x;
+            float graphHeight = graphContainer.sizeDelta.y;
+            valueList.InsertValue(value);
+            float yMinimum, yMaximum;
+            CalculateYScale(out yMinimum, out yMaximum);
+            int xIndex = 0;
+            for (int i = 0; i < valueList.Count; i++) {
+                float xPosition = xSize + xIndex * xSize;
+                float yPosition = ((valueList[i] - yMinimum) / (yMaximum - yMinimum)) * graphHeight;
+
+                // Add data point visual
+                string tooltipText = getAxisLabelY(valueList[i]);
+                graphVisualObjectList[xIndex].SetGraphVisualObjectInfo(new Vector2(xPosition, yPosition), xSize, tooltipText);
+
+                xIndex++;
+            }
+
+            for (int i = 0; i < yLabelList.Count; i++) {
+                float normalizedValue = i * 1f / yLabelList.Count;
+                yLabelList[i].GetComponent<Text>().text = getAxisLabelY(yMinimum + (normalizedValue * (yMaximum - yMinimum)));
+            }
+        }
 
         private void CalculateYScale(out float yMinimum, out float yMaximum) {
             // Identify y Min and Max values
@@ -196,20 +214,25 @@ namespace SensorSystem {
                 HeartBPM = int.Parse(dataSet),
                 Timestamp = DateTime.Now                
             };
-            valueList.InsertValue(heartData.HeartBPM);
-            keepSensorData.InsertDataIntoCache(heartData);
-            for (int i = 0; i < valueList.MaxSize; i++) {
-                UpdateValue(i, valueList[i]);
-            }
+            UpdateValue(heartData.HeartBPM);
+            (keepSensorData as CSVHeartDataHandler).InsertDataIntoCache(heartData);
         }
 
         public void SubscribeTo(ISensorHandler handler) {
             handler.OnSensorParsedData += Subs_OnOnSensorParsedData;
         }
 
-        public void Subs_OnSensorConnect(object sender, EventArgs eventArgs) { }
+        public void UnsubscribeTo(ISensorHandler handler) {
+            handler.OnSensorParsedData -= Subs_OnOnSensorParsedData;
+        }
 
-        public void Subs_OnSensorDisconnect(object sender, EventArgs eventArgs) { }
+        public void Subs_OnSensorConnect(object sender, EventArgs eventArgs) {
+            (keepSensorData as CSVHeartDataHandler).CloseFile();
+        }
+
+        public void Subs_OnSensorDisconnect(object sender, EventArgs eventArgs) {
+            (keepSensorData as CSVHeartDataHandler).CloseFile();
+        }
 
         public void Subs_OnOnSensorParsedData(object sender, EventArgs eventArgs) {
             string data = CJMCUSerialConnection.Instance.RawData;
@@ -217,11 +240,11 @@ namespace SensorSystem {
         }
 
         public void Subs_OnSensorSentData(object sender, EventArgs eventArgs) {
-            Debug.Log($"{(eventArgs as SimpleSerialEventArg).data}");
+            //Debug.Log($"{(eventArgs as SimpleSerialEventArg).data}");
         }
 
         public void Subs_OnSensorSentLineData(object sender, EventArgs eventArgs) {
-            Debug.Log($"{(eventArgs as SimpleSerialEventArg).data}");
+            //Debug.Log($"{(eventArgs as SimpleSerialEventArg).data}");
         }
 
     }
