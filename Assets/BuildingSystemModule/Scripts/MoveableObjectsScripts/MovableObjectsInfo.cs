@@ -33,8 +33,9 @@ namespace BuildingSystem {
             this.instanceInfo.scale.z = instancedObjTransform.lossyScale.z;
 
             this.instanceInfo.dir = BuildingSystemConstants.Dir.NotFixed;
-            this.instanceInfo.height = 0;
+            this.instanceInfo.depth = 0;
             this.instanceInfo.width = 0;
+            this.instanceInfo.height = 0;
 
             return;
         }

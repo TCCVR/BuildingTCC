@@ -12,6 +12,7 @@ namespace BuildingSystem {
         public Transform visual;
         public Sprite sprite;
         public int width;
+        public int depth;
         public int height;
         public static BuildingSystemConstants.Dir GetDir(Vector2Int from, Vector2Int to) {
             if (from.x < to.x) {
@@ -65,10 +66,10 @@ namespace BuildingSystem {
         public Vector2Int GetRotationOffset(BuildingSystemConstants.Dir dir) {
             switch (dir) {
                 default:
-                case BuildingSystemConstants.Dir.Up: return new Vector2Int(width, height);
+                case BuildingSystemConstants.Dir.Up: return new Vector2Int(width, depth);
                 case BuildingSystemConstants.Dir.Down: return new Vector2Int(0, 0);
                 case BuildingSystemConstants.Dir.Left: return new Vector2Int(0, width);
-                case BuildingSystemConstants.Dir.Right: return new Vector2Int(height, 0);
+                case BuildingSystemConstants.Dir.Right: return new Vector2Int(depth, 0);
             }
         }
 

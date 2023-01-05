@@ -66,6 +66,7 @@ namespace BuildingSystem {
         public MyVector3 scale;
         public BuildingSystemConstants.Dir dir;
         public int width;
+        public int depth;
         public int height;
     }
 }

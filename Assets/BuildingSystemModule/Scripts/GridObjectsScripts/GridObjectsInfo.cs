@@ -35,6 +35,7 @@ namespace BuildingSystem {
             this.instanceInfo.SOName = btSO2.nameString;
             this.instanceInfo.instanceName = instancedObjTransform.name;
             this.instanceInfo.width = btSO2.width;
+            this.instanceInfo.depth = btSO2.depth;
             this.instanceInfo.height = btSO2.height;
 
             this.instanceInfo.position = new MyVector3 { };
@@ -57,7 +58,7 @@ namespace BuildingSystem {
 
 
         public List<Vector2Int> GetGridPositionList() {
-            return GridXZ<GridObject>.GetGridPositionList(instanceInfo.width, instanceInfo.height, new Vector2Int(Mathf.FloorToInt(instanceInfo.position.x / 2), Mathf.FloorToInt(instanceInfo.position.z / 2)), instanceInfo.dir);
+            return GridXZ<GridObject>.GetGridPositionList(instanceInfo.width, instanceInfo.depth, new Vector2Int(Mathf.FloorToInt(instanceInfo.position.x / 2), Mathf.FloorToInt(instanceInfo.position.z / 2)), instanceInfo.dir);
         }
 
 

@@ -212,7 +212,7 @@ namespace SensorSystem {
         public void ProcessData(string dataSet) {
             HeartData heartData = new HeartData() {
                 HeartBPM = int.Parse(dataSet),
-                Timestamp = DateTime.Now                
+                Timestamp = DateTime.Now
             };
             UpdateValue(heartData.HeartBPM);
             (keepSensorData as CSVHeartDataHandler).InsertDataIntoCache(heartData);
