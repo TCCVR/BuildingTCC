@@ -68,14 +68,14 @@ namespace BuildingSystem {
                 LoadGameObjects(savedObject);
             }
             else {
-                Debug.Log("No save");
+                //Debug.Log("No save");
             }
         }
 
         public void Subs_OnKeyPressed(object sender, OnKeyPressedEventArgs keyPressedArgs) {
             if (!IsBuildingMode) {
                 if (keyPressedArgs.keyPressed == BuildingSystem.Instance.GridlessLoadKey) {
-                    Debug.Log($"KeyCode {keyPressedArgs.keyPressed}");
+                    //Debug.Log($"KeyCode {keyPressedArgs.keyPressed}");
                     LoadGridless();
                 }
             }

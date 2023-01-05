@@ -3,7 +3,7 @@ using System.Collections;
 using System.IO.Ports;
 using System;
 using System.Threading;
-using TMPro;
+
 
 namespace SensorSystem {
         
@@ -122,6 +122,7 @@ namespace SensorSystem {
         }
 
         void Start() {
+            HeartbeatGraph.Instance.SubscribeTo(this);
             OnSensorConnect +=
                 Example_SerialPortOpenEvent;
 
@@ -137,7 +138,6 @@ namespace SensorSystem {
             OnSensorParsedData +=
                 Example_SerialDataParseEvent;
             OpenSerialPort();
-            HeartbeatGraph.Instance.SubscribeTo(this);
             SensorManager.Sensors.Add(this);
         }
 
@@ -152,6 +152,7 @@ namespace SensorSystem {
                 OnSensorSentData -= Example_SerialPortSentDataEvent;
             if (OnSensorSentLineData != null)
                 OnSensorSentLineData -= Example_SerialPortSentLineDataEvent;
+            HeartbeatGraph.Instance.UnsubscribeTo(this);
         }
 
         void Update() {
@@ -167,27 +168,27 @@ namespace SensorSystem {
 
 
         void Example_SerialDataParseEvent(object o, EventArgs e) {
-            Debug.Log($"Data Recieved via port: {rawData}");
+            //Debug.Log($"Data Recieved via port: {rawData}");
         }
 
         void Example_SerialPortOpenEvent(object o, EventArgs e) {
             Status = SensorConnectionStatus.Connected;
-            Debug.Log(Status);
+            //Debug.Log(Status);
         }
 
         void Example_SerialPortCloseEvent(object o, EventArgs e) {
             Status = SensorConnectionStatus.Disconnected;
-            Debug.Log(Status);
+            //Debug.Log(Status);
         }
 
         void Example_SerialPortSentDataEvent(object o, EventArgs e) {
             Status = SensorConnectionStatus.Running;
-            Debug.Log($"{(e as SimpleSerialEventArg).data}");
+            //Debug.Log($"{(e as SimpleSerialEventArg).data}");
         }
 
         void Example_SerialPortSentLineDataEvent(object o, EventArgs e) {
             Status = SensorConnectionStatus.Running;
-            Debug.Log($"{(e as SimpleSerialEventArg).data}");
+            //Debug.Log($"{(e as SimpleSerialEventArg).data}");
         }
 
 
@@ -204,7 +205,7 @@ namespace SensorSystem {
                 }
                 StartCoroutine();
                 Status = SensorConnectionStatus.Connected;
-                Debug.Log(Status);
+                //Debug.Log(Status);
             }
             catch (Exception ex) {
                 Debug.Log("Error 1: " + ex.Message.ToString());
@@ -215,7 +216,7 @@ namespace SensorSystem {
         public void CloseSerialPort() {
             StopCoroutine();
             Status = SensorConnectionStatus.Disconnected;
-            Debug.Log(Status);
+            //Debug.Log(Status);
             OnSensorDisconnect?.Invoke(this, EventArgs.Empty);
         }
 
@@ -231,7 +232,7 @@ namespace SensorSystem {
                 yield return new WaitForSeconds(.20f);
             }
             Status = SensorConnectionStatus.CoroutineStopped;
-            Debug.Log(Status);
+            //Debug.Log(Status);
         }
 
         public void StopCoroutine() {
@@ -244,7 +245,7 @@ namespace SensorSystem {
                 Debug.Log("Error 2A: " + ex.Message.ToString());
             }
             if (serialPort != null) { serialPort = null; }
-            Debug.Log("Ended Serial Loop Coroutine!");
+            //Debug.Log("Ended Serial Loop Coroutine!");
         }
 
         private void SerialCheckData() {

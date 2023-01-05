@@ -8,28 +8,36 @@ namespace SensorSystem {
         private List<int> list;
         public int this[int index] {
             get {
-                if (index >= list.Count) return average;
+                if (index >= list.Count) return Average;
                 return list[index];
             }
             set {
-                list[index] = value;
+                if (index >= maxSize) InsertValue(value);
+                else if (index < 0) return;
+                else list[index] = value;
             }
         }
         private int maxSize;
         public int MaxSize {
             get => maxSize;
         }
-        private int maxValue = default;
         public int MaxValue {
-            get => maxValue;
+            get {
+                if (list.Count == 0) return 0;
+                return list.Max();
+            }
         }
-        private int minValue = default;
         public int MinValue {
-            get => minValue;
+            get {
+                if (list.Count == 0) return 0;
+                return list.Min();
+            }
         }
-        private int average = default;
         public int Average {
-            get => average;
+            get {
+                if (list.Count == 0) return 0;
+                return (int)Math.Truncate(list.Average());
+            }
         }
         public IntGraphValues(int size) {
             maxSize = size;
@@ -41,22 +49,14 @@ namespace SensorSystem {
         }
 
         public int? InsertValue(int value) {
-            if (list.Count == 0) {
-                maxValue = value;
-                minValue = value;
-            }
-            else if (value > maxValue) maxValue = value;
-            else if (value < minValue) minValue = value;
             if (list.Count >= maxSize) {
                 int result = list[0];
                 list.RemoveAt(0);
                 list.Add(value);
-                average = (int)Math.Truncate(((decimal)list.Sum())/list.Count);
                 return result;
             }
             else {
                 list.Add(value);
-                average = (int)Math.Truncate(((decimal)list.Sum()) / list.Count);
                 return null;
             }
         }

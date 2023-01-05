@@ -7,10 +7,11 @@ using System.Collections.Generic;
 
 
 namespace SensorSystem {
-    interface ISensorSubscriber {
+    public interface ISensorSubscriber {
 
         public void ProcessData(string dataSet);
         public void SubscribeTo(ISensorHandler handler);
+        public void UnsubscribeTo(ISensorHandler handler);
         public void Subs_OnSensorConnect(object sender, EventArgs eventArgs);
         public void Subs_OnSensorDisconnect(object sender, EventArgs eventArgs);
         public void Subs_OnOnSensorParsedData(object sender, EventArgs eventArgs);
