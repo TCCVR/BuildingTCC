@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace BuildingSystem {
-    public static class BuildingJSONSaveSystem {
+    public static class JSONSave {
 
         private static readonly string SAVE_FOLDER = Path.Combine(Application.dataPath, "Saves");
         private const string SAVE_EXTENSION = "json";
