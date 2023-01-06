@@ -4,8 +4,8 @@ using UnityEngine;
 namespace SensorSystem {
     [Serializable]
     public class HeartData {
-        public int HeartBPM { get; set; }
         public DateTime Timestamp { get; set; }
+        public int HeartBPM { get; set; }
     }
     public class SerialEventArg :EventArgs {
         public string[] data { get; set; }
@@ -24,6 +24,12 @@ namespace SensorSystem {
     public enum ReadWriteMethod {
         Line,
         Char
+    }
+    public class OnKeyPressedEventArgs :EventArgs {
+        public KeyCode keyPressed;
+    }
+    public class OnMouseScrollEventArgs :EventArgs {
+        public Vector2 scrollDir;
     }
     public class SensorSystemConstants :MonoBehaviour {
 

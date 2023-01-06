@@ -6,10 +6,10 @@ namespace BuildingSystem {
         public static BuildingSystemConstants Instance { get; private set; }
 
         public const float CELLSIZE = 1f;
-        public const float GRIDVERTICALSIZE = 2.5f;
+        public const float GRIDVERTICALSIZE = 1f;
         public const int GRIDWIDTH = 1000;
         public const int GRIDHEIGHT = 1000;
-        public const int GRIDVERTICALCOUNT = 4;
+        public const int GRIDVERTICALCOUNT = 10;
         public const float MAXBUILDINGDISTANCE = 10f;
         public enum InstantiableTypes {
             GridObjects, //Construções

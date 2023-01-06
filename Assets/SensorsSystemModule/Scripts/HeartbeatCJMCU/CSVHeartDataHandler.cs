@@ -39,7 +39,7 @@ namespace SensorSystem {
             try {
                 StringBuilder saveString = new StringBuilder();
                 foreach (var data in CachedData) {
-                    saveString.Append($"{data.HeartBPM},{data.Timestamp.ToString("dd/MM/yyyy HH:mm:ss:fff")}{Environment.NewLine}");
+                    saveString.Append($"{data.Timestamp.ToString("dd/MM/yyyy HH:mm:ss:fff")},{data.HeartBPM}{Environment.NewLine}");
                 }
                 File.AppendAllText(Path.Combine(PATHTOSAVEDATA, CSVFILENAME), saveString.ToString());
                 CachedData.Clear();

@@ -3,30 +3,20 @@ using Newtonsoft.Json;
 using System;
 
 namespace BuildingSystem {
-    public class BuildingSaveManager :MonoBehaviour, IPCInputSubscriber {
+    public class JSONSaveManager :TSaveManager, IPCInputSubscriber {
 
-        public static BuildingSaveManager Instance { get; private set; }
+        public static JSONSaveManager Instance { get; private set; }
 
         private void Awake() {
             Instance = this;
-            BuildingJSONSaveSystem.Init();
+            JSONSave.Init();
         }
 
-        private void Update() {
-            if (Input.GetKeyDown(BuildingSystem.Instance.SaveKey)) {
-                Save();
-            }
-
-            if (Input.GetKeyDown(BuildingSystem.Instance.BuildingModeLoadKey)) {
-                LoadToGrid();
-            }
-
-        }
         private void Start() {
             BuildingSystem.Instance.OnKeyPressed += Subs_OnKeyPressed;
         }
 
-        private void Save() {
+        protected override void Save() {
             MovableObjectsInfo[] movableObjectsToSave = TInstantiableObjectSystem.Instance.MoveableObjectsInstancesParent.GetComponentsInChildren<MovableObjectsInfo>();
             GridObjectsInfo[] gridObjectsToSave = TInstantiableObjectSystem.Instance.GridObjectsInstancesParent.GetComponentsInChildren<GridObjectsInfo>();
             SaveObject saveObject = new SaveObject();
@@ -44,7 +34,7 @@ namespace BuildingSystem {
                 listGOInfo[iC1] = gridObjectsToSave[iC1].instanceInfo;
             }
 
-            BuildingJSONSaveSystem.Save(JsonConvert.SerializeObject(saveObject));
+            JSONSave.Save(JsonConvert.SerializeObject(saveObject));
             //Debug.Log("listBInfo: " + JsonConvert.SerializeObject(saveObject));
 
         }
@@ -67,8 +57,8 @@ namespace BuildingSystem {
         }
 
 
-        private void LoadToGrid() {
-            string saveString = BuildingJSONSaveSystem.Load();
+        protected override void LoadObjects() {
+            string saveString = JSONSave.Load();
             if (saveString != null) {
                 SaveObject savedObject = JsonConvert.DeserializeObject<SaveObject>(saveString);
                 //Debug.Log("Loaded: " + JsonConvert.SerializeObject(savedObject));
@@ -86,7 +76,7 @@ namespace BuildingSystem {
                 }
 
                 if (keyPressedArgs.keyPressed == BuildingSystem.Instance.BuildingModeLoadKey) {
-                    LoadToGrid();
+                    LoadObjects();
                 }
             }
         }
