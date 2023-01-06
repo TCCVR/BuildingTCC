@@ -2433,6 +2433,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1381132681371883810, guid: f544a2a9fed71534f85ea81385e80b16, type: 3}
   m_PrefabInstance: {fileID: 964387813}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &325339409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1207227599461930835, guid: 55bdf1732a2869a429d085f6173039e0, type: 3}
+  m_PrefabInstance: {fileID: 618669287}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &325339411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325339409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e5bfa44a07c7546b021d81882344ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1001 &326977967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4706,6 +4726,10 @@ PrefabInstance:
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 808871691}
+    - target: {fileID: 1207227599461930835, guid: 55bdf1732a2869a429d085f6173039e0, type: 3}
+      propertyPath: m_Name
+      value: RaycastPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 4197135879578563555, guid: 55bdf1732a2869a429d085f6173039e0, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -4754,7 +4778,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildingSystem
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2879301794408528569, guid: 55bdf1732a2869a429d085f6173039e0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 55bdf1732a2869a429d085f6173039e0, type: 3}
 --- !u!4 &623465785 stripped
 Transform:

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SensorSystem {
     [Serializable]
-    public class HeartData {
+    public struct HeartData {
         public DateTime Timestamp { get; set; }
         public int HeartBPM { get; set; }
     }

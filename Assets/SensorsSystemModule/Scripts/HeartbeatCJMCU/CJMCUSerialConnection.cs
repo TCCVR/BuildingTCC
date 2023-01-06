@@ -22,14 +22,10 @@ namespace SensorSystem {
         }
 
         void Start() {
-            HeartbeatGraph.Instance.SubscribeTo(this);
             SensorManager.Sensors.Add(this);
             SensorSystem.Instance.OnKeyPressed += Subs_OnKeyPressed;
         }
 
-        void OnDestroy() {
-            HeartbeatGraph.Instance.UnsubscribeTo(this);
-        }
 
         void OnApplicationQuit() {
             CloseSerialPort();

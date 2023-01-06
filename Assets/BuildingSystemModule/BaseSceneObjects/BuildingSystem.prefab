@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5998163919909182391}
-  - component: {fileID: 2879301794408528569}
+  - component: {fileID: 5987499698016258036}
+  - component: {fileID: 1468987325958797158}
   m_Layer: 0
-  m_Name: Mouse3D
+  m_Name: RaycastPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +32,7 @@ Transform:
   m_Father: {fileID: 4197135879578563555}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2879301794408528569
+--- !u!114 &5987499698016258036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,7 +41,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1207227599461930835}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bebdd6484c511f44fb6c656b2a95af55, type: 3}
+  m_Script: {fileID: 11500000, guid: 25e5bfa44a07c7546b021d81882344ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+--- !u!114 &1468987325958797158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207227599461930835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e5bfa44a07c7546b021d81882344ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mouseColliderLayerMask:

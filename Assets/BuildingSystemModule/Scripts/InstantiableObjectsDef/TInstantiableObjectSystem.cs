@@ -15,7 +15,7 @@ namespace BuildingSystem {
         public MovableObjectsManager MovableObjectsManager { get; private set; }
         public GridObjectsManager GridObjectsManager { get; private set; }
 
-        public List<GridXZ<GridObject>> gridList;
+        public List<GridLevel> gridList;
         public Dictionary<BuildingSystemConstants.InstantiableTypes, TInstantiableObjectsManager> Managers;
         public TInstantiableObjectsManager CurrentManager;
 
@@ -26,14 +26,9 @@ namespace BuildingSystem {
         private void Awake() {
             Instance = this;
             Managers = new Dictionary<BuildingSystemConstants.InstantiableTypes, TInstantiableObjectsManager>();
-            int gridWidth = BuildingSystemConstants.GRIDWIDTH;
-            int gridHeight = BuildingSystemConstants.GRIDHEIGHT;
-            float cellSize = BuildingSystemConstants.CELLSIZE;
-            gridList = new List<GridXZ<GridObject>>();
-            int gridVerticalCount = BuildingSystemConstants.GRIDVERTICALCOUNT;
-            float gridVerticalSize = BuildingSystemConstants.GRIDVERTICALSIZE;
-            for (int i = 0; i < gridVerticalCount; i++) {
-                GridXZ<GridObject> grid = new GridXZ<GridObject>(gridWidth, gridHeight, cellSize, new Vector3(0, gridVerticalSize * i, 0), (GridXZ<GridObject> g, int x, int y) => new GridObject(g, x, y));
+            gridList = new List<GridLevel>();
+            for (int i = 0; i < BuildingSystemConstants.QNTYGRIDLEVELS; i++) {
+                GridLevel grid = new GridLevel(i);
                 gridList.Add(grid);
             }
         }

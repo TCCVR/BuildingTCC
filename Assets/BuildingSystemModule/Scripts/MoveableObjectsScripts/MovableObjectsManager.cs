@@ -66,8 +66,8 @@ namespace BuildingSystem {
         }
 
         private void mouseClickAddFunc() {
-            Vector3 mouseWorldPosition = Mouse3D.GetMouseWorldPosition();
-            float distanceToPlayer = Mouse3D.GetDistanceToPlayer();
+            Vector3 mouseWorldPosition = RaycastPoint.PointPosition;
+            float distanceToPlayer = RaycastPoint.DistanceFromCamera;
             if ((distanceToPlayer >= BuildingSystemConstants.MAXBUILDINGDISTANCE) || (distanceToPlayer == -1) ) return;
 
             Transform newPlacedMoveableObjects = Instantiate(currentSO.transform, mouseWorldPosition, transform.rotation * Quaternion.Euler(0, 45 * angleDiscreetCounter, 0));

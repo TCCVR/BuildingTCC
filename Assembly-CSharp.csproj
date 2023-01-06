@@ -62,8 +62,7 @@
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\TSaveManager.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\JSONSave.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\IntGraphValues.cs" />
-    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\LineGraphVisual.cs" />
-    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\GridXZ.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\GridLevel.cs" />
     <Compile Include="Assets\Scripts\UtilsClass.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\Interfaces\ISensorSubscriber.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\MoveableObjectsScripts\MovableObjectsInfo.cs" />
@@ -75,15 +74,12 @@
     <Compile Include="Assets\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TGhostObject.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\BuildingSystem.cs" />
-    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\BarChartVisual.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\FileUtils.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\MoveableObjectsScripts\MovableObjectsManager.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\Interfaces\IHandleSensorData.cs" />
-    <Compile Include="Assets\SensorsSystemModule\Scripts\HeartbeatCJMCU\HeartbeatGraph.cs" />
     <Compile Include="Assets\StarterAssets\FirstPersonController\Scripts\BasicRigidBodyPush.cs" />
     <Compile Include="Assets\StarterAssets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\GridObjectsScripts\GhostGridObject.cs" />
-    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\Window_Graph.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectsTypeSelectUI.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\Interfaces\IPCInputSubscriber.cs" />
     <Compile Include="Assets\Scripts\GameHandler.cs" />
@@ -91,7 +87,6 @@
     <Compile Include="Assets\StarterAssets\FirstPersonController\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectsManager.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Interfaces\IPCInputHandler.cs" />
-    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\IGraphVisual.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\SensorSystemConstants.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\GridlessLoader.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectSO.cs" />
@@ -103,11 +98,7 @@
     <Compile Include="Assets\BuildingSystemModule\Scripts\MoveableObjectsScripts\GhostMovableObject.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectInfo.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
-    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\GridObject.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\SensorManager.cs" />
-    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\Mouse3D.cs" />
-    <Compile Include="Assets\SensorsSystemModule\Scripts\HeartbeatCJMCU\HeartbeatLineGraphVisual.cs" />
-    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\IGraphVisualObject.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\BuildingSystemEventArgsClasses.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\Assets.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\Interfaces\ISensorHandler.cs" />
@@ -117,6 +108,10 @@
     <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\InstanceInfo.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\GridObjectsScripts\GridObjectsManager.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\Abstracts\SerialConnection.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\RaycastPoint.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\HeartbeatLine.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\HeartbeatGraphDot.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\HeartbeatGraph.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LowPolyOfficeProps_LITE\About.txt" />

@@ -58,7 +58,7 @@ namespace BuildingSystem {
 
 
         public List<Vector2Int> GetGridPositionList() {
-            return GridXZ<GridObject>.GetGridPositionList(instanceInfo.width, instanceInfo.depth, new Vector2Int(Mathf.FloorToInt(instanceInfo.position.x / 2), Mathf.FloorToInt(instanceInfo.position.z / 2)), instanceInfo.dir);
+            return GridLevel.CoordinatesListOf(instanceInfo.width, instanceInfo.depth, new Vector2Int(Mathf.FloorToInt(instanceInfo.position.x / 2), Mathf.FloorToInt(instanceInfo.position.z / 2)), instanceInfo.dir);
         }
 
 
@@ -68,7 +68,7 @@ namespace BuildingSystem {
                 Destroy(currentFloorEdgePlacedObject.gameObject);
             }
             GridEdgeObjectsPosition gridEdgePosition = GetGridEdgePosition(edge);
-            GridObjectsInfo floorEdgePlacedObject = GridObjectsInfo.Create(gridEdgePosition.transform.position, TInstantiableObjectSO.GetNextDir(TInstantiableObjectSO.GetNextDir(edge)), gridObjectSO, parent);
+            GridObjectsInfo floorEdgePlacedObject = Create(gridEdgePosition.transform.position, TInstantiableObjectSO.GetNextDir(TInstantiableObjectSO.GetNextDir(edge)), gridObjectSO, parent);
             SetGridEdgePlacedObject(edge, floorEdgePlacedObject);
         }
 
