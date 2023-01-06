@@ -11,8 +11,8 @@ namespace BuildingSystem {
         GhostGridObject ghostGridObject;
         GhostGridEdgeObject ghostGridEdgeObject;
 
-        private List<GridXZ<GridObject>> gridList;
-        private GridXZ<GridObject> selectedGrid;
+        private List<GridLevel> gridList;
+        private GridLevel selectedGrid;
         private BuildingSystemConstants.Dir dir;
 
         private bool currentManager = false;
@@ -87,33 +87,31 @@ namespace BuildingSystem {
             }
         }
 
-        private void AddGridObject(TInstantiableObjectSO objectsSO, Vector3 worldPosition, GridXZ<GridObject> targetGrid, 
+        private void AddGridObject(TInstantiableObjectSO objectsSO, Vector3 worldPosition, GridLevel targetGrid, 
                     BuildingSystemConstants.Dir targetDir = BuildingSystemConstants.Dir.Down) {
             if (Vector3.Distance(BuildingSystem.Instance.PlayerTransform.position, worldPosition) < BuildingSystemConstants.MAXBUILDINGDISTANCE) {
-                targetGrid.GetXZ(worldPosition, out int x, out int z);
-                Vector2Int placedObjectOrigin = new Vector2Int(x, z);
-                placedObjectOrigin = targetGrid.ValidateGridPosition(placedObjectOrigin);
+                Vector2Int placedObjectOrigin = GridLevel.PlaneCoordinatesOf(worldPosition);
 
                 // Test Can Build
-                List<Vector2Int> gridPositionList = GridXZ<GridObject>.GetGridPositionList(objectsSO.width, objectsSO.depth, 
+                List<Vector2Int> unitsOccupied = GridLevel.CoordinatesListOf(objectsSO.width, objectsSO.depth, 
                     placedObjectOrigin, targetDir);
                 bool canBuild = true;
-                foreach (Vector2Int gridPosition in gridPositionList) {
-                    if (!targetGrid.GetGridObject(gridPosition.x, gridPosition.y).CanBuild()) {
+                foreach (Vector2Int coordinates in unitsOccupied) {
+                    if (targetGrid[coordinates.x, coordinates.y] != default) {
                         canBuild = false;
                         break;
                     }
                 }
                 if (canBuild) {
                     Vector2Int rotationOffset = objectsSO.GetRotationOffset(targetDir);
-                    Vector3 placedObjectWorldPosition = targetGrid.GetWorldPosition(placedObjectOrigin.x, placedObjectOrigin.y)
-                        + new Vector3(rotationOffset.x, 0, rotationOffset.y) * targetGrid.GetCellSize();
+                    Vector3 placedObjectWorldPosition = targetGrid.GetWorldPosition(placedObjectOrigin)
+                        + new Vector3(rotationOffset.x, 0, rotationOffset.y) * BuildingSystemConstants.UNITSIZE;
 
                     GridObjectsInfo placedObject = GridObjectsInfo.Create(placedObjectWorldPosition, targetDir, objectsSO, 
                         TInstantiableObjectSystem.Instance.GridObjectsInstancesParent);
 
-                    foreach (Vector2Int gridPosition in gridPositionList) {
-                        targetGrid.GetGridObject(gridPosition.x, gridPosition.y).SetPlacedObject(placedObject);
+                    foreach (Vector2Int coordinates in unitsOccupied) {
+                        targetGrid[coordinates.x, coordinates.y] = placedObject;
                     }
                     OnObjectPlaced?.Invoke(this, EventArgs.Empty);
                 }
@@ -121,18 +119,18 @@ namespace BuildingSystem {
         }
 
         private void AddGridEdgeObject(TInstantiableObjectSO objectsSO, Vector3 worldPosition, BuildingSystemConstants.Dir dir) {
-            GridXZ<GridObject> targetGrid = gridList[GetGridLevel(worldPosition)];
-            Vector2Int objCoodrinates = GetGridPosition(worldPosition, targetGrid);
-            GridObject gridObject = targetGrid.GetGridObject(objCoodrinates.x, objCoodrinates.y);
-            if (gridObject.gridObjectsInfo is object) {
-                gridObject.gridObjectsInfo.PlaceEdge(dir, objectsSO, InstancesList);
+            GridLevel targetGrid = gridList[GetGridLevel(worldPosition)];
+            Vector2Int objCoodrinates = GridLevel.PlaneCoordinatesOf(worldPosition);
+            GridObjectsInfo gridObject = targetGrid[objCoodrinates.x, objCoodrinates.y];
+            if (gridObject != default) {
+                gridObject.PlaceEdge(dir, objectsSO, InstancesList);
             }
         }
 
 
         private void MouseClickAddFunc() {
             if (currentSO.instantiableType == BuildingSystemConstants.InstantiableTypes.GridObjects) {
-                Vector3 mousePosition = Mouse3D.GetMouseWorldPosition();
+                Vector3 mousePosition = RaycastPoint.PointPosition;
                 AddGridObject(currentSO, mousePosition, selectedGrid, dir);
             }
             else if (currentSO.instantiableType == BuildingSystemConstants.InstantiableTypes.GridEdgeObjects) {
@@ -218,7 +216,7 @@ namespace BuildingSystem {
 
 
         private void HandleGridSelectAutomatic() {
-            Vector3 mousePosition = Mouse3D.GetMouseWorldPosition();
+            Vector3 mousePosition = RaycastPoint.PointPosition;
             int newGridIndex = GetGridLevel(mousePosition);
             selectedGrid = gridList[newGridIndex];
             OnActiveGridLevelChanged?.Invoke(this, EventArgs.Empty);
@@ -226,44 +224,8 @@ namespace BuildingSystem {
 
 
         public int GetGridLevel(Vector3 worldPosition) {
-            float gridHeight = BuildingSystemConstants.GRIDVERTICALSIZE;
+            float gridHeight = BuildingSystemConstants.GRIDHEIGHT;
             return Mathf.Clamp(Mathf.RoundToInt(worldPosition.y / gridHeight), 0, gridList.Count - 1);
-        }
-
-        public Vector2Int GetGridPosition(Vector3 worldPosition, GridXZ<GridObject> targetGrid = null) {
-            if (targetGrid is null) {
-                targetGrid = selectedGrid;
-            }
-            targetGrid.GetXZ(worldPosition, out int x, out int z);
-            return new Vector2Int(x, z);
-        }
-
-        public Vector3 GetWorldPosition(Vector2Int gridPosition, GridXZ<GridObject> targetGrid = null) {
-            if (targetGrid is null) {
-                targetGrid = selectedGrid;
-            }
-            return targetGrid.GetWorldPosition(gridPosition.x, gridPosition.y);
-        }
-
-        public GridObject GetGridObject(Vector2Int gridPosition, GridXZ<GridObject> targetGrid = null) {
-            if (targetGrid is null) {
-                targetGrid = selectedGrid;
-            }
-            return targetGrid.GetGridObject(gridPosition.x, gridPosition.y);
-        }
-
-        public GridObject GetGridObject(Vector3 worldPosition, GridXZ<GridObject> targetGrid = null) {
-            if (targetGrid is null) {
-                targetGrid = selectedGrid;
-            }
-            return targetGrid.GetGridObject(worldPosition);
-        }
-
-        public bool IsValidGridPosition(Vector2Int gridPosition, GridXZ<GridObject> targetGrid = null) {
-            if (targetGrid is null) {
-                targetGrid = selectedGrid;
-            }
-            return targetGrid.IsValidGridPosition(gridPosition);
         }
 
         public GridEdgeObjectsPosition GetMouseFloorEdgePosition() {
@@ -278,16 +240,12 @@ namespace BuildingSystem {
             return null;
         }
 
-        public Vector3 GetMouseWorldSnappedPosition(GridXZ<GridObject> targetGrid = null) {
-            if (targetGrid is null) {
-                targetGrid = selectedGrid;
-            }
-            Vector3 mousePosition = Mouse3D.GetMouseWorldPosition();
-            targetGrid.GetXZ(mousePosition, out int x, out int z);
-
+        public Vector3 GetMouseWorldSnappedPosition() {
+            Vector3 mousePosition = RaycastPoint.PointPosition;
+            Vector2Int coordinates = GridLevel.PlaneCoordinatesOf(mousePosition);
             if (currentSO is object) {
                 Vector2Int rotationOffset = currentSO.GetRotationOffset(dir);
-                Vector3 placedObjectWorldPosition = selectedGrid.GetWorldPosition(x, z) + new Vector3(rotationOffset.x, 0, rotationOffset.y) * selectedGrid.GetCellSize();
+                Vector3 placedObjectWorldPosition = selectedGrid.GetWorldPosition(coordinates) + new Vector3(rotationOffset.x, 0, rotationOffset.y) * BuildingSystemConstants.UNITSIZE;
                 return placedObjectWorldPosition;
             }
             else {
@@ -307,11 +265,6 @@ namespace BuildingSystem {
         public TInstantiableObjectSO GetInstanceableObjectSO() {
             return currentSO;
         }
-
-        public int GetActiveGridLevel() {
-            return gridList.IndexOf(selectedGrid);
-        }
-
         public void ActivateGhostObject() {
             if (currentSO?.instantiableType == BuildingSystemConstants.InstantiableTypes.GridObjects) {
                 ghostGridEdgeObject.Activation(false);
