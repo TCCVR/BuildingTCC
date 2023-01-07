@@ -52,6 +52,7 @@ namespace BuildingSystem {
             List<Vector2Int> gridPositionList = new List<Vector2Int>();
             switch (dir) {
                 default:
+                case BuildingSystemConstants.Dir.Left:
                 case BuildingSystemConstants.Dir.Up:
                     for (int x = 0; x < width; x++) {
                         for (int y = 0; y < depth; y++) {
@@ -59,6 +60,7 @@ namespace BuildingSystem {
                         }
                     }
                     break;
+                case BuildingSystemConstants.Dir.Down:
                 case BuildingSystemConstants.Dir.Right:
                     for (int x = 0; x < depth; x++) {
                         for (int y = 0; y < width; y++) {

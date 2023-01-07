@@ -32,7 +32,7 @@ namespace BuildingSystem {
             ManagedType = BuildingSystemConstants.InstantiableTypes.GridObjects;
             MouseClickAdd = MouseClickAddFunc;
             AddFromInfo = AddFromInfoFunc;
-            dir = BuildingSystemConstants.Dir.Down;
+            dir = BuildingSystemConstants.Dir.Up;
         }
 
         private void Start() {
@@ -88,11 +88,9 @@ namespace BuildingSystem {
         }
 
         private void AddGridObject(TInstantiableObjectSO objectsSO, Vector3 worldPosition, GridLevel targetGrid, 
-                    BuildingSystemConstants.Dir targetDir = BuildingSystemConstants.Dir.Down) {
+                    BuildingSystemConstants.Dir targetDir) {
             if (Vector3.Distance(BuildingSystem.Instance.PlayerTransform.position, worldPosition) < BuildingSystemConstants.MAXBUILDINGDISTANCE) {
                 Vector2Int placedObjectOrigin = GridLevel.PlaneCoordinatesOf(worldPosition);
-
-                // Test Can Build
                 List<Vector2Int> unitsOccupied = GridLevel.CoordinatesListOf(objectsSO.width, objectsSO.depth, 
                     placedObjectOrigin, targetDir);
                 bool canBuild = true;
@@ -103,13 +101,9 @@ namespace BuildingSystem {
                     }
                 }
                 if (canBuild) {
-                    Vector2Int rotationOffset = objectsSO.GetRotationOffset(targetDir);
-                    Vector3 placedObjectWorldPosition = targetGrid.GetWorldPosition(placedObjectOrigin)
-                        + new Vector3(rotationOffset.x, 0, rotationOffset.y) * BuildingSystemConstants.UNITSIZE;
-
-                    GridObjectsInfo placedObject = GridObjectsInfo.Create(placedObjectWorldPosition, targetDir, objectsSO, 
+                    Vector3 placedObjectWorldPosition = targetGrid.GetWorldPosition(placedObjectOrigin);
+                    GridObjectsInfo placedObject = GridObjectsInfo.Create(placedObjectWorldPosition, targetDir, objectsSO,
                         TInstantiableObjectSystem.Instance.GridObjectsInstancesParent);
-
                     foreach (Vector2Int coordinates in unitsOccupied) {
                         targetGrid[coordinates.x, coordinates.y] = placedObject;
                     }
@@ -129,24 +123,35 @@ namespace BuildingSystem {
 
 
         private void MouseClickAddFunc() {
+            Vector3 mousePosition = RaycastPoint.PointPosition;
             if (currentSO.instantiableType == BuildingSystemConstants.InstantiableTypes.GridObjects) {
-                Vector3 mousePosition = RaycastPoint.PointPosition;
-                AddGridObject(currentSO, mousePosition, selectedGrid, dir);
+                Vector2Int rotationOffset = currentSO.GetRotationOffset(dir);
+                Vector3 realOffset = new Vector3(rotationOffset.x * currentSO.width, 0, rotationOffset.y * currentSO.depth) * BuildingSystemConstants.UNITSIZE / 2;
+                AddGridObject(currentSO, mousePosition + realOffset, selectedGrid, dir);
             }
             else if (currentSO.instantiableType == BuildingSystemConstants.InstantiableTypes.GridEdgeObjects) {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, placedObjectEdgeColliderLayerMask)) {
-                    // Raycast Hit Edge Object
-                    if (raycastHit.collider.TryGetComponent(out GridEdgeObjectsPosition floorEdgePosition)) {
-                        if (raycastHit.collider.transform.parent.TryGetComponent(out GridObjectsInfo floorPlacedObject)) {
-                            // Found parent FloorPlacedObject
-                            floorPlacedObject.PlaceEdge(floorEdgePosition.edge, currentSO, InstancesList);
-                        }
-                    }
+                GridEdgeObjectsPosition floorEdgePosition = GetMouseFloorEdgePosition();
+                if (floorEdgePosition != null) {
+                    floorEdgePosition.transform.parent.TryGetComponent(out GridObjectsInfo floorPlacedObject);
+                    floorPlacedObject?.PlaceEdge(floorEdgePosition.edge, currentSO, InstancesList);
                 }
             }
         }
 
+
+        public Vector3 GetMouseWorldSnappedPosition() {
+            Vector3 mousePosition = RaycastPoint.PointPosition;
+            Vector2Int coordinates = GridLevel.PlaneCoordinatesOf(mousePosition);
+            if (currentSO is object) {
+                Vector2Int rotationOffset = currentSO.GetRotationOffset(dir);
+                Vector3 placedObjectWorldPosition = selectedGrid.GetWorldPosition(coordinates)
+                    + new Vector3((rotationOffset.x * currentSO.width) / 2, 0, (rotationOffset.y * currentSO.depth) / 2) * BuildingSystemConstants.UNITSIZE;
+                return placedObjectWorldPosition;
+            }
+            else {
+                return mousePosition;
+            }
+        }
 
         private void AddFromInfoFunc(InstanceInfo bInfo) {
             TInstantiableObjectSO foundSOTypeFromSerialized = Assets.Instance.gridObjectsTypeSOList
@@ -231,26 +236,11 @@ namespace BuildingSystem {
         public GridEdgeObjectsPosition GetMouseFloorEdgePosition() {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, placedObjectEdgeColliderLayerMask)) {
-                // Raycast Hit Edge Object
                 if (raycastHit.collider.TryGetComponent(out GridEdgeObjectsPosition floorEdgePosition)) {
                     return floorEdgePosition;
                 }
             }
-
             return null;
-        }
-
-        public Vector3 GetMouseWorldSnappedPosition() {
-            Vector3 mousePosition = RaycastPoint.PointPosition;
-            Vector2Int coordinates = GridLevel.PlaneCoordinatesOf(mousePosition);
-            if (currentSO is object) {
-                Vector2Int rotationOffset = currentSO.GetRotationOffset(dir);
-                Vector3 placedObjectWorldPosition = selectedGrid.GetWorldPosition(coordinates) + new Vector3(rotationOffset.x, 0, rotationOffset.y) * BuildingSystemConstants.UNITSIZE;
-                return placedObjectWorldPosition;
-            }
-            else {
-                return mousePosition;
-            }
         }
 
         public Quaternion GetPlacedObjectRotation() {

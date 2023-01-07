@@ -121,11 +121,6 @@ namespace BuildingSystem {
         }
         public override void Subs_OnMouse1(object sender, EventArgs e) {
             if (IsBuildingMode && currentManager) {
-                angleDiscreetCounter += 1;
-                if (angleDiscreetCounter == 8) {
-                    angleDiscreetCounter = 0;
-                }
-                print(angleDiscreetCounter);
             }
         }
         public override void Subs_OnMouseMid(object sender, EventArgs e) {

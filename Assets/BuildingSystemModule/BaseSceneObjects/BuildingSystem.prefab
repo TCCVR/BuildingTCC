@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBuildingMode: 1
-  USEDKEYS: 1a0100001b0100001c010000090000000f010000
+  USEDKEYS: 1a0100001b0100001c010000090000000f01000072000000
   playerTransform: {fileID: 0}
   SaveKey: 282
   BuildingModeLoadKey: 283
