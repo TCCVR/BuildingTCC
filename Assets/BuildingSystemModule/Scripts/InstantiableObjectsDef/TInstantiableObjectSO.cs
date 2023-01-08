@@ -7,69 +7,69 @@ namespace BuildingSystem {
     [CreateAssetMenu]
     public class TInstantiableObjectSO :ScriptableObject {
         public string nameString;
-        public BuildingSystemConstants.InstantiableTypes instantiableType;
+        public Constants.InstantiableTypes instantiableType;
         public Transform transform;
         public Transform visual;
         public Sprite sprite;
         public int width;
         public int depth;
         public int height;
-        public static BuildingSystemConstants.Dir GetDir(Vector2Int from, Vector2Int to) {
+        public static Constants.Dir GetDir(Vector2Int from, Vector2Int to) {
             if (from.x < to.x) {
-                return BuildingSystemConstants.Dir.Right;
+                return Constants.Dir.Right;
             }
             else {
                 if (from.x > to.x) {
-                    return BuildingSystemConstants.Dir.Left;
+                    return Constants.Dir.Left;
                 }
                 else {
                     if (from.y < to.y) {
-                        return BuildingSystemConstants.Dir.Up;
+                        return Constants.Dir.Up;
                     }
                     else {
-                        return BuildingSystemConstants.Dir.Down;
+                        return Constants.Dir.Down;
                     }
                 }
             }
         }
 
-        public static BuildingSystemConstants.Dir GetNextDir(BuildingSystemConstants.Dir dir) {
+        public static Constants.Dir GetNextDir(Constants.Dir dir) {
             switch (dir) {
                 default:
-                case BuildingSystemConstants.Dir.Down: return BuildingSystemConstants.Dir.Left;
-                case BuildingSystemConstants.Dir.Left: return BuildingSystemConstants.Dir.Up;
-                case BuildingSystemConstants.Dir.Up: return BuildingSystemConstants.Dir.Right;
-                case BuildingSystemConstants.Dir.Right: return BuildingSystemConstants.Dir.Down;
+                case Constants.Dir.Down: return Constants.Dir.Left;
+                case Constants.Dir.Left: return Constants.Dir.Up;
+                case Constants.Dir.Up: return Constants.Dir.Right;
+                case Constants.Dir.Right: return Constants.Dir.Down;
             }
         }
 
-        public static Vector2Int GetDirForwardVector(BuildingSystemConstants.Dir dir) {
+        public static Vector2Int GetDirForwardVector(Constants.Dir dir) {
             switch (dir) {
                 default:
-                case BuildingSystemConstants.Dir.Down: return new Vector2Int(0, -1);
-                case BuildingSystemConstants.Dir.Left: return new Vector2Int(-1, 0);
-                case BuildingSystemConstants.Dir.Up: return new Vector2Int(0, +1);
-                case BuildingSystemConstants.Dir.Right: return new Vector2Int(+1, 0);
+                case Constants.Dir.Down: return new Vector2Int(0, -1);
+                case Constants.Dir.Left: return new Vector2Int(-1, 0);
+                case Constants.Dir.Up: return new Vector2Int(0, +1);
+                case Constants.Dir.Right: return new Vector2Int(+1, 0);
             }
         }
 
-        public static int GetRotationAngle(BuildingSystemConstants.Dir dir) {
+        public static int GetRotationAngle(Constants.Dir dir) {
             switch (dir) {
                 default:
-                case BuildingSystemConstants.Dir.Down: return 0;
-                case BuildingSystemConstants.Dir.Left: return 90;
-                case BuildingSystemConstants.Dir.Up: return 180;
-                case BuildingSystemConstants.Dir.Right: return 270;
+                case Constants.Dir.Down: return 0;
+                case Constants.Dir.Left: return 90;
+                case Constants.Dir.Up: return 180;
+                case Constants.Dir.Right: return 270;
             }
         }
 
-        public Vector2Int GetRotationOffset(BuildingSystemConstants.Dir dir) {
+        public Vector2Int GetRotationOffset(Constants.Dir dir) {
             switch (dir) {
                 default:
-                case BuildingSystemConstants.Dir.Up: return new Vector2Int(width, depth);
-                case BuildingSystemConstants.Dir.Down: return new Vector2Int(0, 0);
-                case BuildingSystemConstants.Dir.Left: return new Vector2Int(0, width);
-                case BuildingSystemConstants.Dir.Right: return new Vector2Int(depth, 0);
+                case Constants.Dir.Up: return new Vector2Int(width, depth);
+                case Constants.Dir.Down: return new Vector2Int(0, 0);
+                case Constants.Dir.Left: return new Vector2Int(0, width);
+                case Constants.Dir.Right: return new Vector2Int(depth, 0);
             }
         }
 

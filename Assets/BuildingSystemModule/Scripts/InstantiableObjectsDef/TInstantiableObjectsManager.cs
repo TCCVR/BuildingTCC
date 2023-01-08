@@ -10,7 +10,7 @@ namespace BuildingSystem {
         public MouseClickAddIntantiableObjectWithInfo MouseClickAdd;
         public AddInstantiableObjectsFromInfo AddFromInfo;
 
-        public BuildingSystemConstants.InstantiableTypes ManagedType { get; protected set; }
+        public Constants.InstantiableTypes ManagedType { get; protected set; }
         public abstract bool IsBuildingMode { get; }
 
 
