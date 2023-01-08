@@ -24,7 +24,7 @@ namespace BuildingSystem {
 
         public GridLevel(int level, Vector3 groundedOriginPosition = default) {
             groundCastOriginPosition = (groundedOriginPosition == default)? 
-                        new Vector3(0, 0, 0) : groundedOriginPosition;
+                        new Vector3(0, BuildingSystemConstants.GROUNDLEVELOFFSET, 0) : groundedOriginPosition;
             originPosition = groundCastOriginPosition + new Vector3(0, level * BuildingSystemConstants.UNITSIZE, 0);   
             gridArray = new GridObjectsInfo[BuildingSystemConstants.GRIDWIDTH, BuildingSystemConstants.GRIDDEPTH];
             for (int x = 0; x < gridArray.GetLength(0); x++) {

@@ -63,7 +63,6 @@
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\JSONSave.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\IntGraphValues.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\GridLevel.cs" />
-    <Compile Include="Assets\Scripts\UtilsClass.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\Interfaces\ISensorSubscriber.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\MoveableObjectsScripts\MovableObjectsInfo.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\HeartbeatCJMCU\CJMCUSerialConnection.cs" />

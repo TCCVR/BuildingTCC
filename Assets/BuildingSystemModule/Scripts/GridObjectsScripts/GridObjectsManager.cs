@@ -126,7 +126,7 @@ namespace BuildingSystem {
             Vector3 mousePosition = RaycastPoint.PointPosition;
             if (currentSO.instantiableType == BuildingSystemConstants.InstantiableTypes.GridObjects) {
                 Vector2Int rotationOffset = currentSO.GetRotationOffset(dir);
-                Vector3 realOffset = new Vector3(rotationOffset.x * currentSO.width, 0, rotationOffset.y * currentSO.depth) * BuildingSystemConstants.UNITSIZE / 2;
+                Vector3 realOffset = new Vector3(rotationOffset.x, 0, rotationOffset.y) * BuildingSystemConstants.UNITSIZE;
                 AddGridObject(currentSO, mousePosition + realOffset, selectedGrid, dir);
             }
             else if (currentSO.instantiableType == BuildingSystemConstants.InstantiableTypes.GridEdgeObjects) {
@@ -145,7 +145,7 @@ namespace BuildingSystem {
             if (currentSO is object) {
                 Vector2Int rotationOffset = currentSO.GetRotationOffset(dir);
                 Vector3 placedObjectWorldPosition = selectedGrid.GetWorldPosition(coordinates)
-                    + new Vector3((rotationOffset.x * currentSO.width) / 2, 0, (rotationOffset.y * currentSO.depth) / 2) * BuildingSystemConstants.UNITSIZE;
+                    + new Vector3(rotationOffset.x, 0, rotationOffset.y) * BuildingSystemConstants.UNITSIZE;
                 return placedObjectWorldPosition;
             }
             else {

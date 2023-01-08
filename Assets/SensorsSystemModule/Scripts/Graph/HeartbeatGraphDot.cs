@@ -41,6 +41,12 @@ namespace SensorSystem {
             return rectTransform.anchoredPosition;
         }
 
+        public static float GetAngleFromVectorFloat(Vector3 dir) {
+            dir = dir.normalized;
+            float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            if (n < 0) n += 360;
+            return n;
+        }
         private void UpdateDotConnection() {
             if (dotConnectionGameObject != null) {
                 RectTransform dotConnectionRectTransform = dotConnectionGameObject.GetComponent<RectTransform>();
@@ -48,7 +54,7 @@ namespace SensorSystem {
                 float distance = Vector2.Distance(GetGraphPosition(), lastVisualObject.GetGraphPosition());
                 dotConnectionRectTransform.sizeDelta = new Vector2(distance, 3f);
                 dotConnectionRectTransform.anchoredPosition = GetGraphPosition() + dir * distance * .5f;
-                dotConnectionRectTransform.localEulerAngles = new Vector3(0, 0, UtilsClass.GetAngleFromVectorFloat(dir));
+                dotConnectionRectTransform.localEulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(dir));
             }
         }
     }
