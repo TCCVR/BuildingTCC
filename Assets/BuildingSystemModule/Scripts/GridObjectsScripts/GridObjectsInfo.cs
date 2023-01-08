@@ -69,6 +69,7 @@ namespace BuildingSystem {
             }
             GridEdgeObjectsPosition gridEdgePosition = GetGridEdgePosition(edge);
             GridObjectsInfo floorEdgePlacedObject = Create(gridEdgePosition.transform.position, TInstantiableObjectSO.GetNextDir(TInstantiableObjectSO.GetNextDir(edge)), gridObjectSO, parent);
+            floorEdgePlacedObject.instanceInfo.dir = edge;
             SetGridEdgePlacedObject(edge, floorEdgePlacedObject);
         }
 

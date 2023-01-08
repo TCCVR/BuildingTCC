@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 987576358857901550}
   - component: {fileID: 7406533863627205312}
   m_Layer: 0
-  m_Name: pfFloor_2x2
+  m_Name: pfFloor_2x2x.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,6 +70,7 @@ MonoBehaviour:
       w: 0
     dir: 1
     width: 2
+    depth: 0
     height: 2
   upGridEdgePosition: {fileID: 1054332726300958204}
   downGridEdgePosition: {fileID: 6015472063480142740}
@@ -116,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 7922505205555143506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1, y: -0.1, z: 1}
-  m_LocalScale: {x: 3.5, y: 0.001, z: 3.5}
+  m_LocalScale: {x: 6, y: 0.001, z: 6}
   m_Children: []
   m_Father: {fileID: 2059392229417366095}
   m_RootOrder: 4
@@ -200,7 +201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8383131030035169938, guid: 24f80aebd74f64244b13a6f63e960fe9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.998
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8383131030035169938, guid: 24f80aebd74f64244b13a6f63e960fe9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -271,6 +272,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4782235985580720507}
     m_Modifications:
+    - target: {fileID: 1928692201296294831, guid: 24f80aebd74f64244b13a6f63e960fe9, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3927812691392017798, guid: 24f80aebd74f64244b13a6f63e960fe9, type: 3}
       propertyPath: edge
       value: 2
@@ -412,6 +417,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 4866366145202277348, guid: d3fa14b9459ebb64ba67525704de2b60, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866366145202277348, guid: d3fa14b9459ebb64ba67525704de2b60, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3fa14b9459ebb64ba67525704de2b60, type: 3}
 --- !u!4 &2059392229417366095 stripped

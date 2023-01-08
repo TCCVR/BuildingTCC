@@ -15,7 +15,7 @@ namespace BuildingSystem {
         }
         public static float DistanceFromCamera {
             get =>
-                (BuildingSystem.Instance.PlayerTransform is null)?
+                (BuildingSystem.Instance.PlayerTransform != null)?
                 Vector3.Distance(BuildingSystem.Instance.PlayerTransform.position, PointPosition)
                 : -1; 
         }

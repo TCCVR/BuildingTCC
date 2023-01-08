@@ -16,7 +16,6 @@ namespace BuildingSystem {
             Vector3 buildScale = instanceInfo.scale.ToVector3();
             Quaternion buildRot = instanceInfo.rotation.ToQuaternion();
             placedObjectTransform = Instantiate((instanceableObjectSO as TInstantiableObjectSO).transform, buildPos, buildRot);
-            //placedObjectTransform = Instantiate(instanceableObjectSO.transform, buildPos, Quaternion.Euler(0, instanceableObjectSO.GetRotationAngle(instanceInfo.dir), 0));
 
             placedObjectTransform.localScale = buildScale;
             placedObjectTransform.transform.parent = parent;

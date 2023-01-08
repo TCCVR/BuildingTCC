@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1928692201296294831}
   - component: {fileID: 3927812691392017798}
   m_Layer: 11
-  m_Name: pfFloor_2x2_Edge
+  m_Name: pfFloor_2x.5x.3_Edge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -9,6 +9,7 @@ namespace BuildingSystem {
         public const float GRIDHEIGHT = 1f;
         public const int GRIDWIDTH = 1000;
         public const int GRIDDEPTH = 1000;
+        public const float GROUNDLEVELOFFSET = 0f;
         public const int QNTYGRIDLEVELS = 10;
         public const float MAXBUILDINGDISTANCE = 10f;
         public enum InstantiableTypes {

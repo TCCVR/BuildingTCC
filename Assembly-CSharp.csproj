@@ -63,7 +63,6 @@
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\JSONSave.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\IntGraphValues.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\GridLevel.cs" />
-    <Compile Include="Assets\Scripts\UtilsClass.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\Interfaces\ISensorSubscriber.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\MoveableObjectsScripts\MovableObjectsInfo.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\HeartbeatCJMCU\CJMCUSerialConnection.cs" />
@@ -81,11 +80,13 @@
     <Compile Include="Assets\StarterAssets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\GridObjectsScripts\GhostGridObject.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectsTypeSelectUI.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Abstracts\SerialConnection.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\Interfaces\IPCInputSubscriber.cs" />
     <Compile Include="Assets\Scripts\GameHandler.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Interfaces\IPCInputSubscriber.cs" />
     <Compile Include="Assets\StarterAssets\FirstPersonController\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectsManager.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\RaycastPoint.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Interfaces\IPCInputHandler.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\SensorSystemConstants.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\GridlessLoader.cs" />
@@ -98,24 +99,21 @@
     <Compile Include="Assets\BuildingSystemModule\Scripts\MoveableObjectsScripts\GhostMovableObject.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectInfo.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\HeartbeatLine.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\SensorManager.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\HeartbeatGraph.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\BuildingSystemEventArgsClasses.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\Assets.cs" />
     <Compile Include="Assets\SensorsSystemModule\Scripts\Interfaces\ISensorHandler.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Base\BuildingSystemConstants.cs" />
-    <Compile Include="Assets\BuildingSystemModule\Scripts\Interfaces\ISwitchBuildintHandler.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\Interfaces\ISwitchBuildingSubscriber.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\HeartbeatGraphDot.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\InstanceInfo.cs" />
     <Compile Include="Assets\BuildingSystemModule\Scripts\GridObjectsScripts\GridObjectsManager.cs" />
-    <Compile Include="Assets\SensorsSystemModule\Scripts\Abstracts\SerialConnection.cs" />
-    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\RaycastPoint.cs" />
-    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\HeartbeatLine.cs" />
-    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\HeartbeatGraphDot.cs" />
-    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\HeartbeatGraph.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Interfaces\ISwitchBuildingHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LowPolyOfficeProps_LITE\About.txt" />
-    <None Include="Assets\Saves\save_5.txt" />
     <None Include="Assets\StarterAssets\Environment\Shaders\Built-in_RP\Triplanar.shader" />
     <None Include="Assets\StarterAssets\license.txt" />
   </ItemGroup>
