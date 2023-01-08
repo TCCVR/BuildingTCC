@@ -16,7 +16,7 @@ namespace BuildingSystem {
         public GridObjectsManager GridObjectsManager { get; private set; }
 
         public List<GridLevel> gridList;
-        public Dictionary<BuildingSystemConstants.InstantiableTypes, TInstantiableObjectsManager> Managers;
+        public Dictionary<Constants.InstantiableTypes, TInstantiableObjectsManager> Managers;
         public TInstantiableObjectsManager CurrentManager;
 
         //public event EventHandler OnSelectedChanged;
@@ -25,15 +25,18 @@ namespace BuildingSystem {
 
         private void Awake() {
             Instance = this;
-            Managers = new Dictionary<BuildingSystemConstants.InstantiableTypes, TInstantiableObjectsManager>();
+            Managers = new Dictionary<Constants.InstantiableTypes, TInstantiableObjectsManager>();
             gridList = new List<GridLevel>();
-            for (int i = 0; i < BuildingSystemConstants.QNTYGRIDLEVELS; i++) {
+            for (int i = 0; i < Constants.QNTYGRIDLEVELS; i++) {
                 GridLevel grid = new GridLevel(i);
                 gridList.Add(grid);
             }
         }
 
         private void Start() {
+
+
+
             MovableObjectsManager = MovableObjectsManager.Instance;
             GridObjectsManager = GridObjectsManager.Instance;
             BuildingSystem.Instance.OnKeyPressed += Subs_OnKeyPressed;
@@ -49,17 +52,17 @@ namespace BuildingSystem {
         private void SwitchManagers() {
             if (IsBuildingMode) {
                 switch (CurrentManager.ManagedType) {
-                    case BuildingSystemConstants.InstantiableTypes.GridObjects:
-                        if (Managers.ContainsKey(BuildingSystemConstants.InstantiableTypes.MoveableObjects)) {
+                    case Constants.InstantiableTypes.GridObjects:
+                        if (Managers.ContainsKey(Constants.InstantiableTypes.MoveableObjects)) {
                             CurrentManager.DeactivateManager();
-                            Managers[BuildingSystemConstants.InstantiableTypes.MoveableObjects].ActivateManager();
+                            Managers[Constants.InstantiableTypes.MoveableObjects].ActivateManager();
                         }
                         break;
 
-                    case BuildingSystemConstants.InstantiableTypes.MoveableObjects:
-                        if (Managers.ContainsKey(BuildingSystemConstants.InstantiableTypes.GridObjects)) {
+                    case Constants.InstantiableTypes.MoveableObjects:
+                        if (Managers.ContainsKey(Constants.InstantiableTypes.GridObjects)) {
                             CurrentManager.DeactivateManager();
-                            Managers[BuildingSystemConstants.InstantiableTypes.GridObjects].ActivateManager();
+                            Managers[Constants.InstantiableTypes.GridObjects].ActivateManager();
                         }
                         break;
 

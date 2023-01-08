@@ -19,7 +19,7 @@ namespace BuildingSystem {
 
         private void Awake() {
             Instance = this;
-            ManagedType = BuildingSystemConstants.InstantiableTypes.MoveableObjects;
+            ManagedType = Constants.InstantiableTypes.MoveableObjects;
             MouseClickAdd = mouseClickAddFunc;
             AddFromInfo = addFromInfoFunc;
         }
@@ -28,7 +28,7 @@ namespace BuildingSystem {
 
         private void Start() {
             TInstantiableObjectsTypeSelectUI initUI = TInstantiableObjectsTypeSelectUI.Instance;
-            TInstantiableObjectSystem.Instance.Managers.Add(BuildingSystemConstants.InstantiableTypes.MoveableObjects, this);
+            TInstantiableObjectSystem.Instance.Managers.Add(Constants.InstantiableTypes.MoveableObjects, this);
             BuildingSystem.Instance.OnKeyPressed += Subs_OnKeyPressed;
             BuildingSystem.Instance.OnMouse0 += Subs_OnMouse0;
             BuildingSystem.Instance.OnMouse1 += Subs_OnMouse1;
@@ -38,7 +38,6 @@ namespace BuildingSystem {
             BuildingSystem.Instance.OnDisableSwitch += Subs_OnBuildingModeDisable;
             if (!TInstantiableObjectSystem.Instance.CurrentManager) {
                 ActivateManager();
-                //Debug.Log("current manager name: " + TInstantiableObjectSystem.Instance.CurrentManager.name);
             }
         }
 
@@ -68,7 +67,7 @@ namespace BuildingSystem {
         private void mouseClickAddFunc() {
             Vector3 mouseWorldPosition = RaycastPoint.PointPosition;
             float distanceToPlayer = RaycastPoint.DistanceFromCamera;
-            if ((distanceToPlayer >= BuildingSystemConstants.MAXBUILDINGDISTANCE) || (distanceToPlayer == -1) ) return;
+            if ((distanceToPlayer >= Constants.MAXBUILDINGDISTANCE) || (distanceToPlayer == -1) ) return;
 
             Transform newPlacedMoveableObjects = Instantiate(currentSO.transform, mouseWorldPosition, transform.rotation * Quaternion.Euler(0, 45 * angleDiscreetCounter, 0));
             newPlacedMoveableObjects.transform.parent = InstancesList.transform;
