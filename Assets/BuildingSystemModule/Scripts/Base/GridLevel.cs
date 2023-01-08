@@ -39,8 +39,8 @@ namespace BuildingSystem {
         }
 
         public static Vector2Int PlaneCoordinatesOf(Vector3 worldPosition) {
-            int x = Mathf.FloorToInt((worldPosition - groundCastOriginPosition).x / Constants.UNITSIZE);
-            int z = Mathf.FloorToInt((worldPosition - groundCastOriginPosition).z / Constants.UNITSIZE);
+            int x = Mathf.RoundToInt((worldPosition - groundCastOriginPosition).x / Constants.UNITSIZE);
+            int z = Mathf.RoundToInt((worldPosition - groundCastOriginPosition).z / Constants.UNITSIZE);
             x = Mathf.Clamp(x, 0, Constants.GRIDWIDTH - 1);
             z = Mathf.Clamp(z, 0, Constants.GRIDDEPTH - 1);
             return new Vector2Int(x, z);

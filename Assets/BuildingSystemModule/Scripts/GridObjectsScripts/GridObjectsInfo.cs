@@ -26,6 +26,17 @@ namespace BuildingSystem {
             return placedObject;
         }
 
+
+        public static GridObjectsInfo Create(Vector3 worldPosition, float absAngle, TInstantiableObjectSO gridObjectSO, GameObject parent) {
+            GridObjectsInfo placedObject;
+            Transform placedObjectTransform = Instantiate(gridObjectSO.transform, worldPosition, Quaternion.Euler(0, absAngle, 0));
+            placedObjectTransform.parent = parent.transform;
+            placedObject = placedObjectTransform.GetComponent<GridObjectsInfo>();
+            placedObject.LoadInfo(gridObjectSO, placedObjectTransform);
+            return placedObject;
+        }
+
+
         public override void LoadInfo<T>(T btSO, Transform instancedObjTransform) {
             if (this.instanceInfo is null)
                 this.instanceInfo = new InstanceInfo();
@@ -68,7 +79,8 @@ namespace BuildingSystem {
                 Destroy(currentFloorEdgePlacedObject.gameObject);
             }
             GridEdgeObjectsPosition gridEdgePosition = GetGridEdgePosition(edge);
-            GridObjectsInfo floorEdgePlacedObject = Create(gridEdgePosition.transform.position, TInstantiableObjectSO.GetNextDir(TInstantiableObjectSO.GetNextDir(edge)), gridObjectSO, parent);
+            GridObjectsInfo floorEdgePlacedObject = Create(gridEdgePosition.transform.position, 
+                gridEdgePosition.transform.rotation.eulerAngles.y, gridObjectSO, parent);
             floorEdgePlacedObject.instanceInfo.dir = edge;
             SetGridEdgePlacedObject(edge, floorEdgePlacedObject);
         }

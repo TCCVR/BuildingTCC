@@ -101,8 +101,10 @@ namespace BuildingSystem {
                 }
                 if (canBuild) {
                     Vector3 placedObjectWorldPosition = targetGrid.GetWorldPosition(placedObjectOrigin);
-                    GridObjectsInfo placedObject = GridObjectsInfo.Create(placedObjectWorldPosition, targetDir, objectsSO,
+                    GridObjectsInfo placedObject = GridObjectsInfo.Create(placedObjectWorldPosition, 
+                        TInstantiableObjectSO.GetRotationAngle(targetDir), objectsSO,
                         TInstantiableObjectSystem.Instance.GridObjectsInstancesParent);
+                    placedObject.instanceInfo.dir = targetDir;
                     foreach (Vector2Int coordinates in unitsOccupied) {
                         targetGrid[coordinates.x, coordinates.y] = placedObject;
                     }
@@ -126,7 +128,7 @@ namespace BuildingSystem {
             if (currentSO.instantiableType == Constants.InstantiableTypes.GridObjects) {
                 Vector2Int rotationOffset = currentSO.GetRotationOffset(dir);
                 Vector3 realOffset = new Vector3(rotationOffset.x, 0, rotationOffset.y) * Constants.UNITSIZE;
-                AddGridObject(currentSO, mousePosition + realOffset, selectedGrid, dir);
+                AddGridObject(currentSO, mousePosition, selectedGrid, dir);
             }
             else if (currentSO.instantiableType == Constants.InstantiableTypes.GridEdgeObjects) {
                 GridEdgeObjectsPosition floorEdgePosition = GetMouseFloorEdgePosition();
@@ -142,9 +144,9 @@ namespace BuildingSystem {
             Vector3 mousePosition = RaycastPoint.PointPosition;
             Vector2Int coordinates = GridLevel.PlaneCoordinatesOf(mousePosition);
             if (currentSO is object) {
-                Vector2Int rotationOffset = currentSO.GetRotationOffset(dir);
-                Vector3 placedObjectWorldPosition = selectedGrid.GetWorldPosition(coordinates)
-                    + new Vector3(rotationOffset.x, 0, rotationOffset.y) * Constants.UNITSIZE;
+                //Vector2Int rotationOffset = currentSO.GetRotationOffset(dir);
+                Vector3 placedObjectWorldPosition = selectedGrid.GetWorldPosition(coordinates);
+                    //+ new Vector3(rotationOffset.x - currentSO.width / 2, 0, rotationOffset.y - currentSO.depth / 2) * Constants.UNITSIZE;
                 return placedObjectWorldPosition;
             }
             else {
@@ -157,7 +159,6 @@ namespace BuildingSystem {
                 .FirstOrDefault(d => d.nameString == bInfo.SOName);
 
             if (foundSOTypeFromSerialized is null) {
-                //Debug.Log("GridObjectsSO: " + bInfo.SOName + " was NOT serialized in this buildVer.");
                 return;
             }
             TInstantiableObjectSO typeSO = foundSOTypeFromSerialized;
