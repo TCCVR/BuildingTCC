@@ -69,7 +69,7 @@ namespace BuildingSystem {
             float distanceToPlayer = RaycastPoint.DistanceFromCamera;
             if ((distanceToPlayer >= Constants.MAXBUILDINGDISTANCE) || (distanceToPlayer == -1) ) return;
 
-            Transform newPlacedMoveableObjects = Instantiate(currentSO.transform, mouseWorldPosition, transform.rotation * Quaternion.Euler(0, 45 * angleDiscreetCounter, 0));
+            Transform newPlacedMoveableObjects = Instantiate(currentSO.transform, mouseWorldPosition, Quaternion.Euler(0, looseObjectEulerY, 0));
             newPlacedMoveableObjects.transform.parent = InstancesList.transform;
             MovableObjectsInfo newMoveableObjectsInfo = newPlacedMoveableObjects.gameObject.GetComponent<MovableObjectsInfo>();
             newMoveableObjectsInfo.LoadInfo(currentSO, newPlacedMoveableObjects);
@@ -102,10 +102,7 @@ namespace BuildingSystem {
 
         public override void Subs_OnKeyPressed(object sender, OnKeyPressedEventArgs keyPressedArgs) {
             if (IsBuildingMode && currentManager) {
-                if (keyPressedArgs.keyPressed == KeyCode.F) {
-                    angleDiscreetCounter = 0;
-                }
-                else if (keyPressedArgs.keyPressed == KeyCode.Tab) {
+                if (keyPressedArgs.keyPressed == KeyCode.Tab) {
                     NextSO();
                 }
 
@@ -129,7 +126,8 @@ namespace BuildingSystem {
         }
         public override void Subs_OnMouseScroll(object sender, OnMouseScrollEventArgs e) {
             if (IsBuildingMode && currentManager) {
-
+                looseObjectEulerY += e.scrollDir.y * 30;
+                if (looseObjectEulerY >= 360) looseObjectEulerY = 0;
             }
         }
 

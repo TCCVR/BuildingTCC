@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a4e033676dedb844afcf18b60f73cec, type: 3}
+  m_Name: notebook
+  m_EditorClassIdentifier: 
+  nameString: notebook
+  instantiableType: 2
+  transform: {fileID: 4225381643663648, guid: 36b4439c405f5aa409eb7fc493299784, type: 3}
+  visual: {fileID: 4225381643663648, guid: ef00c5f1a6ee67c47bc7f17246e31500, type: 3}
+  sprite: {fileID: 21300000, guid: 055e7ec99d68b0b4ea86fa2a995a4ad8, type: 3}
+  width: 0
+  depth: 0
+  height: 0

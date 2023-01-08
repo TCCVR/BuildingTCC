@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1382671847182774317}
   - component: {fileID: 6955980185695775903}
   - component: {fileID: 4690930661640481593}
+  - component: {fileID: -338180586924624722}
   m_Layer: 0
   m_Name: Chair_Office
   m_TagString: Untagged
@@ -220,3 +221,38 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactable: {fileID: 0}
+--- !u!114 &-338180586924624722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160537708517250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ff4b09d8438df46a6137f02369b49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instanceInfo:
+    SOType: 0
+    SOName: 
+    instanceName: 
+    position:
+      x: 0
+      y: 0
+      z: 0
+      w: 0
+    rotation:
+      x: 0
+      y: 0
+      z: 0
+      w: 0
+    scale:
+      x: 0
+      y: 0
+      z: 0
+      w: 0
+    dir: 0
+    width: 0
+    depth: 0
+    height: 0

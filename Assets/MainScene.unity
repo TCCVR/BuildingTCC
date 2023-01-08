@@ -4806,6 +4806,26 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8795973094702734657, guid: 55bdf1732a2869a429d085f6173039e0, type: 3}
+      propertyPath: movableObjectsTypeSOList.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795973094702734657, guid: 55bdf1732a2869a429d085f6173039e0, type: 3}
+      propertyPath: movableObjectsTypeSOList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2fd2b12c5ecbafc46925947dad3ced0e, type: 2}
+    - target: {fileID: 8795973094702734657, guid: 55bdf1732a2869a429d085f6173039e0, type: 3}
+      propertyPath: movableObjectsTypeSOList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 53f72079b92b3704fb77e916f285200d, type: 2}
+    - target: {fileID: 8795973094702734657, guid: 55bdf1732a2869a429d085f6173039e0, type: 3}
+      propertyPath: movableObjectsTypeSOList.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: b0eac9bd10eb33b4d80185222661ddc8, type: 2}
+    - target: {fileID: 8795973094702734657, guid: 55bdf1732a2869a429d085f6173039e0, type: 3}
+      propertyPath: movableObjectsTypeSOList.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: c14ed1324d0111245a607ae1bb300c5a, type: 2}
     m_RemovedComponents:
     - {fileID: 2879301794408528569, guid: 55bdf1732a2869a429d085f6173039e0, type: 3}
     - {fileID: 1468987325958797158, guid: 55bdf1732a2869a429d085f6173039e0, type: 3}
