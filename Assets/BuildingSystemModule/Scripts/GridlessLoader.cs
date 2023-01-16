@@ -9,7 +9,11 @@ namespace BuildingSystem {
         public static GridlessLoader Instance { get; private set; }
 
         public bool IsBuildingMode {
-            get { return BuildingSystem.Instance.IsBuildingMode; }
+            get {
+                if (BuildingSystem.Instance != null)
+                    return BuildingSystem.Instance.IsBuildingMode;
+                else return false;
+            }
         }
 
         [SerializeField] public GameObject MoveableObjectsInstancesParent;

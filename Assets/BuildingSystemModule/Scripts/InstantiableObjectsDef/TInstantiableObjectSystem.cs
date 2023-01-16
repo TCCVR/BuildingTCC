@@ -7,7 +7,11 @@ namespace BuildingSystem {
     public class TInstantiableObjectSystem :MonoBehaviour, IPCInputSubscriber, ISwitchBuildingSubscriber {
         public static TInstantiableObjectSystem Instance { get; private set; }
         public bool IsBuildingMode {
-            get { return BuildingSystem.Instance.IsBuildingMode; }
+            get {
+                if (BuildingSystem.Instance != null)
+                    return BuildingSystem.Instance.IsBuildingMode;
+                else return false;
+            }
         }
         [SerializeField] public GameObject MoveableObjectsInstancesParent;
         [SerializeField] public GameObject GridObjectsInstancesParent;
@@ -42,7 +46,7 @@ namespace BuildingSystem {
             BuildingSystem.Instance.OnKeyPressed += Subs_OnKeyPressed;
             //BuildingSystem.Instance.OnMouse0 += Subs_OnMouse0;
             //BuildingSystem.Instance.OnMouse1 += Subs_OnMouse1;
-            //BuildingSystem.Instance.OnMouseMid += Subs_OnMouseMid;
+            BuildingSystem.Instance.OnMouseMid += Subs_OnMouseMid;
             //BuildingSystem.Instance.OnMouseScroll += Subs_OnMouseScroll;
             BuildingSystem.Instance.OnEnableSwitch += Subs_OnBuildingModeEnable;
             BuildingSystem.Instance.OnDisableSwitch += Subs_OnBuildingModeDisable;
@@ -97,6 +101,9 @@ namespace BuildingSystem {
         }
 
         public void Subs_OnMouseMid(object sender, EventArgs eventArgs) {
+            if (IsBuildingMode) {
+                SwitchManagers();
+            }
 
         }
 

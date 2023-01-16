@@ -13,41 +13,31 @@ namespace BuildingSystem {
         private Dictionary<TInstantiableObjectSO, Transform> btnDictionary = new Dictionary<TInstantiableObjectSO, Transform>();
 
         public bool IsBuildingMode {
-            get { return BuildingSystem.Instance.IsBuildingMode; }
+            get {
+                if (BuildingSystem.Instance != null)
+                    return BuildingSystem.Instance.IsBuildingMode;
+                else return false;
+            }
         }
-        private void Start() {
+        private void Awake() {
+            Instance = this;
             Transform moveableObjectsBtnTemplate = transform.Find("buildingButtonTemplate");
             moveableObjectsBtnTemplate.gameObject.SetActive(false);
+        }
+
+        private void Start() {
             BuildingSystem.Instance.OnEnableSwitch += Subs_OnBuildingModeEnable;
             BuildingSystem.Instance.OnDisableSwitch += Subs_OnBuildingModeDisable;
         }
 
-        private void Awake() {
-            Instance = this;
-        }
-
-        private void Update() {
-            //if (Input.GetKeyDown(KeyCode.Tab)) {
-            //    MovableObjectsSO NextMoveableObjectsType = NextBuildingTypeOnList();
-            //    moveableObjectsManager.SetActiveBuildingType(NextMoveableObjectsType);
-            //    UpdateSelectedVisual();
-            //}
-        }
-        public void UpdateSelectedVisual() {
-            //foreach (MovableObjectsSO moveableObjectsTypeSO in moveableObjectsBtnDictionary.Keys) {
-            //    moveableObjectsBtnDictionary[moveableObjectsTypeSO].Find("selected").gameObject.SetActive(false);
-            //}
-
-            //MovableObjectsSO activeMoveableObjectsType = moveableObjectsManager.GetInstanceableObjectSO();
-            //moveableObjectsBtnDictionary[activeMoveableObjectsType].Find("selected").gameObject.SetActive(true);
-        }
-
         public void ClearButtonList() {
+            if (!IsBuildingMode) return;
             foreach (Transform soObj in btnDictionary.Values)
                 soObj.gameObject.SetActive(false);
         }
 
         public void ClearUpdateButtons(List<TInstantiableObjectSO> soList) {
+            if (!IsBuildingMode) return;
             ClearButtonList();
             for (int index = 0; index < soList.Count; index++) {
                 if (btnDictionary.ContainsKey(soList[index])) {

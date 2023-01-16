@@ -47,6 +47,7 @@ namespace SensorSystem {
                 }
                 StartCoroutine();
                 Status = SensorConnectionStatus.Connected;
+                //Debug.Log($"SerialPortOpen");
             }
             catch (Exception ex) {
                 Debug.Log("Error 1: " + ex.Message.ToString());
@@ -58,6 +59,7 @@ namespace SensorSystem {
             StopCoroutine();
             Status = SensorConnectionStatus.Disconnected;
             OnSensorDisconnect?.Invoke(this, EventArgs.Empty);
+            //Debug.Log($"SerialPortClosed");
         }
         protected override void SerialCheckData() {
             try {
@@ -75,6 +77,7 @@ namespace SensorSystem {
                         RawData = rData;
                         ChunkData = RawData.Split(Separator);
                         OnSensorParsedData?.Invoke(this, EventArgs.Empty);
+                        //Debug.Log($"RawDataReceived: {RawData}");
                     }
                 }
             }

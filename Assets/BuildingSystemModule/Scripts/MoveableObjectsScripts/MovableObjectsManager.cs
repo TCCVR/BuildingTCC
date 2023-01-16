@@ -8,13 +8,16 @@ namespace BuildingSystem {
     public class MovableObjectsManager :TInstantiableObjectsManager, IPCInputSubscriber, ISwitchBuildingSubscriber {
         public static MovableObjectsManager Instance { get; private set; }
         public override bool IsBuildingMode {
-            get { return BuildingSystem.Instance.IsBuildingMode; }
+            get {
+                if (BuildingSystem.Instance != null)
+                    return BuildingSystem.Instance.IsBuildingMode;
+                else return false;
+            }
         }
 
         GhostMovableObject ghostMovableObject;
 
         private float looseObjectEulerY;
-        private int angleDiscreetCounter = 0;
         private bool currentManager = false;
 
         private void Awake() {
@@ -36,6 +39,7 @@ namespace BuildingSystem {
             BuildingSystem.Instance.OnMouseScroll += Subs_OnMouseScroll;
             BuildingSystem.Instance.OnEnableSwitch += Subs_OnBuildingModeEnable;
             BuildingSystem.Instance.OnDisableSwitch += Subs_OnBuildingModeDisable;
+            if (!IsBuildingMode) return;
             if (!TInstantiableObjectSystem.Instance.CurrentManager) {
                 ActivateManager();
             }
@@ -43,28 +47,27 @@ namespace BuildingSystem {
 
 
         public override void ActivateManager() {
-            if (IsBuildingMode) {
-                TInstantiableObjectSystem.Instance.CurrentManager = Instance;
-                if (ghostMovableObject is null) {
-                    ghostMovableObject = GhostMovableObject.Instance;
-                }
-                if (currentSO is null) {
-                    currentSO = Assets.Instance.movableObjectsTypeSOList[listCounter];
-                }
-                ghostMovableObject.Activation();
-                currentManager = true;
-                TInstantiableObjectsTypeSelectUI.Instance.ClearUpdateButtons(Assets.Instance.movableObjectsTypeSOList);
+            if (!IsBuildingMode) return;
+            TInstantiableObjectSystem.Instance.CurrentManager = Instance;
+            if (ghostMovableObject is null) {
+                ghostMovableObject = GhostMovableObject.Instance;
             }
+            if (currentSO is null) {
+                currentSO = Assets.Instance.movableObjectsTypeSOList[listCounter];
+            }
+            ghostMovableObject.Activation();
+            currentManager = true;
+            TInstantiableObjectsTypeSelectUI.Instance.ClearUpdateButtons(Assets.Instance.movableObjectsTypeSOList);
         }
 
         public override void DeactivateManager() {
-            if (IsBuildingMode) {
-                ghostMovableObject.Activation(false);
-                currentManager = false;
-            }
+            if (!IsBuildingMode) return;
+            ghostMovableObject.Activation(false);
+            currentManager = false;
         }
 
         private void mouseClickAddFunc() {
+            if (!IsBuildingMode) return;
             Vector3 mouseWorldPosition = RaycastPoint.PointPosition;
             float distanceToPlayer = RaycastPoint.DistanceFromCamera;
             if ((distanceToPlayer >= Constants.MAXBUILDINGDISTANCE) || (distanceToPlayer == -1) ) return;
@@ -77,6 +80,7 @@ namespace BuildingSystem {
 
 
         private void addFromInfoFunc(InstanceInfo bInfo) {
+            if (!IsBuildingMode) return;
             TInstantiableObjectSO foundSOTypeFromSerialized = Assets.Instance.movableObjectsTypeSOList
                 .FirstOrDefault(d => d.nameString == bInfo.SOName);
 
@@ -132,15 +136,18 @@ namespace BuildingSystem {
         }
 
         public float GetMovableObjectEulerY() {
+            if (!IsBuildingMode) return 0;
             return looseObjectEulerY;
         }
 
         public TInstantiableObjectSO GetInstanceableObjectSO() {
+            if (!IsBuildingMode) return default;
             return currentSO;
         }
 
 
         public void NextSO() {
+            if (!IsBuildingMode) return;
             if (currentSO is null) {
                 currentSO = Assets.Instance.movableObjectsTypeSOList[listCounter];
             }

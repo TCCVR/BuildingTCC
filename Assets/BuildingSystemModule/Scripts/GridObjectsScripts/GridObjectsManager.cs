@@ -21,7 +21,11 @@ namespace BuildingSystem {
 
 
         public override bool IsBuildingMode {
-            get { return BuildingSystem.Instance.IsBuildingMode; }
+            get {
+                if (BuildingSystem.Instance != null)
+                    return BuildingSystem.Instance.IsBuildingMode;
+                else return false;
+            }
         }
         public event EventHandler OnActiveGridLevelChanged;
         public event EventHandler OnSelectedChanged;
@@ -47,6 +51,7 @@ namespace BuildingSystem {
             BuildingSystem.Instance.OnMouseScroll += Subs_OnMouseScroll;
             BuildingSystem.Instance.OnEnableSwitch += Subs_OnBuildingModeEnable;
             BuildingSystem.Instance.OnDisableSwitch += Subs_OnBuildingModeDisable;
+            if (!IsBuildingMode) return;
             if (!TInstantiableObjectSystem.Instance.CurrentManager) {
                 ActivateManager();
             }
@@ -54,40 +59,38 @@ namespace BuildingSystem {
         }
 
         private void Update() {
-            if (IsBuildingMode) {
-                HandleGridSelectAutomatic();
-            }
+            if (!IsBuildingMode) return;
+            HandleGridSelectAutomatic();
         }
 
 
         public override void ActivateManager() {
-            if (IsBuildingMode) {
-                TInstantiableObjectSystem.Instance.CurrentManager = Instance;
-                if (ghostGridObject is null) {
-                    ghostGridObject = GhostGridObject.Instance;
-                }
-                if (ghostGridEdgeObject is null) {
-                    ghostGridEdgeObject = GhostGridEdgeObject.Instance;
-                }
-                if (currentSO is null) {
-                    currentSO = Assets.Instance.gridObjectsTypeSOList[listCounter];
-                }
-                currentManager = true;
-                ActivateGhostObject();
-                TInstantiableObjectsTypeSelectUI.Instance.ClearUpdateButtons(Assets.Instance.gridObjectsTypeSOList);
+            if (!IsBuildingMode) return;
+            TInstantiableObjectSystem.Instance.CurrentManager = Instance;
+            if (ghostGridObject is null) {
+                ghostGridObject = GhostGridObject.Instance;
             }
+            if (ghostGridEdgeObject is null) {
+                ghostGridEdgeObject = GhostGridEdgeObject.Instance;
+            }
+            if (currentSO is null) {
+                currentSO = Assets.Instance.gridObjectsTypeSOList[listCounter];
+            }
+            currentManager = true;
+            ActivateGhostObject();
+            TInstantiableObjectsTypeSelectUI.Instance.ClearUpdateButtons(Assets.Instance.gridObjectsTypeSOList);
         }
 
         public override void DeactivateManager() {
-            if (IsBuildingMode) {
-                ghostGridObject?.Activation(false);
-                ghostGridEdgeObject?.Activation(false);
-                currentManager = false;
-            }
+            if (!IsBuildingMode) return;
+            ghostGridObject?.Activation(false);
+            ghostGridEdgeObject?.Activation(false);
+            currentManager = false;
         }
 
         private void AddGridObject(TInstantiableObjectSO objectsSO, Vector3 worldPosition, GridLevel targetGrid, 
                     Constants.Dir targetDir) {
+            if (!IsBuildingMode) return;
             if (Vector3.Distance(BuildingSystem.Instance.PlayerTransform.position, worldPosition) < Constants.MAXBUILDINGDISTANCE) {
                 Vector2Int placedObjectOrigin = GridLevel.PlaneCoordinatesOf(worldPosition);
                 List<Vector2Int> unitsOccupied = GridLevel.CoordinatesListOf(objectsSO.width, objectsSO.depth, 
@@ -114,6 +117,7 @@ namespace BuildingSystem {
         }
 
         private void AddGridEdgeObject(TInstantiableObjectSO objectsSO, Vector3 worldPosition, Constants.Dir dir) {
+            if (!IsBuildingMode) return;
             GridLevel targetGrid = gridList[GetGridLevel(worldPosition)];
             Vector2Int objCoodrinates = GridLevel.PlaneCoordinatesOf(worldPosition);
             GridObjectsInfo gridObject = targetGrid[objCoodrinates.x, objCoodrinates.y];
@@ -124,6 +128,7 @@ namespace BuildingSystem {
 
 
         private void MouseClickAddFunc() {
+            if (!IsBuildingMode) return;
             Vector3 mousePosition = RaycastPoint.PointPosition;
             if (currentSO.instantiableType == Constants.InstantiableTypes.GridObjects) {
                 Vector2Int rotationOffset = currentSO.GetRotationOffset(dir);
@@ -155,6 +160,7 @@ namespace BuildingSystem {
         }
 
         private void AddFromInfoFunc(InstanceInfo bInfo) {
+            if (!IsBuildingMode) return;
             TInstantiableObjectSO foundSOTypeFromSerialized = Assets.Instance.gridObjectsTypeSOList
                 .FirstOrDefault(d => d.nameString == bInfo.SOName);
 
@@ -203,7 +209,7 @@ namespace BuildingSystem {
 
         public override void Subs_OnMouse1(object sender, EventArgs e) {
             if (IsBuildingMode && currentManager) {
-
+                NextSO();
             }
         }
 
@@ -215,12 +221,14 @@ namespace BuildingSystem {
 
         public override void Subs_OnMouseScroll(object sender, OnMouseScrollEventArgs e) {
             if (IsBuildingMode && currentManager) {
-
+                if (e.scrollDir.y > 0) dir = TInstantiableObjectSO.GetNextDir(dir);
+                else if (e.scrollDir.y < 0) dir = TInstantiableObjectSO.GetNextDir(TInstantiableObjectSO.GetNextDir(TInstantiableObjectSO.GetNextDir(dir)));
             }
         }
 
 
         private void HandleGridSelectAutomatic() {
+            if (!IsBuildingMode) return;
             Vector3 mousePosition = RaycastPoint.PointPosition;
             int newGridIndex = GetGridLevel(mousePosition);
             selectedGrid = gridList[newGridIndex];
@@ -229,11 +237,13 @@ namespace BuildingSystem {
 
 
         public int GetGridLevel(Vector3 worldPosition) {
+            if (!IsBuildingMode) return 0;
             float gridHeight = Constants.UNITSIZE;
             return Mathf.Clamp(Mathf.RoundToInt(worldPosition.y / gridHeight), 0, gridList.Count - 1);
         }
 
         public GridEdgeObjectsPosition GetMouseFloorEdgePosition() {
+            if (!IsBuildingMode) return default;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, placedObjectEdgeColliderLayerMask)) {
                 if (raycastHit.collider.TryGetComponent(out GridEdgeObjectsPosition floorEdgePosition)) {
@@ -256,6 +266,7 @@ namespace BuildingSystem {
             return currentSO;
         }
         public void ActivateGhostObject() {
+            if (!IsBuildingMode) return;
             if (currentSO?.instantiableType == Constants.InstantiableTypes.GridObjects) {
                 ghostGridEdgeObject.Activation(false);
                 ghostGridObject.Activation();
@@ -267,6 +278,7 @@ namespace BuildingSystem {
         }
 
         public void NextSO() {
+            if (!IsBuildingMode) return;
             if (currentSO is null) {
                 currentSO = Assets.Instance.gridObjectsTypeSOList[listCounter];
                 ActivateGhostObject();

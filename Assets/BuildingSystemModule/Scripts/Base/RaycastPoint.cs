@@ -1,9 +1,17 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 namespace BuildingSystem {
-    public class RaycastPoint :MonoBehaviour {
+    public class RaycastPoint :MonoBehaviour, ISwitchBuildingSubscriber {
         public static RaycastPoint Instance { get; private set; }
+        public bool IsBuildingMode {
+            get {
+                if (BuildingSystem.Instance != null)
+                    return BuildingSystem.Instance.IsBuildingMode;
+                else return false;
+            }
+        }
 
         [SerializeField] public LayerMask mouseColliderLayerMask = new LayerMask() { value = 1 };
         public static Vector3 PointPosition {
@@ -20,18 +28,24 @@ namespace BuildingSystem {
                 : -1; 
         }
 
-
         private void Awake() {
                 Instance = this;
         }
 
         private void Start() {
-            StartCoroutine();
+            StartCoroutine("InitAfterBuildingModeOn");
         }
 
         private void OnDestroy() {
             StopCoroutine();
         }
+
+        private IEnumerable InitAfterBuildingModeOn() {
+            yield return new WaitUntil(() => BuildingSystem.Instance.IsBuildingMode);
+            StartCoroutine();
+        }
+
+
         public void StartCoroutine() {
             StartCoroutine("CoroutineLoop");
         }
@@ -53,5 +67,12 @@ namespace BuildingSystem {
             }
         }
 
+        public void Subs_OnBuildingModeEnable(object sender, EventArgs eventArgs) {
+
+        }
+
+        public void Subs_OnBuildingModeDisable(object sender, EventArgs eventArgs) {
+
+        }
     }
 }

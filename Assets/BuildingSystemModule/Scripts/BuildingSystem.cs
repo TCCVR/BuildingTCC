@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO.Ports;
+using Valve.VR;
 
 namespace BuildingSystem {
     class BuildingSystem :MonoBehaviour, ISwitchBuildingHandler, IPCInputHandler {
@@ -31,6 +32,7 @@ namespace BuildingSystem {
 
         public void Awake() {
             Instance = this;
+            if (OpenVR.IsHmdPresent()) isBuildingMode = false;
         }
 
         public void Start() {

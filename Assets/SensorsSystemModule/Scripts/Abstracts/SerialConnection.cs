@@ -150,6 +150,7 @@ namespace SensorSystem {
         public void StartCoroutine() {
             isRunning = true;
             StartCoroutine("CoroutineLoop");
+            //Debug.Log($"StartedCoroutine");
         }
 
         public IEnumerator CoroutineLoop() {
