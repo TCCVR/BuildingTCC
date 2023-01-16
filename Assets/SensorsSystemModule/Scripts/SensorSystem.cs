@@ -37,6 +37,7 @@ namespace SensorSystem {
                 foreach (KeyCode key in Enum.GetValues(typeof(KeyCode))) {
                     if (USEDKEYS.Contains(key)) {
                         if (Input.GetKeyDown(key)) {
+                            //Debug.Log($"KeyPressed: {key}");
                             OnKeyPressed?.Invoke(this, new OnKeyPressedEventArgs { keyPressed = key });
                             break;
                         };
