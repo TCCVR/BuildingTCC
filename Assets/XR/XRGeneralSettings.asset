@@ -13,6 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LoaderManagerInstance: {fileID: 301686388408879653}
   m_InitManagerOnStart: 1
+  m_RequiresSettingsUpdate: 0
+  m_AutomaticLoading: 0
+  m_AutomaticRunning: 0
+  m_Loaders: []
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27,6 +31,8 @@ MonoBehaviour:
   Keys: 01000000
   Values:
   - {fileID: -2838641427254344584}
+  m_LoaderManagerInstance: {fileID: -7363805468410534216}
+  m_InitManagerOnStart: 0
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

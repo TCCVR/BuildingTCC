@@ -118,6 +118,72 @@
     <None Include="Assets\StarterAssets\license.txt" />
   </ItemGroup>
   <ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Interfaces\IPCInputHandler.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\GridObjectsScripts\GridObjectsInfo.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\HeartbeatCJMCU\CSVHeartDataHandler.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\TSaveManager.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\JSONSave.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\IntGraphValues.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\GridLevel.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Interfaces\ISensorSubscriber.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\MoveableObjectsScripts\MovableObjectsInfo.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\HeartbeatCJMCU\CJMCUSerialConnection.cs" />
+    <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualJoystick.cs" />
+    <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualTouchZone.cs" />
+    <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\SensorSystem.cs" />
+    <Compile Include="Assets\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TGhostObject.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\BuildingSystem.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\FileUtils.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\MoveableObjectsScripts\MovableObjectsManager.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Interfaces\IHandleSensorData.cs" />
+    <Compile Include="Assets\StarterAssets\FirstPersonController\Scripts\BasicRigidBodyPush.cs" />
+    <Compile Include="Assets\StarterAssets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\GridObjectsScripts\GhostGridObject.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectsTypeSelectUI.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Abstracts\SerialConnection.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Interfaces\IPCInputSubscriber.cs" />
+    <Compile Include="Assets\Scripts\GameHandler.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Interfaces\IPCInputSubscriber.cs" />
+    <Compile Include="Assets\StarterAssets\FirstPersonController\Scripts\FirstPersonController.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectsManager.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\RaycastPoint.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Interfaces\IPCInputHandler.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\SensorSystemConstants.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\GridlessLoader.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectSO.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectSystem.cs" />
+    <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\GridObjectsScripts\GhostGridEdgeObject.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Interfaces\ISwitchBuildingHandler.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\JSONSaveManager.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\GridObjectsScripts\GridEdgeObjectsPosition.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\MoveableObjectsScripts\GhostMovableObject.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\TInstantiableObjectInfo.cs" />
+    <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\HeartbeatLine.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\SensorManager.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\HeartbeatGraph.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\BuildingSystemEventArgsClasses.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Base\Assets.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Interfaces\ISensorHandler.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Constants.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\Interfaces\ISwitchBuildingSubscriber.cs" />
+    <Compile Include="Assets\SensorsSystemModule\Scripts\Graph\HeartbeatGraphDot.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\InstantiableObjectsDef\InstanceInfo.cs" />
+    <Compile Include="Assets\BuildingSystemModule\Scripts\GridObjectsScripts\GridObjectsManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\LowPolyOfficeProps_LITE\About.txt" />
+    <None Include="Assets\StarterAssets\Environment\Shaders\Built-in_RP\Triplanar.shader" />
+    <None Include="Assets\StarterAssets\license.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -783,6 +849,10 @@
     <ProjectReference Include="SteamVR_Editor.csproj">
       <Project>{A6D56B14-CD8C-E600-6311-800A9D4C5BDB}</Project>
       <Name>SteamVR_Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="SteamVR_Actions.csproj">
+      <Project>{B1A7A79A-0AF2-FE1A-B896-0D785A36BDB5}</Project>
+      <Name>SteamVR_Actions</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
