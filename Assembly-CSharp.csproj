@@ -764,6 +764,11 @@
       <Name>SteamVR_Windows_EditorHelper</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="SteamVR_Actions.csproj">
+      <Project>{B1A7A79A-0AF2-FE1A-B896-0D785A36BDB5}</Project>
+      <Name>SteamVR_Actions</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="SteamVR_Editor.csproj">
       <Project>{A6D56B14-CD8C-E600-6311-800A9D4C5BDB}</Project>
       <Name>SteamVR_Editor</Name>
